@@ -8,6 +8,7 @@ using Match3.Core.GameEvents;
 using Match3.Core.Gravity;
 using Match3.Core.Levels;
 using Match3.Core.TurnSteps;
+using Match3.Settings;
 using UnityEngine;
 using Utils.Extensions;
 using Random = UnityEngine.Random;
@@ -90,10 +91,15 @@ namespace Match3.Core
         {
             if (context == null)
             {
-                // get default from settings
-                // if from settings is also null
+                if (SimulationSettings.Instance != null && SimulationSettings.Instance.DefaultSimulationContext != null)
+                    context = SimulationSettings.Instance.DefaultSimulationContext.GameContext;
+            }
+
+            if (context == null)
+            {
                 context = new GameContext();
             }
+            
             context.DataExtractors.AddRange(additionalDataExtractors ?? new List<IDataExtractor>());
             var gameController = new GameController(
                 level,
