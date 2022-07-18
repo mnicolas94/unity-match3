@@ -84,6 +84,10 @@ namespace Match3.View
         {
             var tokenData = token.TokenData;
             int orderSign = 1;
+            
+            if (tokenData.Type != TokenType.Main)
+                layerIndex++;
+            
             if (tokenData.Type == TokenType.Bottom)
                 orderSign = -1;
             _spriteRenderer.sortingOrder = layerIndex * orderSign;
