@@ -1,0 +1,11 @@
+{
+  "name": "com.facticus.match3.Tests",
+  "references": [
+    "Unity.com.facticus.match3"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": []
+}

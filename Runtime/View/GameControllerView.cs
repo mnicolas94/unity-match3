@@ -1,0 +1,375 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using AsyncUtils;
+using Match3.Core;
+using Match3.Core.GameActions.Actions;
+using Match3.Core.GameActions.Interactions;
+using Match3.Core.GameDataExtraction;
+using Match3.Core.GameEvents;
+using Match3.Core.Gravity;
+using Match3.Core.Levels;
+using Match3.Core.TurnSteps;
+using Match3.View.GameEndConditions;
+using Match3.View.Interactions;
+using NaughtyAttributes;
+using UnityEngine;
+
+namespace Match3.View
+{
+    public class GameControllerView : MonoBehaviour
+    {
+        [SerializeField] private BoardView boardView;
+        [SerializeField] private GameEndConditionsView gameEndView;
+        [SerializeField] private SkillsInitializer _skillsInitializer;
+        [SerializeField] private SwapInteractionView _swapInteractionView;
+        [SerializeField] private DoubleClickInteractionView _doubleClickInteractionView;
+        
+        [SerializeField] private SerializableEventsProvider _eventsProvider;
+        [SerializeField] private GameContextAsset _gameContext;
+        
+        [SerializeField] private PopupSkipTurn _skipPopupPrefab;
+        [SerializeField] private PopupGameWon _victoryPopupPrefab;
+        [SerializeField] private PopupGameOver _defeatPopupPrefab;
+
+        [SerializeReference, SubclassSelector]
+        private GameEndHandlerBase _gameEndHandler;
+
+        private GameController _gameController;
+        private List<SkillView> _skillViews;
+        private Level _lastLevel;
+        
+        private CancellationTokenSource _cts;
+        private bool _gameLoopIsRunning;
+
+        private bool ExecutingTurn { get; set; }
+
+
+        private void Start()
+        {
+            InitializeSkillsAndInteractionViews();
+        }
+
+        private void OnDisable()
+        {
+            StopGameLoop();
+        }
+
+        public async void StartGameInLevel(Level level)
+        {
+            if (Application.isPlaying)
+            {
+                StopGameLoop();
+                _cts = new CancellationTokenSource();
+                var ct = _cts.Token;
+                await WaitUntilLoopStopped(ct);
+                
+                PopulateLevel(level);
+                
+                await StartGameLoop(ct);
+            }
+            else
+            {
+                PopulateLevel(level);
+            }
+        }
+
+        public void RestartCurrentLevel()
+        {
+            StartGameInLevel(_lastLevel);
+        }
+        
+        private void PopulateLevel(Level level)
+        {
+            var victoryEvaluator = level.VictoryEvaluator;
+            var defeatEvaluator = level.DefeatEvaluator;
+            var context = _gameContext == null ? new GameContext() : _gameContext.GameContext;
+            context.EventsProvider = _eventsProvider;
+            _gameController = new GameController(level, context);
+            boardView.UpdateView(_gameController.Board);
+            gameEndView.SetupUi(victoryEvaluator, defeatEvaluator);
+            _lastLevel = level;
+        }
+
+        private void InitializeSkillsAndInteractionViews()
+        {
+            _skillViews = _skillsInitializer.InitializeSkills();
+            _swapInteractionView.Initialize();
+            _doubleClickInteractionView.Initialize();
+        }
+        
+        #region Game loop
+
+        private async Task StartGameLoop(CancellationToken ct)
+        {
+            try
+            {
+                _gameLoopIsRunning = true;
+                var (gameEnd, restartGame) = await StartGame(ct);
+                while (!gameEnd && !ct.IsCancellationRequested)
+                {
+                    var (interaction, action) = await WaitForInteractionAsync(ct);
+                    if (interaction == null || action == null) continue;
+
+                    var turn = _gameController.ExecuteGameAction(interaction, action);
+                    if (turn == null) continue;
+
+                    (gameEnd, restartGame) = await ExecuteTurnAndHandleGameEnd(ct, turn);
+                }
+                
+                _gameController.EndGame();
+
+                if (restartGame)
+                {
+                    RestartCurrentLevel();
+                }
+            }
+            finally
+            {
+                _gameLoopIsRunning = false;
+            }
+        }
+
+        private async Task<(bool, bool)> StartGame(CancellationToken ct)
+        {
+            var turn = _gameController.StartGame();
+            return await ExecuteTurnAndHandleGameEnd(ct, turn);
+        }
+
+        private void StopGameLoop()
+        {
+            if (_cts != null)
+            {
+                _cts.Cancel();
+                _cts.Dispose();
+            }
+        }
+
+        private async Task WaitUntilLoopStopped(CancellationToken ct)
+        {
+            while (_gameLoopIsRunning && !ct.IsCancellationRequested)
+            {
+                await Task.Yield();
+            }
+        }
+
+        private async Task<(bool, bool)> ExecuteTurnAndHandleGameEnd(CancellationToken ct, Turn turn)
+        {
+            var (victory, defeat) = await ExecuteTurn(turn, ct);
+            bool restartGame = await HandleGameEnd(victory, defeat, ct);
+            bool gameEnd = victory || defeat;
+            return (gameEnd, restartGame);
+        }
+        
+        private async Task<(IInteraction, IGameAction)> WaitForInteractionAsync(CancellationToken ct)
+        {
+            while (!ct.IsCancellationRequested)
+            {
+                var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(ct);
+                var linkedCt = linkedCts.Token;
+                Task allTasks = null;
+                try
+                {
+                    var swapTask = _swapInteractionView.WaitInteractionAsync(linkedCt);
+                    var doubleClickTask = _doubleClickInteractionView.WaitInteractionAsync(linkedCt);
+                    var skillsPressedTasks =
+                        _skillViews.ConvertAll(skillView => skillView.WaitForSkillPressed(linkedCt));
+                    var firstSkillPressedTask = skillsPressedTasks.Count > 0
+                        ? Task.WhenAny(skillsPressedTasks)
+                        : AsyncUtils.Utils.NeverEndTaskAsync<Task<SkillView>>(linkedCt);
+
+                    allTasks = Task.WhenAll(swapTask, doubleClickTask, firstSkillPressedTask);
+                    var firstFinished = await Task.WhenAny(swapTask, doubleClickTask, firstSkillPressedTask);
+                    await firstFinished;
+
+                    if (firstFinished == firstSkillPressedTask) // skill pressed
+                    {
+                        var skillPressedTask = await firstSkillPressedTask;
+                        var skillView = await skillPressedTask;
+                        linkedCts.Cancel(); // cancel other async tasks
+
+                        if (skillView.IsSkillUsable)
+                        {
+                            // wait for skill interaction
+                            var linkedCtsInteraction = CancellationTokenSource.CreateLinkedTokenSource(ct);
+                            var linkedCtInteraction = linkedCtsInteraction.Token;
+                            try
+                            {
+                                var interactionTask = skillView.WaitForInteractionAsync(linkedCtInteraction);
+                                var (interaction, gameAction, success) = await interactionTask;
+                                if (success)
+                                {
+                                    return (interaction, gameAction);
+                                }
+                            }
+                            finally
+                            {
+                                linkedCtsInteraction.Cancel();
+                                linkedCtsInteraction.Dispose();
+                            }
+                        }
+                        else
+                        {
+                            await Task.Yield(); // this avoids breaking the loop, don't know why
+                            // TODO poner cartelito de "no se puede usar la habilidad"
+                        }
+                    }
+                    else if (firstFinished == swapTask) // swapped
+                    {
+                        var (interaction, success) = await swapTask;
+                        if (success)
+                        {
+                            var action = new SwapGameAction();
+                            return (interaction, action);
+                        }
+                    }
+                    else // double clicked
+                    {
+                        var (interaction, success) = await doubleClickTask;
+                        if (success)
+                        {
+                            var action = new DoubleClickGameAction();
+                            return (interaction, action);
+                        }
+                    }
+                }
+                finally
+                {
+                    if (!linkedCts.IsCancellationRequested)
+                    {
+                        linkedCts.Cancel();
+                        try
+                        {
+                            if (allTasks != null)
+                            {
+                                await allTasks;  // wait for cancellation
+                            }
+                        }
+                        finally{}
+                    }
+                    linkedCts.Dispose();
+                }
+            }
+            return (null, null);
+        }
+
+        private async Task<(bool, bool)> ExecuteTurn(Turn turn, CancellationToken ct)
+        {
+            ExecutingTurn = true;
+            var victoryEvaluator = _gameController.CurrentLevel.VictoryEvaluator;
+            var defeatEvaluator = _gameController.CurrentLevel.DefeatEvaluator;
+            var gameData = _gameController.GameData;
+
+            bool victory = false;
+            bool defeat = false;
+            Task skipTask = null;
+            bool skipTurn = false;
+            var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(ct);
+            var linkedCt = linkedCts.Token;
+            try
+            {
+                foreach (var turnStep in turn.TurnSteps)
+                {
+                    if (turnStep is TurnStepGameEndVictory)
+                    {
+                        victory = true;
+                        // enable skip button
+                        skipTask = Popups.ShowPopup(_skipPopupPrefab, linkedCt);
+                    }
+                    else if (turnStep is TurnStepGameEndDefeat)
+                    {
+                        defeat = true;
+                    }
+
+                    if (defeat && !victory)
+                        break;
+
+                    if (!skipTurn)
+                    {
+                        var renderTask = boardView.RenderTurnStepAsync(turnStep, ct);
+                        if (skipTask != null)
+                        {
+                            var finishedTask = await Task.WhenAny(renderTask, skipTask);
+                            if (finishedTask == skipTask)
+                            {
+                                skipTurn = true;
+                            }
+                        }
+                        else
+                        {
+                            await renderTask;
+                        }
+                        gameEndView.UpdateUi(victoryEvaluator, defeatEvaluator, gameData);
+                    }
+                }
+            }
+            finally
+            {
+                linkedCts.Cancel();
+                linkedCts.Dispose();
+            }
+
+            ExecutingTurn = false;
+            
+            return (victory, defeat);
+        }
+
+        private async Task<bool> HandleGameEnd(bool victory, bool defeat, CancellationToken ct)
+        {
+            bool stopPlaying = false;
+            bool restartLevel = false;
+            if (victory)
+            {
+                // show victory popup
+                await Popups.ShowPopup(_victoryPopupPrefab, _gameController.GameData, ct);
+                stopPlaying = true;
+            }
+            else if (defeat)
+            {
+                // show defeat popup
+                restartLevel = await Popups.ShowPopup(_defeatPopupPrefab, ct);
+                if (!restartLevel)
+                {
+                    stopPlaying = true;
+                }
+            }
+
+            if (stopPlaying)
+            {
+                _gameEndHandler ??= new DefaultGameEndHandler();
+                restartLevel = _gameEndHandler.HandleGameEnd(this);
+            }
+
+            return restartLevel;
+        }
+
+        #endregion
+    }
+
+    public abstract class GameEndHandlerBase
+    {
+        public abstract bool HandleGameEnd(GameControllerView gameControllerView);
+    }
+
+    [Serializable]
+    public class DefaultGameEndHandler : GameEndHandlerBase
+    {
+        [SerializeField, Scene] private string _returnSceneName;
+        
+        public override bool HandleGameEnd(GameControllerView gameControllerView)
+        {
+            LoadingUtils.LoadingUtils.LoadSceneAsync(_returnSceneName, null, null);
+            return false;
+        }
+    }
+    
+    [Serializable]
+    public class StayInSceneGameEndHandler : GameEndHandlerBase
+    {
+        public override bool HandleGameEnd(GameControllerView gameControllerView)
+        {
+            return true;
+        }
+    }
+}

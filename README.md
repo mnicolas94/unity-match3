@@ -1,6 +1,6 @@
-# {{FRIENDLY_NAME}}
+# Match3
 
-{{DESCRIPTION}}
+Unity package to create match3 games
 
 ## License
 
