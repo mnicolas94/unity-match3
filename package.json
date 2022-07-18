@@ -16,5 +16,12 @@
     "type": "git",
     "url": "https://github.com/mnicolas94/unity-match3.git"
   },
+  "samples": [
+    {
+      "displayName": "Simple match3 sample",
+      "description": "Contains a scene with a match3 game ready to be played",
+      "path": "Samples~/Match3Sample"
+    }
+  ],
   "license": "MIT"
 }

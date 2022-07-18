@@ -12,27 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734fbfb568154d32a89d792102f0c779, type: 3}
   m_Name: AtomGenerator
   m_EditorClassIdentifier: 
-  FullQualifiedName: Match3.Core.Matches.MatchGroups, com.facticus.match3, Version=0.0.0.0,
+  FullQualifiedName: Match3.Core.TokenData, com.facticus.match3, Version=0.0.0.0,
     Culture=neutral, PublicKeyToken=null
-  Namespace: Match3.Core.Matches
-  BaseType: MatchGroups
-  GenerationOptions: 2556472
+  Namespace: Match3.Core
+  BaseType: TokenData
+  GenerationOptions: 80
   Scripts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

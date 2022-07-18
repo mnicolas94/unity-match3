@@ -23,15 +23,18 @@ MonoBehaviour:
   _isIndestructible: 0
   _resolvers:
   - eventType:
-      _typeHash: 'type: {class: EventSwapped, ns: Match3.Core.TokensEvents.Events, asm: com.facticus.match3}'
+      _typeHash: 'type: {class: EventSwapped, ns: Match3.Core.TokensEvents.Events,
+        asm: com.facticus.match3}'
     resolver:
       id: 0
   - eventType:
-      _typeHash: 'type: {class: EventDoubleClicked, ns: Match3.Core.TokensEvents.Events, asm: com.facticus.match3}'
+      _typeHash: 'type: {class: EventDoubleClicked, ns: Match3.Core.TokensEvents.Events,
+        asm: com.facticus.match3}'
     resolver:
       id: 1
   - eventType:
-      _typeHash: 'type: {class: EventDestroyed, ns: Match3.Core.TokensEvents.Events, asm: com.facticus.match3}'
+      _typeHash: 'type: {class: EventDestroyed, ns: Match3.Core.TokensEvents.Events,
+        asm: com.facticus.match3}'
     resolver:
       id: 2
   references:

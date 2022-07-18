@@ -2,6 +2,7 @@
 using System.Linq;
 using Match3.Core;
 using Match3.Core.Collections;
+using UnityAtoms.BaseAtoms;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -28,42 +29,32 @@ namespace Match3.Editor.Drawers
             }
         }
         
-        private static List<(string, string)> TokensTags = new List<(string, string)>
-        {
-            ("Resources", "tokens/resources"),
-            ("Powerups", "tokens/powerups"),
-            ("Obstacles", "tokens/obstacles"),
-            ("Species", "tokens/species"),
-        };
+        private static readonly List<TokensGroupInfo> TokensGroups = LoadTokens();
         
-        private static readonly List<TokensGroupInfo> TokensGroups = new List<TokensGroupInfo>
+        private static List<TokensGroupInfo> LoadTokens()
         {
-            new TokensGroupInfo(TokensTags[0].Item1, LoadTokens(TokensTags[0].Item2)),
-            new TokensGroupInfo(TokensTags[1].Item1, LoadTokens(TokensTags[1].Item2)),
-            new TokensGroupInfo(TokensTags[2].Item1, LoadTokens(TokensTags[2].Item2)),
-            new TokensGroupInfo(TokensTags[3].Item1, LoadTokens(TokensTags[3].Item2)),
-            new TokensGroupInfo("Others", LoadOthers()),
-        };
-        
-        private static IList<TokenData> LoadTokens(string path)
-        {
-            var tokens = Addressables.LoadAssetsAsync<TokenData>(path, null).WaitForCompletion();
-            return tokens;
-        }
-        
-        private static IList<TokenData> LoadOthers()
-        {
+            var groups = new List<TokensGroupInfo>();
+            var groupsAssets = AssetDatabase.FindAssets("t:TokenDataValueList")
+                .Select(AssetDatabase.GUIDToAssetPath)
+                .Select(AssetDatabase.LoadAssetAtPath<TokenDataValueList>)
+                .ToList();
+
+            var tokens = new List<TokenData>();
+            foreach (var groupAsset in groupsAssets)
+            {
+                var group  = new TokensGroupInfo(groupAsset.name, groupAsset);
+                groups.Add(group);
+                tokens.AddRange(groupAsset);
+            }
+            
             var allTokens = AssetDatabase.FindAssets("t:TokenData")
                 .Select(AssetDatabase.GUIDToAssetPath)
                 .Select(AssetDatabase.LoadAssetAtPath<TokenData>)
                 .ToList();
-            List<TokenData> tokens = LoadTokens(TokensTags[0].Item2).ToList();
-            tokens.AddRange(LoadTokens(TokensTags[1].Item2));
-            tokens.AddRange(LoadTokens(TokensTags[2].Item2));
-            tokens.AddRange(LoadTokens(TokensTags[3].Item2));
-            
             var others = allTokens.FindAll(token => !tokens.Contains(token));
-            return others;
+            groups.Add(new TokensGroupInfo("Others", others));
+            
+            return groups;
         }
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
