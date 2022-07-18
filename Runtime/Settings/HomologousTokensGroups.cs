@@ -8,7 +8,7 @@ using Utils.Attributes;
 
 namespace Match3.Settings
 {
-    [CreateAssetMenu(fileName = "HomologousTokensGroups", menuName = "Match3/Settings/HomologousTokensGroups", order = 0)]
+    [CreateAssetMenu(fileName = "HomologousTokensGroups", menuName = "Facticus/Match3/Settings/HomologousTokensGroups", order = 0)]
     public class HomologousTokensGroups : ScriptableObjectSingleton<HomologousTokensGroups>
     {
         [SerializeField, ToStringLabel] private List<HomologousTokensGroup> _groups;

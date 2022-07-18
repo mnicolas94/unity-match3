@@ -8,7 +8,7 @@ using Utils;
 
 namespace Match3.Core.Levels
 {
-    [CreateAssetMenu(fileName = "LevelsOrder", menuName = "Match3/Levels/LevelsOrder", order = 0)]
+    [CreateAssetMenu(fileName = "LevelsOrder", menuName = "Facticus/Match3/Levels/LevelsOrder", order = 0)]
     public class LevelsOrder : ScriptableObjectSingleton<LevelsOrder>
     {
         [SerializeField] private List<Level> _levels;

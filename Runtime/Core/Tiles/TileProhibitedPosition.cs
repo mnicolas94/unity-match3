@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 namespace Match3.Core.Tiles
 {
-    [CreateAssetMenu(fileName = "TileProhibitedPosition", menuName = "Match3/Tiles/TileProhibitedPosition", order = 0)]
+    [CreateAssetMenu(fileName = "TileProhibitedPosition", menuName = "Facticus/Match3/Tiles/TileProhibitedPosition", order = 0)]
     public class TileProhibitedPosition : TileBase
     {
         [SerializeField] private Sprite sprite;

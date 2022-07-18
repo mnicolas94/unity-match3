@@ -2,7 +2,7 @@
 
 namespace Match3.Core.Matches.Patterns
 {
-    [CreateAssetMenu(fileName = "MatchPatternTokenCount", menuName = "Match3/MatchPatterns/Count")]
+    [CreateAssetMenu(fileName = "MatchPatternTokenCount", menuName = "Facticus/Match3/MatchPatterns/Count")]
     public class MatchPatternTokenCount : MatchPatternRecognizerBase
     {
         [SerializeField] private int _count;

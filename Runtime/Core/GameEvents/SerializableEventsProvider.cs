@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Match3.Core.GameEvents
 {
-    [CreateAssetMenu(fileName = "SerializableEventsProvider", menuName = "Match3/Events/SerializableEventsProvider", order = 0)]
+    [CreateAssetMenu(fileName = "SerializableEventsProvider", menuName = "Facticus/Match3/Events/SerializableEventsProvider", order = 0)]
     public class SerializableEventsProvider : ScriptableObject, IGameEventsProvider
     {
         [SerializeField] private GameControllerEvent _gameStartedEvent;

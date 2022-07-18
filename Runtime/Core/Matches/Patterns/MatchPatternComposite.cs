@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Match3.Core.Matches.Patterns
 {
-    [CreateAssetMenu(fileName = "MatchPatternComposite", menuName = "Match3/MatchPatterns/Composite")]
+    [CreateAssetMenu(fileName = "MatchPatternComposite", menuName = "Facticus/Match3/MatchPatterns/Composite")]
     public class MatchPatternComposite : MatchPatternRecognizerBase
     {
         [SerializeField] private List<MatchPatternRecognizerBase> _recognizers;

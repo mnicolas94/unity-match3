@@ -8,7 +8,7 @@ namespace Match3.Editor
 {
     public static class TokenCreationUtils
     {
-        [MenuItem("Assets/Create/Match3/Token")]
+        [MenuItem("Assets/Create/Facticus/Match3/Token")]
         public static void CreateToken()
         {
             var tokenName = EditorInputDialog.Show(

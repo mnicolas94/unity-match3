@@ -4,7 +4,7 @@ using Utils.ModelView;
 
 namespace Match3.Core.GameActions
 {
-    [CreateAssetMenu(fileName = "Skill", menuName = "Match3/Skills/Skill")]
+    [CreateAssetMenu(fileName = "Skill", menuName = "Facticus/Match3/Skills/Skill")]
     public class Skill : ScriptableObject, IModel
     {
         [SerializeField] private string skillName;

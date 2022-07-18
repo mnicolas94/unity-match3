@@ -12,7 +12,7 @@ namespace Match3.Editor
 {
     public static class SimulationMenuItems
     {
-        [MenuItem("Assets/Resources Crush/Simulation/Simulate games in level", false)]
+        [MenuItem("Assets/Facticus/Match3/Simulation/Simulate games in level", false)]
         public static async void SimulateGamesInLevel()
         {
             var (level, isSelected) = LevelUtils.TryGetSelectedLevel();
@@ -34,7 +34,7 @@ namespace Match3.Editor
             }
         }
         
-        [MenuItem("Assets/Resources Crush/Simulation/Compute match statistics", false)]
+        [MenuItem("Assets/Facticus/Match3/Simulation/Compute match statistics", false)]
         public static async void ComputeMatchStatistics()
         {
             var (level, isSelected) = LevelUtils.TryGetSelectedLevel();

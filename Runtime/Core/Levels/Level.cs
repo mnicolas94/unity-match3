@@ -32,7 +32,7 @@ namespace Match3.Core.Levels
         }
     }
     
-    [CreateAssetMenu(fileName = "Level", menuName = "Match3/Level")]
+    [CreateAssetMenu(fileName = "Level", menuName = "Facticus/Match3/Level")]
     public class Level : ScriptableObject, IHomologousTokenReplacer, IValidatable
     {
         [SerializeField] private BoardShape boardShape;

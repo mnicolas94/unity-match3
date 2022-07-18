@@ -4,7 +4,7 @@ using Utils.ModelView;
 
 namespace Match3.View.SkillCostViews
 {
-    [CreateAssetMenu(fileName = "SkillCostViewsProvider", menuName = "Match3/Skills/SkillCostViewsProvider")]
+    [CreateAssetMenu(fileName = "SkillCostViewsProvider", menuName = "Facticus/Match3/Skills/SkillCostViewsProvider")]
     public class SkillCostViewsProvider : ViewProviderPrefab<Skill>
     {
     }

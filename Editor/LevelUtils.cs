@@ -10,19 +10,19 @@ namespace Match3.Editor
 {
     public static class LevelUtils
     {
-        [MenuItem("Assets/Resources Crush/Levels/Overwrite from level editor", true)]
-        [MenuItem("Assets/Resources Crush/Levels/Edit level %#e", true)]
-        [MenuItem("Assets/Resources Crush/Levels/Populate board with level %#w", true)]
-        [MenuItem("Assets/Resources Crush/Levels/Play level %#d", true)]
-        [MenuItem("Assets/Resources Crush/Simulation/Simulate games in level", true)]
-        [MenuItem("Assets/Resources Crush/Simulation/Compute match statistics", true)]
+        [MenuItem("Assets/Facticus/Match3/Levels/Overwrite from level editor", true)]
+        [MenuItem("Assets/Facticus/Match3/Levels/Edit level %#e", true)]
+        [MenuItem("Assets/Facticus/Match3/Levels/Populate board with level %#w", true)]
+        [MenuItem("Assets/Facticus/Match3/Levels/Play level %#d", true)]
+        [MenuItem("Assets/Facticus/Match3/Simulation/Simulate games in level", true)]
+        [MenuItem("Assets/Facticus/Match3/Simulation/Compute match statistics", true)]
         public static bool EditLevelValidator()
         {
             var selectedLevels = Selection.GetFiltered<Level>(SelectionMode.Assets);
             return selectedLevels.Length == 1;
         }
         
-        [MenuItem("Resources Crush/Levels/Create from level editor")]
+        [MenuItem("Tools/Facticus/Match3/Levels/Create from level editor")]
         public static void CreateLevelFromEditor()
         {
             var levelEditor = GetLevelEditor();
@@ -33,7 +33,7 @@ namespace Match3.Editor
             }
         }
         
-        [MenuItem("Assets/Resources Crush/Levels/Overwrite from level editor", false)]
+        [MenuItem("Assets/Facticus/Match3/Levels/Overwrite from level editor", false)]
         public static void OverwriteLevel()
         {
             var (level, isSelected) = TryGetSelectedLevel();
@@ -44,7 +44,7 @@ namespace Match3.Editor
             }
         }
         
-        [MenuItem("Assets/Resources Crush/Levels/Edit level %#e", false)]
+        [MenuItem("Assets/Facticus/Match3/Levels/Edit level %#e", false)]
         public static void EditLevel()
         {
             var (level, isSelected) = TryGetSelectedLevel();
@@ -55,7 +55,7 @@ namespace Match3.Editor
             }
         }
         
-        [MenuItem("Assets/Resources Crush/Levels/Populate board with level %#w", false, 11)]
+        [MenuItem("Assets/Facticus/Match3/Levels/Populate board with level %#w", false, 11)]
         public static void PopulateInBoard()
         {
             var (level, isSelected) = TryGetSelectedLevel();
@@ -66,7 +66,7 @@ namespace Match3.Editor
             }
         }
         
-        [MenuItem("Assets/Resources Crush/Levels/Play level %#d", false, 11)]
+        [MenuItem("Assets/Facticus/Match3/Levels/Play level %#d", false, 11)]
         public static void PlayLevel()
         {
             var (level, isSelected) = TryGetSelectedLevel();
@@ -88,7 +88,7 @@ namespace Match3.Editor
             }
         }
         
-        [MenuItem("Resources Crush/Levels/Find similar levels")]
+        [MenuItem("Tools/Facticus/Match3/Levels/Find similar levels")]
         public static void FindSimilarLevels()
         {
             float threshold = 0.1f;

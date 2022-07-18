@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 namespace Match3.Core.Tiles
 {
-    [CreateAssetMenu(fileName = "TileToken", menuName = "Match3/Tiles/TileToken")]
+    [CreateAssetMenu(fileName = "TileToken", menuName = "Facticus/Match3/Tiles/TileToken")]
     public class TileToken : TileBase
     {
         [SerializeField] private TokenData tokenData;
