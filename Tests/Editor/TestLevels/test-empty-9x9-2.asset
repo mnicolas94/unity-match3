@@ -99,12 +99,8 @@ MonoBehaviour:
   _tokensCreationData:
     _tokens:
       _data:
-      - {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-      - {fileID: 11400000, guid: 9467128ae25af8f4a8f73106c3977b04, type: 2}
-    _tokenssese:
-      _data:
-      - {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-      - {fileID: 11400000, guid: 9467128ae25af8f4a8f73106c3977b04, type: 2}
+      - {fileID: 11400000, guid: 3c48cc0744e543543b9550b4933ee2de, type: 2}
+      - {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
     _tokensProbabilities: []
     _requests: []
   _fallTokensAtStart: 0
@@ -123,7 +119,7 @@ MonoBehaviour:
       data:
         tokenCounts:
           m_keys:
-          - {fileID: 11400000, guid: 59d9c7af55e138343995dfd2aa08c4be, type: 2}
+          - {fileID: 11400000, guid: 93b1c219498fbbb42b30fe1562525353, type: 2}
           m_values: 01000000
     00000001:
       type: {class: MovementsDefeatEvaluator, ns: Match3.Core.GameEndConditions.Defeat, asm: com.facticus.match3}

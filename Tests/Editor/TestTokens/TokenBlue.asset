@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c491807e2ca4421a9d6b808958f23e1, type: 3}
   m_Name: TokenBlue
   m_EditorClassIdentifier: 
-  _tokenSprite: {fileID: 21300000, guid: 8c8f41e2cc0b1954ca76dcab4f7dd80e, type: 3}
+  _tokenSprite: {fileID: 21300000, guid: 8c8f41e2cc0b1954ca76dcab4f7dd80e, type: 2}
   _destroySprites: []
   _destroyAnimDuration: 0
   _particlesPrefab: {fileID: 4181617674233429275, guid: 39a43a3e15b85ec42a9b9184798917f5, type: 3}

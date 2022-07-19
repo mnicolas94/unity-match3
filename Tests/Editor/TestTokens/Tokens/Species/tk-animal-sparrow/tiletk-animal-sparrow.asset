@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5cd494552773ff47a5a37f762427fe5, type: 3}
   m_Name: tiletk-animal-sparrow
   m_EditorClassIdentifier: 
-  tokenData: {fileID: 11400000, guid: 59d9c7af55e138343995dfd2aa08c4be, type: 2}
+  tokenData: {fileID: 11400000, guid: 93b1c219498fbbb42b30fe1562525353, type: 2}

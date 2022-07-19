@@ -1,9 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Match3.Core;
 using Match3.Core.LevelEditor;
 using Match3.Core.Levels;
 using Match3.View;
 using UnityEditor;
 using UnityEngine;
+using Utils.Editor;
 using Object = UnityEngine.Object;
 
 namespace Match3.Editor
@@ -20,6 +24,13 @@ namespace Match3.Editor
         {
             var selectedLevels = Selection.GetFiltered<Level>(SelectionMode.Assets);
             return selectedLevels.Length == 1;
+        }
+        
+        [MenuItem("Assets/Facticus/Match3/Levels/Replace level's tokens", true)]
+        public static bool EditLevelsValidator()
+        {
+            var selectedLevels = Selection.GetFiltered<Level>(SelectionMode.Assets);
+            return selectedLevels.Length > 0;
         }
         
         [MenuItem("Tools/Facticus/Match3/Levels/Create from level editor")]
@@ -53,6 +64,29 @@ namespace Match3.Editor
                 var levelEditor = GetLevelEditor();
                 levelEditor.InitializeFromLevel(level);
             }
+        }
+        
+        [MenuItem("Assets/Facticus/Match3/Levels/Replace level's tokens", false)]
+        public static void ReplaceTokens()
+        {
+            var levels = GetSelectedLevels();
+            EditorInputDialogScriptableObject.Show<LevelTokensReplacements>(
+                "Replace tokens",
+                "Select tokens to replace",
+                replacements =>
+                {
+                    foreach (var level in levels)
+                    {
+                        foreach (var replacement in replacements._replacements)
+                        {
+                            level.ReplaceToken(replacement._toReplace, replacement._replacement);
+                        }
+                        EditorUtility.SetDirty(level);
+                    }
+                    AssetDatabase.SaveAssets();
+                },
+                okButton: "Replace"
+            );
         }
         
         [MenuItem("Assets/Facticus/Match3/Levels/Populate board with level %#w", false, 11)]
@@ -132,6 +166,12 @@ namespace Match3.Editor
             return (default, false);
         }
         
+        internal static Level[] GetSelectedLevels()
+        {
+            var selectedLevels = Selection.GetFiltered<Level>(SelectionMode.Assets);
+            return selectedLevels;
+        }
+        
         private static void CreateLevelAsset(Level level)
         {
             string path = "Assets/Data/Levels/level.asset";
@@ -154,5 +194,17 @@ namespace Match3.Editor
         {
             return Object.FindObjectOfType<BoardLevelInitializer>();
         }
+    }
+
+    public class LevelTokensReplacements : ScriptableObject
+    {
+        [Serializable]
+        public class TokenReplacement
+        {
+            [SerializeField] public TokenData _toReplace;
+            [SerializeField] public TokenData _replacement;
+        }
+
+        [SerializeField] public List<TokenReplacement> _replacements;
     }
 }

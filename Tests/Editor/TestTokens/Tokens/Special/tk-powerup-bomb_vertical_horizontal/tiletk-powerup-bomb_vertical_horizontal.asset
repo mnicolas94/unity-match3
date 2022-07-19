@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5cd494552773ff47a5a37f762427fe5, type: 3}
   m_Name: tiletk-powerup-bomb_vertical_horizontal
   m_EditorClassIdentifier: 
-  tokenData: {fileID: 11400000, guid: 33d9e812d1a7d244cb9fb2b14f099971, type: 2}
+  tokenData: {fileID: 11400000, guid: ebb42c906d8791e40b5c017c38938403, type: 2}

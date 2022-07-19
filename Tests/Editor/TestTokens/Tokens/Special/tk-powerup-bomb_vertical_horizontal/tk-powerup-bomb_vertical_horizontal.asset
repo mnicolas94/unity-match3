@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c491807e2ca4421a9d6b808958f23e1, type: 3}
   m_Name: tk-powerup-bomb_vertical_horizontal
   m_EditorClassIdentifier: 
-  _tokenSprite: {fileID: 21300000, guid: 5f6f55f4360c4f4498d3520b10bbcc34, type: 3}
+  _tokenSprite: {fileID: 21300000, guid: 543264d5274706242bd03e245c557f8c, type: 3}
   _destroySprites: []
   _destroyAnimDuration: 0
   _particlesPrefab: {fileID: 4181617674233429275, guid: 39a43a3e15b85ec42a9b9184798917f5, type: 3}
@@ -23,15 +23,18 @@ MonoBehaviour:
   _isIndestructible: 0
   _resolvers:
   - eventType:
-      _typeHash: 'type: {class: EventSwapped, ns: Match3.Core.TokensEvents.Events, asm: com.facticus.match3}'
+      _typeHash: 'type: {class: EventSwapped, ns: Match3.Core.TokensEvents.Events,
+        asm: com.facticus.match3}'
     resolver:
       id: 0
   - eventType:
-      _typeHash: 'type: {class: EventDoubleClicked, ns: Match3.Core.TokensEvents.Events, asm: com.facticus.match3}'
+      _typeHash: 'type: {class: EventDoubleClicked, ns: Match3.Core.TokensEvents.Events,
+        asm: com.facticus.match3}'
     resolver:
       id: 1
   - eventType:
-      _typeHash: 'type: {class: EventDestroyed, ns: Match3.Core.TokensEvents.Events, asm: com.facticus.match3}'
+      _typeHash: 'type: {class: EventDestroyed, ns: Match3.Core.TokensEvents.Events,
+        asm: com.facticus.match3}'
     resolver:
       id: 2
   references:

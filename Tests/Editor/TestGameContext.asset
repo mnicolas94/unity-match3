@@ -41,24 +41,24 @@ MonoBehaviour:
     00000000:
       type: {class: TokenProvider, ns: Match3.Core.Matches.TokenProviders, asm: com.facticus.match3}
       data:
-        _tokenData: {fileID: 11400000, guid: 33d9e812d1a7d244cb9fb2b14f099971, type: 2}
+        _tokenData: {fileID: 11400000, guid: ebb42c906d8791e40b5c017c38938403, type: 2}
     00000001:
       type: {class: TokenProvider, ns: Match3.Core.Matches.TokenProviders, asm: com.facticus.match3}
       data:
-        _tokenData: {fileID: 11400000, guid: 23f98a19be1595f49b75d2f6eee2dbae, type: 2}
+        _tokenData: {fileID: 11400000, guid: 8da86aea32f5bd241a65f64cd9b986d3, type: 2}
     00000002:
       type: {class: TokenProvider, ns: Match3.Core.Matches.TokenProviders, asm: com.facticus.match3}
       data:
-        _tokenData: {fileID: 11400000, guid: cbe77c3da51f1ec4ebe87ee3748654ee, type: 2}
+        _tokenData: {fileID: 11400000, guid: 6a80e2a495dd05344b65790dc3209db0, type: 2}
     00000003:
       type: {class: RandomTokenProvider, ns: Match3.Core.Matches.TokenProviders, asm: com.facticus.match3}
       data:
         _tokens:
-        - {fileID: 11400000, guid: cb6a4240308efd54d822d02422310e8d, type: 2}
-        - {fileID: 11400000, guid: 597a8c23503d4df4e900eadeed62fac2, type: 2}
+        - {fileID: 11400000, guid: 680ce43b6dca79841ae307359b57bf36, type: 2}
+        - {fileID: 11400000, guid: e614b554a3e8a654fa812e5ae6bfb931, type: 2}
     00000004:
       type: {class: TokenProvider, ns: Match3.Core.Matches.TokenProviders, asm: com.facticus.match3}
       data:
-        _tokenData: {fileID: 11400000, guid: c045fa13f95012f46b1d3b60b33dbfab, type: 2}
+        _tokenData: {fileID: 11400000, guid: 35de87740990424499c3cd1dbeaf3ac3, type: 2}
     00000005:
       type: {class: CandyCrushGravity, ns: Match3.Core.Gravity, asm: com.facticus.match3}

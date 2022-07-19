@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5cd494552773ff47a5a37f762427fe5, type: 3}
   m_Name: tiletk-resource-magic_energy
   m_EditorClassIdentifier: 
-  tokenData: {fileID: 11400000, guid: 5f4816c60a0386746aa35cd6d064cdfc, type: 2}
+  tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}

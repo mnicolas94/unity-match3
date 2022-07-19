@@ -47,12 +47,6 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 978ac8d7e07f7764a9173951a6eb1499, type: 2}
       - {fileID: 11400000, guid: 9440480db5fdf3f4cb31098f6d38c8bd, type: 2}
       - {fileID: 11400000, guid: d140e27384904ce4cb4eb0711be9d439, type: 2}
-    _tokenssese:
-      _data:
-      - {fileID: 11400000, guid: 0a821d217e1a2334c977c67d25a65eac, type: 2}
-      - {fileID: 11400000, guid: 978ac8d7e07f7764a9173951a6eb1499, type: 2}
-      - {fileID: 11400000, guid: 9440480db5fdf3f4cb31098f6d38c8bd, type: 2}
-      - {fileID: 11400000, guid: d140e27384904ce4cb4eb0711be9d439, type: 2}
     _tokensProbabilities: []
     _requests: []
   _fallTokensAtStart: 0

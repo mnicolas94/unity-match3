@@ -18,11 +18,9 @@ MonoBehaviour:
   Added: {fileID: 0}
   Removed: {fileID: 0}
   list:
-  - {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
   - {fileID: 11400000, guid: 3b853480fd3c7854880645aa998b68ed, type: 2}
   - {fileID: 11400000, guid: 69be5e3166523bd47944f22f5ef2fefd, type: 2}
   - {fileID: 11400000, guid: 9467128ae25af8f4a8f73106c3977b04, type: 2}
   - {fileID: 11400000, guid: 5f4816c60a0386746aa35cd6d064cdfc, type: 2}
   - {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-  - {fileID: 11400000, guid: 9790fcb184e536a499bd27477140d720, type: 2}
   - {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}

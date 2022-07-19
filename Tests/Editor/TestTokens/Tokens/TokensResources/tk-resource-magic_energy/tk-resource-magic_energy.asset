@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c491807e2ca4421a9d6b808958f23e1, type: 3}
   m_Name: tk-resource-magic_energy
   m_EditorClassIdentifier: 
-  _tokenSprite: {fileID: 21300000, guid: e43b5ac5d0fd0664e8332985c93f3a93, type: 3}
+  _tokenSprite: {fileID: 21300000, guid: 171448997597585468db2d0113c77089, type: 3}
   _destroySprites:
-  - {fileID: 21300000, guid: efc6b6d69d4d196409da7e657a35f59d, type: 3}
-  - {fileID: 21300000, guid: b47126480c3a4274e9c2b0027c9aee3f, type: 3}
-  - {fileID: 21300000, guid: 2b3f502c1be39d64785592312332069e, type: 3}
-  - {fileID: 21300000, guid: 72f88d2681bc4ce40971126cc0ad7732, type: 3}
-  - {fileID: 21300000, guid: dd630c94b9f2eee4390822db0e0d5b72, type: 3}
-  - {fileID: 21300000, guid: 7f667fcb44638224f80115858aa4be18, type: 3}
+  - {fileID: 21300000, guid: 24c1a46eca9bc4146919a8a661d1af41, type: 3}
+  - {fileID: 21300000, guid: cfe71500744a7a040a9ef018aef091b0, type: 3}
+  - {fileID: 21300000, guid: e77b0645d8532b34f9f726bf6f04f98e, type: 3}
+  - {fileID: 21300000, guid: 267de75bbe66f8c44819a2ae61c3ec1a, type: 3}
+  - {fileID: 21300000, guid: ed07a3fc4f319b445b15d7f7b0c9af63, type: 3}
+  - {fileID: 21300000, guid: 7a778f624d1ae9e43870ec1339c8d69e, type: 3}
   _destroyAnimDuration: 0.4
   _particlesPrefab: {fileID: 4181617674233429275, guid: 39a43a3e15b85ec42a9b9184798917f5, type: 3}
   _destructionSound: {fileID: 8300000, guid: dd3bc3fa5fb87314ea24dd04194c2845, type: 3}

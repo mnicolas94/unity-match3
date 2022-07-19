@@ -38,46 +38,43 @@ MonoBehaviour:
   _tokensCreationData:
     _tokens:
       _data:
-      - {fileID: 11400000, guid: 59d9c7af55e138343995dfd2aa08c4be, type: 2}
-    _tokenssese:
-      _data:
-      - {fileID: 11400000, guid: 59d9c7af55e138343995dfd2aa08c4be, type: 2}
+      - {fileID: 11400000, guid: 93b1c219498fbbb42b30fe1562525353, type: 2}
     _tokensProbabilities: []
     _requests: []
   _fallTokensAtStart: 0
   initiallyPositionedTokens:
   - position: {x: -2, y: -2}
-    tokenData: {fileID: 11400000, guid: 9467128ae25af8f4a8f73106c3977b04, type: 2}
+    tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
   - position: {x: -2, y: -1}
-    tokenData: {fileID: 11400000, guid: 69be5e3166523bd47944f22f5ef2fefd, type: 2}
+    tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
   - position: {x: -2, y: 0}
-    tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
+    tokenData: {fileID: 11400000, guid: ca54ec7b97c7a14469f904a0ce2d77f2, type: 2}
   - position: {x: -2, y: 1}
-    tokenData: {fileID: 11400000, guid: 9467128ae25af8f4a8f73106c3977b04, type: 2}
+    tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
   - position: {x: -1, y: -2}
-    tokenData: {fileID: 11400000, guid: 69be5e3166523bd47944f22f5ef2fefd, type: 2}
+    tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
   - position: {x: -1, y: -1}
-    tokenData: {fileID: 11400000, guid: 9467128ae25af8f4a8f73106c3977b04, type: 2}
+    tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
   - position: {x: -1, y: 0}
-    tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
+    tokenData: {fileID: 11400000, guid: ca54ec7b97c7a14469f904a0ce2d77f2, type: 2}
   - position: {x: -1, y: 1}
-    tokenData: {fileID: 11400000, guid: 3b853480fd3c7854880645aa998b68ed, type: 2}
+    tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
   - position: {x: 0, y: -2}
-    tokenData: {fileID: 11400000, guid: 5f4816c60a0386746aa35cd6d064cdfc, type: 2}
+    tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}
   - position: {x: 0, y: -1}
-    tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
+    tokenData: {fileID: 11400000, guid: 3c48cc0744e543543b9550b4933ee2de, type: 2}
   - position: {x: 0, y: 0}
-    tokenData: {fileID: 11400000, guid: 5f4816c60a0386746aa35cd6d064cdfc, type: 2}
+    tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}
   - position: {x: 0, y: 1}
-    tokenData: {fileID: 11400000, guid: 3b853480fd3c7854880645aa998b68ed, type: 2}
+    tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
   - position: {x: 1, y: -2}
-    tokenData: {fileID: 11400000, guid: 3b853480fd3c7854880645aa998b68ed, type: 2}
+    tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
   - position: {x: 1, y: -1}
-    tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
+    tokenData: {fileID: 11400000, guid: 3c48cc0744e543543b9550b4933ee2de, type: 2}
   - position: {x: 1, y: 0}
-    tokenData: {fileID: 11400000, guid: 3b853480fd3c7854880645aa998b68ed, type: 2}
+    tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
   - position: {x: 1, y: 1}
-    tokenData: {fileID: 11400000, guid: 5f4816c60a0386746aa35cd6d064cdfc, type: 2}
+    tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}
   bottomLayersTokens: []
   topLayersTokens: []
   _prohibitedPositions: []
@@ -92,7 +89,7 @@ MonoBehaviour:
       data:
         tokenCounts:
           m_keys:
-          - {fileID: 11400000, guid: 59d9c7af55e138343995dfd2aa08c4be, type: 2}
+          - {fileID: 11400000, guid: 93b1c219498fbbb42b30fe1562525353, type: 2}
           m_values: 03d90000
     00000001:
       type: {class: MovementsDefeatEvaluator, ns: Match3.Core.GameEndConditions.Defeat, asm: com.facticus.match3}

@@ -16,3 +16,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 978ac8d7e07f7764a9173951a6eb1499, type: 2}
   - {fileID: 11400000, guid: 2a6744fd817c7694f810d85caa213cad, type: 2}
   _matchPatternsToTokens: []
+  references:
+    version: 1
