@@ -2,6 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 using Utils.Editor;
+using Utils.Editor.EditorGUIUtils;
 
 namespace Match3.Editor
 {
@@ -20,7 +21,7 @@ namespace Match3.Editor
                     EditorGUILayout.Space(12);
                     
                     if (existsSettings)
-                        PropertiesUtils.DrawSerializedObject(so);
+                        GUIUtils.DrawSerializedObject(so);
                     else
                     {
                         var r = EditorGUILayout.GetControlRect();
