@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: board_background_rule_tile_dual_grid
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: -6686388330907967442, guid: afd4e52396b2fc04bb037060f7ff173d, type: 3}
+  m_DefaultSprite: {fileID: 3132525618697993800, guid: 5f4480ef65e10bc4cbafeb42eba92e58, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
