@@ -514,8 +514,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 519420031}
     - target: {fileID: 8367370953985375877, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
+      propertyPath: _gameContext
+      value: 
+      objectReference: {fileID: 11400000, guid: 09dda93ba81b21f44ab15d828fd28ea8, type: 2}
+    - target: {fileID: 8367370953985375877, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
       propertyPath: _gameEndHandler._returnSceneName
-      value: GameplayScene
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8367370953985375878, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
       propertyPath: m_RootOrder

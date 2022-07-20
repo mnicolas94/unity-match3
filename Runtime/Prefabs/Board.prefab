@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skills: []
-  _costViewsProvider: {fileID: 11400000, guid: c20e97e9ada850d42933b4095c5f1c7f, type: 2}
+  _costViewsProvider: {fileID: 0}
   _skillsContainer: {fileID: 5506995985010365583}
   _interactionViewsContainer: {fileID: 3775802209604539466}
   _skillViewPrefab: {fileID: 7003749498285464289, guid: c2b951a7725828147a566411f75cf8f0, type: 3}
@@ -1087,18 +1087,15 @@ MonoBehaviour:
   _swapInteractionView: {fileID: 8118333387084746838}
   _doubleClickInteractionView: {fileID: 1059478749511869067}
   _eventsProvider: {fileID: 11400000, guid: f45f4407df33a8d418407c0ac602d4ba, type: 2}
-  gravity:
-    id: 0
+  _gameContext: {fileID: 0}
   _skipPopupPrefab: {fileID: 1464358417176775117, guid: fb13478c2dd8d0c4a94f86aec2d61ae9, type: 3}
   _victoryPopupPrefab: {fileID: 8191102125566006882, guid: 0d49dc1949cce8b4aa9416a7639f2a77, type: 3}
   _defeatPopupPrefab: {fileID: 6963498192059329892, guid: 6337d2a0a93b5894d972804416ab31bd, type: 3}
   _gameEndHandler:
-    id: 1
+    id: 0
   references:
     version: 1
     00000000:
-      type: {class: CandyCrushGravity, ns: Match3.Core.Gravity, asm: com.facticus.match3}
-    00000001:
       type: {class: DefaultGameEndHandler, ns: Match3.View, asm: com.facticus.match3}
       data:
         _returnSceneName: MainMenuScene
@@ -1116,7 +1113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid: {fileID: 8367370953985375993}
   boardShapeTileMap: {fileID: 8367370953685235807}
-  boardShapeTile: {fileID: 11400000, guid: 91a68955f67088a419caaf9d72b46cb5, type: 2}
+  boardShapeTile: {fileID: 11400000, guid: cc1ead1f0045c2640b2ed0b478253650, type: 2}
   _dualGrid: 1
   tokensContainer: {fileID: 8367370952571682564}
   tokenPrefab: {fileID: 7605484521647967883, guid: 2f2335aa26fb6e744ad5f848bd2e8e2a, type: 3}
@@ -1287,83 +1284,83 @@ MonoBehaviour:
         - {x: 4, y: 3}
         - {x: 4, y: 4}
         m_values:
-        - _tokenData: {fileID: 11400000, guid: 9623cae3afa5e5549a2dc97b1fb394b6, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9623cae3afa5e5549a2dc97b1fb394b6, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9623cae3afa5e5549a2dc97b1fb394b6, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9623cae3afa5e5549a2dc97b1fb394b6, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9623cae3afa5e5549a2dc97b1fb394b6, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 23f98a19be1595f49b75d2f6eee2dbae, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9790fcb184e536a499bd27477140d720, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9790fcb184e536a499bd27477140d720, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9790fcb184e536a499bd27477140d720, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9790fcb184e536a499bd27477140d720, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9790fcb184e536a499bd27477140d720, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9790fcb184e536a499bd27477140d720, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9790fcb184e536a499bd27477140d720, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9790fcb184e536a499bd27477140d720, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 83f9bb987bc5a0a4ea0bb0417995e5dd, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9790fcb184e536a499bd27477140d720, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9790fcb184e536a499bd27477140d720, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
-        - _tokenData: {fileID: 11400000, guid: c3d599d9908003546bd94e223c87de39, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9790fcb184e536a499bd27477140d720, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 9790fcb184e536a499bd27477140d720, type: 2}
-        - _tokenData: {fileID: 11400000, guid: 50bc9608e1a95c247bf052f6d0fc5b69, type: 2}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
+        - _tokenData: {fileID: 0}
       _boardShape:
         _tiles: []
     _bottomLayers: []
