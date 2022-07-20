@@ -53,10 +53,6 @@ MonoBehaviour:
       type: {class: DamageConvenientPosition, ns: Match3.Core.TokensEvents.Resolvers, asm: com.facticus.match3}
       data:
         _damageSource:
-          id: 4
+          id: 3
     00000003:
       type: {class: , ns: , asm: }
-    00000004:
-      type: {class: DestructionSourceParticles, ns: Match3.View.DestructionSources, asm: com.facticus.match3}
-      data:
-        _particlesPrefab: {fileID: 198194127032045410, guid: a3af0ada7064ae043aa8ff944a01fe83, type: 3}
