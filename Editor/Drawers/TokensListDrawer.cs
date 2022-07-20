@@ -111,35 +111,42 @@ namespace Match3.Editor.Drawers
             {
                 var token = tokens[i];
 
-                // draw token's sprite
-                int col = i % cols;
-                int row = i / cols;
-                float x = col * tokenSize + controlRect.position.x;
-                float y = row * tokenSize + controlRect.position.y;
-                var rect = new Rect(x, y, tokenSize, tokenSize);
-                var texture = token.TokenSprite == null
-                    ? Texture2D.grayTexture
-                    : AssetPreview.GetAssetPreview(token.TokenSprite);
-                EditorGUI.DrawTextureTransparent(rect, texture, ScaleMode.ScaleToFit, 1);
-                GUI.Box(rect, new GUIContent{tooltip = $"{token.name}"});
+                try
+                {
+                    // draw token's sprite
+                    int col = i % cols;
+                    int row = i / cols;
+                    float x = col * tokenSize + controlRect.position.x;
+                    float y = row * tokenSize + controlRect.position.y;
+                    var rect = new Rect(x, y, tokenSize, tokenSize);
+                    var texture = token.TokenSprite == null
+                        ? Texture2D.grayTexture
+                        : AssetPreview.GetAssetPreview(token.TokenSprite);
+                    EditorGUI.DrawTextureTransparent(rect, texture, ScaleMode.ScaleToFit, 1);
+                    GUI.Box(rect, new GUIContent {tooltip = $"{token.name}"});
 
-                // add or remove
-                bool inside = rect.Contains(mousePos);
-                bool mouseDown = @event.type == EventType.MouseDown;
-                if (mouseDown && inside)
-                {
-                    ToggleTokenContainState(property, token);
-                }
+                    // add or remove
+                    bool inside = rect.Contains(mousePos);
+                    bool mouseDown = @event.type == EventType.MouseDown;
+                    if (mouseDown && inside)
+                    {
+                        ToggleTokenContainState(property, token);
+                    }
 
-                // draw selected highlight
-                if (ContainsToken(property, token, out int index))
-                {
-                    EditorGUI.DrawRect(rect, _selectedColor);
+                    // draw selected highlight
+                    if (ContainsToken(property, token, out int index))
+                    {
+                        EditorGUI.DrawRect(rect, _selectedColor);
+                    }
+                    else if (inside)
+                    {
+                        // TODO OnGUI doesn't get called when move mouse over control, just on enter and exit
+                        //                    EditorGUI.DrawRect(rect, _highlightedColor);
+                    }
                 }
-                else if (inside)
+                catch
                 {
-                    // TODO OnGUI doesn't get called when move mouse over control, just on enter and exit
-//                    EditorGUI.DrawRect(rect, _highlightedColor);
+                    // ignored
                 }
             }
         }
