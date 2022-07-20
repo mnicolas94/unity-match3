@@ -115,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _continueButton: {fileID: 6963498192598553304}
   _restartButton: {fileID: 6963498192740119949}
+  _goToScene: GameplayScene
 --- !u!1 &6963498192598553286
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,8 +503,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Game over :(
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04a993575f5e0c54a9c5b2c8599b231b, type: 2}
-  m_sharedMaterial: {fileID: -5433196105125807985, guid: 04a993575f5e0c54a9c5b2c8599b231b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -636,8 +637,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Continue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04a993575f5e0c54a9c5b2c8599b231b, type: 2}
-  m_sharedMaterial: {fileID: -5433196105125807985, guid: 04a993575f5e0c54a9c5b2c8599b231b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -770,8 +771,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Restart
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04a993575f5e0c54a9c5b2c8599b231b, type: 2}
-  m_sharedMaterial: {fileID: -5433196105125807985, guid: 04a993575f5e0c54a9c5b2c8599b231b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

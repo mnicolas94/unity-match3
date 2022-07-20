@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _continueButton: {fileID: 8191102126104193502}
+  _goToScene: GameplayScene
 --- !u!1 &8191102126104193472
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,8 +380,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Congrats!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04a993575f5e0c54a9c5b2c8599b231b, type: 2}
-  m_sharedMaterial: {fileID: -5433196105125807985, guid: 04a993575f5e0c54a9c5b2c8599b231b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -513,8 +514,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Continue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04a993575f5e0c54a9c5b2c8599b231b, type: 2}
-  m_sharedMaterial: {fileID: -5433196105125807985, guid: 04a993575f5e0c54a9c5b2c8599b231b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

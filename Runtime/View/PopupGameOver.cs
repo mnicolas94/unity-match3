@@ -1,25 +1,37 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using AsyncUtils;
+using Match3.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Match3.View
 {
-    public class PopupGameOver : AsyncPopupReturnable<bool>
+    public class PopupGameOver : PopupGameEnded
     {
         [SerializeField] private Button _continueButton;
         [SerializeField] private Button _restartButton;
-        
-        public override async Task<bool> Show(CancellationToken ct)
+        [SerializeField] private string _goToScene;
+
+        public override async Task Show(CancellationToken ct)
         {
             var pressedButton = await AsyncUtils.Utils.WaitFirstButtonPressedAsync(ct, _continueButton, _restartButton);
             bool restart = pressedButton == _restartButton;
-            return restart;
+            if (restart)
+            {
+                await Task.Delay(200, ct);
+                FindObjectOfType<GameControllerView>().RestartCurrentLevel();
+            }
+            else
+            {
+                await LoadingUtils.LoadingUtils.LoadSceneAsync(_goToScene, null, null);
+            }
         }
 
-        public override void Initialize()
+        public override void Initialize((GameController, bool) popupData)
         {
+            var (controller, victory) = popupData;
+            // TODO
         }
     }
 }

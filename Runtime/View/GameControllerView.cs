@@ -14,7 +14,9 @@ using Match3.Core.TurnSteps;
 using Match3.View.GameEndConditions;
 using Match3.View.Interactions;
 using NaughtyAttributes;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Match3.View
 {
@@ -30,11 +32,12 @@ namespace Match3.View
         [SerializeField] private GameContextAsset _gameContext;
         
         [SerializeField] private PopupSkipTurn _skipPopupPrefab;
-        [SerializeField] private PopupGameWon _victoryPopupPrefab;
-        [SerializeField] private PopupGameOver _defeatPopupPrefab;
 
-        [SerializeReference, SubclassSelector]
-        private GameEndHandlerBase _gameEndHandler;
+        /*
+         * the bool parameter tells whether the game was won or not.
+         */
+        [SerializeField] private UnityEvent<bool> _onGameEnd;
+        [SerializeField] private BoolEvent _gameEndEvent;
 
         private GameController _gameController;
         private List<SkillView> _skillViews;
@@ -45,6 +48,7 @@ namespace Match3.View
 
         private bool ExecutingTurn { get; set; }
 
+        public GameController GameController => _gameController;
 
         private void Start()
         {
@@ -106,7 +110,8 @@ namespace Match3.View
             try
             {
                 _gameLoopIsRunning = true;
-                var (gameEnd, restartGame) = await StartGame(ct);
+                var (victory, defeat) = await StartGame(ct);
+                bool gameEnd = victory || defeat;
                 while (!gameEnd && !ct.IsCancellationRequested)
                 {
                     var (interaction, action) = await WaitForInteractionAsync(ct);
@@ -115,15 +120,14 @@ namespace Match3.View
                     var turn = _gameController.ExecuteGameAction(interaction, action);
                     if (turn == null) continue;
 
-                    (gameEnd, restartGame) = await ExecuteTurnAndHandleGameEnd(ct, turn);
+                    (victory, defeat) = await ExecuteTurn(turn, ct);
+                    gameEnd = victory || defeat;
                 }
                 
                 _gameController.EndGame();
 
-                if (restartGame)
-                {
-                    RestartCurrentLevel();
-                }
+                _onGameEnd?.Invoke(victory);
+                _gameEndEvent.Raise(victory);
             }
             finally
             {
@@ -134,7 +138,7 @@ namespace Match3.View
         private async Task<(bool, bool)> StartGame(CancellationToken ct)
         {
             var turn = _gameController.StartGame();
-            return await ExecuteTurnAndHandleGameEnd(ct, turn);
+            return await ExecuteTurn(turn, ct);
         }
 
         private void StopGameLoop()
@@ -152,14 +156,6 @@ namespace Match3.View
             {
                 await Task.Yield();
             }
-        }
-
-        private async Task<(bool, bool)> ExecuteTurnAndHandleGameEnd(CancellationToken ct, Turn turn)
-        {
-            var (victory, defeat) = await ExecuteTurn(turn, ct);
-            bool restartGame = await HandleGameEnd(victory, defeat, ct);
-            bool gameEnd = victory || defeat;
-            return (gameEnd, restartGame);
         }
         
         private async Task<(IInteraction, IGameAction)> WaitForInteractionAsync(CancellationToken ct)
@@ -315,61 +311,6 @@ namespace Match3.View
             return (victory, defeat);
         }
 
-        private async Task<bool> HandleGameEnd(bool victory, bool defeat, CancellationToken ct)
-        {
-            bool stopPlaying = false;
-            bool restartLevel = false;
-            if (victory)
-            {
-                // show victory popup
-                await Popups.ShowPopup(_victoryPopupPrefab, _gameController.GameData, ct);
-                stopPlaying = true;
-            }
-            else if (defeat)
-            {
-                // show defeat popup
-                restartLevel = await Popups.ShowPopup(_defeatPopupPrefab, ct);
-                if (!restartLevel)
-                {
-                    stopPlaying = true;
-                }
-            }
-
-            if (stopPlaying)
-            {
-                _gameEndHandler ??= new DefaultGameEndHandler();
-                restartLevel = _gameEndHandler.HandleGameEnd(this);
-            }
-
-            return restartLevel;
-        }
-
         #endregion
-    }
-
-    public abstract class GameEndHandlerBase
-    {
-        public abstract bool HandleGameEnd(GameControllerView gameControllerView);
-    }
-
-    [Serializable]
-    public class DefaultGameEndHandler : GameEndHandlerBase
-    {
-        [SerializeField, Scene] private string _returnSceneName;
-        
-        public override bool HandleGameEnd(GameControllerView gameControllerView)
-        {
-            LoadingUtils.LoadingUtils.LoadSceneAsync(_returnSceneName, null, null);
-            return false;
-        }
-    }
-    
-    [Serializable]
-    public class StayInSceneGameEndHandler : GameEndHandlerBase
-    {
-        public override bool HandleGameEnd(GameControllerView gameControllerView)
-        {
-            return true;
-        }
     }
 }

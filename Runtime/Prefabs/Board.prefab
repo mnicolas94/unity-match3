@@ -1089,16 +1089,10 @@ MonoBehaviour:
   _eventsProvider: {fileID: 11400000, guid: f45f4407df33a8d418407c0ac602d4ba, type: 2}
   _gameContext: {fileID: 0}
   _skipPopupPrefab: {fileID: 1464358417176775117, guid: fb13478c2dd8d0c4a94f86aec2d61ae9, type: 3}
-  _victoryPopupPrefab: {fileID: 8191102125566006882, guid: 0d49dc1949cce8b4aa9416a7639f2a77, type: 3}
-  _defeatPopupPrefab: {fileID: 6963498192059329892, guid: 6337d2a0a93b5894d972804416ab31bd, type: 3}
-  _gameEndHandler:
-    id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: DefaultGameEndHandler, ns: Match3.View, asm: com.facticus.match3}
-      data:
-        _returnSceneName: 
+  _onGameEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  _gameEndEvent: {fileID: 11400000, guid: 3af6662ba64917443a907ef5b0204e22, type: 2}
 --- !u!114 &8367370953985375879
 MonoBehaviour:
   m_ObjectHideFlags: 0
