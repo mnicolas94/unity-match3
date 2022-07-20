@@ -1098,7 +1098,7 @@ MonoBehaviour:
     00000000:
       type: {class: DefaultGameEndHandler, ns: Match3.View, asm: com.facticus.match3}
       data:
-        _returnSceneName: MainMenuScene
+        _returnSceneName: 
 --- !u!114 &8367370953985375879
 MonoBehaviour:
   m_ObjectHideFlags: 0
