@@ -11,8 +11,7 @@ namespace Match3.View.GameEndConditions
 {
     public class GameEndConditionsView : MonoBehaviour
     {
-        [SerializeField] private Transform _victoryConditionContainer;
-        [SerializeField] private Transform _defeatConditionContainer;
+        [SerializeField] private Transform _container;
 
         [SerializeField] private List<VictoryConditionView> _victoryViewsPrefabs;
         [SerializeField] private List<DefeatConditionView> _defeatViewsPrefabs;
@@ -25,9 +24,18 @@ namespace Match3.View.GameEndConditions
             Clear();
             var victoryPrefab = _victoryViewsPrefabs.Find(vvp => vvp.CanHandle(victoryEvaluator));
             var defeatPrefab = _defeatViewsPrefabs.Find(dvp => dvp.CanHandle(defeatEvaluator));
-
-            _currentVictoryView = Instantiate(victoryPrefab, _victoryConditionContainer);
-            _currentDefeatView = Instantiate(defeatPrefab, _defeatConditionContainer);
+            
+            _currentVictoryView = Instantiate(victoryPrefab, _container);
+            if (victoryPrefab.gameObject == defeatPrefab.gameObject)  // is the same prefab?
+            {
+                // get from the same object
+                var defeatEvaluatorType = defeatPrefab.GetType();
+                _currentDefeatView = (DefeatConditionView) _currentVictoryView.GetComponent(defeatEvaluatorType);
+            }
+            else
+            {
+                _currentDefeatView = Instantiate(defeatPrefab, _container);
+            }
 
             _currentVictoryView.SetupUi(victoryEvaluator);
             _currentDefeatView.SetupUi(defeatEvaluator);
@@ -43,8 +51,7 @@ namespace Match3.View.GameEndConditions
         {
             _currentVictoryView = null;
             _currentDefeatView = null;
-            _victoryConditionContainer.ClearChildren();
-            _defeatConditionContainer.ClearChildren();
+            _container.ClearChildren();
         }
     }
 }

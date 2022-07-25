@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Match3.Core;
 using Match3.Core.GameDataExtraction;
 using Match3.Core.GameEndConditions.Victory;
@@ -36,6 +37,8 @@ namespace Match3.View.GameEndConditions.Victory
         private void AddTokenView(TokenData tokenData, int countRequirement)
         {
             var view = Instantiate(tokensDestroyedPrefab, container);
+            int index = _dataViewMap.Count;
+            view.transform.SetSiblingIndex(index);
             view.SetupUi(tokenData, countRequirement);
             _dataViewMap.Add(tokenData, view);
         }
