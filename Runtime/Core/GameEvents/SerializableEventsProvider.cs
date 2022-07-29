@@ -28,11 +28,11 @@ namespace Match3.Core.GameEvents
                 provider._gameEndedEvent = CreateInstance<GameControllerEvent>();
                 provider._turnStepEvent = CreateInstance<TurnStepEvent>();
             }
-            catch (Exception e)
+            catch
             {
-                Console.WriteLine(e);
+                // ignored
             }
-            
+
             return provider;
         }
     }

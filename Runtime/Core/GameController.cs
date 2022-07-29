@@ -85,10 +85,14 @@ namespace Match3.Core
             bool defeat = false;
             bool victory = false;
             _gameData.LastTurnData.ClearData();
+            
+            // begin turn
+            var beginStep = new TurnStepTurnBegin();
+            ProcessTurnStep(beginStep);
+            
             foreach (var turnStep in turn)
             {
-                ExtractData(turnStep);
-                RaiseTurnStepEvent(turnStep);
+                ProcessTurnStep(turnStep);
 
                 yield return turnStep;
                 
@@ -98,8 +102,7 @@ namespace Match3.Core
                     if (victory)
                     {
                         var victoryStep = new TurnStepGameEndVictory();
-                        ExtractData(victoryStep);
-                        RaiseTurnStepEvent(victoryStep);
+                        ProcessTurnStep(victoryStep);
                         yield return victoryStep;
                     }
                 }
@@ -108,14 +111,26 @@ namespace Match3.Core
                     defeat = CheckDefeatCondition(turnStep, _gameData);
                 }
             }
+            
+            // end turn
+            var endStep = new TurnStepTurnEnd();
+            ProcessTurnStep(endStep);
+            
+            // check defeat condition again
+            defeat = CheckDefeatCondition(endStep, _gameData);
 
             if (!victory && defeat)
             {
                 var defeatStep = new TurnStepGameEndDefeat();
-                ExtractData(defeatStep);
-                RaiseTurnStepEvent(defeatStep);
+                ProcessTurnStep(defeatStep);
                 yield return defeatStep;
             }
+        }
+
+        private void ProcessTurnStep(TurnStep turnStep)
+        {
+            ExtractData(turnStep);
+            RaiseTurnStepEvent(turnStep);
         }
 
         private bool CheckVictoryCondition(TurnStep turnStep, GameData gameData)
