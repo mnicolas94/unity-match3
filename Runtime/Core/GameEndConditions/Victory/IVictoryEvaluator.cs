@@ -6,6 +6,7 @@ namespace Match3.Core.GameEndConditions.Victory
 {
     public interface IVictoryEvaluator
     {
+        void Initialize(GameController gameController);
         IEnumerable<IDataExtractor> GetDataExtractors();
         bool CheckVictoryInTurnStep(TurnStep turnStep, GameData gameData);
     }

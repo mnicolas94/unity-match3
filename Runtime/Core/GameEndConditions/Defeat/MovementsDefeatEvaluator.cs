@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Match3.Core.GameDataExtraction;
+using Match3.Core.GameDataExtraction.DataExtractors;
 using Match3.Core.TurnSteps;
 using UnityEngine;
 
@@ -12,6 +13,11 @@ namespace Match3.Core.GameEndConditions.Defeat
         [SerializeField] private int _movements;
 
         public int Movements => _movements;
+
+        public void Initialize(GameController gameController)
+        {
+            // do nothing
+        }
 
         public IEnumerable<IDataExtractor> GetDataExtractors()
         {

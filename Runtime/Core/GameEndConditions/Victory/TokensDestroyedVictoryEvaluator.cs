@@ -21,6 +21,11 @@ namespace Match3.Core.GameEndConditions.Victory
             return tokenCounts[tokenData];
         }
 
+        public void Initialize(GameController gameController)
+        {
+            // do nothing
+        }
+
         public IEnumerable<IDataExtractor> GetDataExtractors()
         {
             yield return new DataExtractorDestroyedTokens();
