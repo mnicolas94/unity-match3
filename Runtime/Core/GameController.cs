@@ -89,11 +89,11 @@ namespace Match3.Core
             // begin turn
             var beginStep = new TurnStepTurnBegin();
             ProcessTurnStep(beginStep);
+            yield return beginStep;
             
             foreach (var turnStep in turn)
             {
                 ProcessTurnStep(turnStep);
-
                 yield return turnStep;
                 
                 if (!victory)
@@ -115,9 +115,9 @@ namespace Match3.Core
             // end turn
             var endStep = new TurnStepTurnEnd(turnCounts);
             ProcessTurnStep(endStep);
-            
             // check defeat condition again
             defeat = CheckDefeatCondition(endStep, _gameData);
+            yield return endStep;
 
             if (!victory && defeat)
             {
