@@ -23,12 +23,8 @@ namespace Match3.Core.GameEndConditions.Victory
 
         public void Initialize(GameController gameController)
         {
-            // do nothing
-        }
-
-        public IEnumerable<IDataExtractor> GetDataExtractors()
-        {
-            yield return new DataExtractorDestroyedTokens();
+            // add data extractor to then know how many tokens have been destroyed
+            gameController.Context.DataExtractors.Add(new DataExtractorDestroyedTokens());
         }
 
         public bool CheckVictoryInTurnStep(TurnStep turnStep, GameData gameData)

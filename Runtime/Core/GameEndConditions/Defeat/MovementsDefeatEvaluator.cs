@@ -19,11 +19,6 @@ namespace Match3.Core.GameEndConditions.Defeat
             // do nothing
         }
 
-        public IEnumerable<IDataExtractor> GetDataExtractors()
-        {
-            yield break;
-        }
-
         public bool CheckDefeatInTurnStep(TurnStep turnStep, GameData gameData)
         {
             return GetRemainingMovements(gameData) <= 0;

@@ -49,9 +49,9 @@ namespace Match3.Core
             _victoryEvaluator = level.VictoryEvaluator;
             _defeatEvaluator = level.DefeatEvaluator;
             _context = context;
-            _context.DataExtractors.AddRange(_victoryEvaluator.GetDataExtractors());
-            _context.DataExtractors.AddRange(_defeatEvaluator.GetDataExtractors());
             _board = Board.PopulateLevel(level, context);
+            _victoryEvaluator.Initialize(this);
+            _defeatEvaluator.Initialize(this);
         }
 
         public Turn StartGame()
