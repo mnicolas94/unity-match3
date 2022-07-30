@@ -75,12 +75,12 @@ namespace Match3.Core
         
         private void HandleTurn(Turn turn)
         {
-            turn.TransformTurnSteps(HandleTurn);
+            turn.TransformTurnSteps(steps => HandleTurn(steps, turn.CountAsTurn));
             if (turn.CountAsTurn)
                 _gameData.TurnCount++;
         }
 
-        private IEnumerable<TurnStep> HandleTurn(IEnumerable<TurnStep> turn)
+        private IEnumerable<TurnStep> HandleTurn(IEnumerable<TurnStep> turn, bool turnCounts)
         {
             bool defeat = false;
             bool victory = false;
@@ -113,7 +113,7 @@ namespace Match3.Core
             }
             
             // end turn
-            var endStep = new TurnStepTurnEnd();
+            var endStep = new TurnStepTurnEnd(turnCounts);
             ProcessTurnStep(endStep);
             
             // check defeat condition again
