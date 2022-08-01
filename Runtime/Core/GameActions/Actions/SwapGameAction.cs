@@ -16,9 +16,13 @@ namespace Match3.Core.GameActions.Actions
     {
         [SerializeField] private bool _consumesTurn;
 
-        public SwapGameAction(bool consumesTurn = true)
+        public SwapGameAction(bool consumesTurn)
         {
             _consumesTurn = consumesTurn;
+        }
+        
+        public SwapGameAction() : this(true)
+        {
         }
 
         public override bool IsInteractionValid(Board board, SwapInteraction interaction)
