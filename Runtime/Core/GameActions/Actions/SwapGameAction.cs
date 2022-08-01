@@ -14,6 +14,13 @@ namespace Match3.Core.GameActions.Actions
     [Serializable]
     public class SwapGameAction : GameActionBase<SwapInteraction>
     {
+        [SerializeField] private bool _consumesTurn;
+
+        public SwapGameAction(bool consumesTurn = true)
+        {
+            _consumesTurn = consumesTurn;
+        }
+
         public override bool IsInteractionValid(Board board, SwapInteraction interaction)
         {
             var firstPosition = interaction.FirstPosition;
@@ -125,7 +132,7 @@ namespace Match3.Core.GameActions.Actions
             }
 
             var turnSteps = enumerables.SelectMany(e => e);
-            var execution = new GameActionExecution(turnSteps, countAsTurn);
+            var execution = new GameActionExecution(turnSteps, countAsTurn && _consumesTurn);
             return execution;
         }
     }
