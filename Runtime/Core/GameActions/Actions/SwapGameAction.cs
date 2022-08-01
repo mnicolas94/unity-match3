@@ -85,11 +85,11 @@ namespace Match3.Core.GameActions.Actions
                 var swapOutputs = new List<TokenEventOutput>();
                 if (aRespondsToSwap)
                 {
-                    SendEventUtils.SendSwapEvent(board, secondPosition, firstToken, firstPosition, secondToken, swapOutputs);
+                    SendEventUtils.SendSwapEvent(context, board, secondPosition, firstToken, firstPosition, secondToken, swapOutputs);
                 }
                 if (bRespondsToSwap)
                 {
-                    SendEventUtils.SendSwapEvent(board, firstPosition, secondToken, secondPosition, firstToken, swapOutputs);
+                    SendEventUtils.SendSwapEvent(context, board, firstPosition, secondToken, secondPosition, firstToken, swapOutputs);
                 }
                 // handle matches
                 if (isMatchA || isMatchB)

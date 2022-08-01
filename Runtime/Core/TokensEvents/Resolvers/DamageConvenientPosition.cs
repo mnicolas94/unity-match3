@@ -30,7 +30,10 @@ namespace Match3.Core.TokensEvents.Resolvers
         private Vector2Int GetConvenientPosition(Board board)
         {
             // TODO implementar cálculo de posiciones "convenientes"
-            return board.MainLayer.GetPositions().GetRandom();
+            var positions = board.MainLayer.GetPositions();
+            if (positions.Count > 0)
+                return positions.GetRandom();
+            return Vector2Int.zero;
         }
     }
 }

@@ -132,8 +132,8 @@ namespace Match3.Core.GameActions
             // send below and adjacent matched events
             swapOutputs ??= new List<TokenEventOutput>();
             var outputs = new List<TokenEventOutput>();
-            SendEventUtils.SendBelowMatchedEvent(board, positionsInMatches, outputs);
-            SendEventUtils.SendAdjacentMatchEvent(board, positionsInMatches, outputs);
+            SendEventUtils.SendBelowMatchedEvent(context, board, positionsInMatches, outputs);
+            SendEventUtils.SendAdjacentMatchEvent(context, board, positionsInMatches, outputs);
             outputs.AddRange(swapOutputs);
             var matchesTurnSteps = Gts_HandleEventOutputs(context, board, outputs).ExecuteTurnStepsNow();
             
@@ -353,9 +353,9 @@ namespace Match3.Core.GameActions
             var positionTokens = destroyedTokens.GetAllPositionsTokens().ToList();
             var destroyedPositions = positionTokens.ConvertAll(posToken => posToken.Position);
 
-            SendEventUtils.SendDestroyedEvent(board, positionTokens, outputs);
-            SendEventUtils.SendAboveDestroyedEvent(board, destroyedPositions, outputs);
-            SendEventUtils.SendAdjacentDestroyedEvent(board, destroyedPositions, outputs);
+            SendEventUtils.SendDestroyedEvent(context, board, positionTokens, outputs);
+            SendEventUtils.SendAboveDestroyedEvent(context, board, destroyedPositions, outputs);
+            SendEventUtils.SendAdjacentDestroyedEvent(context, board, destroyedPositions, outputs);
         }
         
         private static List<TokenEventOutput> GetOutputsFromReachBottom(
@@ -379,7 +379,7 @@ namespace Match3.Core.GameActions
             var outputs = new List<TokenEventOutput>();
             if (bottomReachedTokens.Count > 0)
             {
-                SendEventUtils.SendReachBottomEvent(board, bottomReachedTokens, outputs);
+                SendEventUtils.SendReachBottomEvent(context, board, bottomReachedTokens, outputs);
             }
 
             return outputs;

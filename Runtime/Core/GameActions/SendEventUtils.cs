@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Match3.Core.SerializableTuples;
 using Match3.Core.TokensEvents.Events;
 using Match3.Core.TokensEvents.Outputs;
@@ -8,16 +9,16 @@ namespace Match3.Core.GameActions
 {
     public static class SendEventUtils
     {
-        internal static void SendDestroyedEvent(Board board, List<PositionToken> destroyedTokens, List<TokenEventOutput> outputs)
+        internal static void SendDestroyedEvent(GameContext context, Board board, List<PositionToken> destroyedTokens, List<TokenEventOutput> outputs)
         {
             foreach (var (position, token) in destroyedTokens)
             {
                 var @event = new EventDestroyed(board, token, position);
-                SendEvent(token, @event, outputs);
+                SendEvent(context, token, @event, outputs);
             }
         }
         
-        internal static void SendAdjacentMatchEvent(Board board, List<Vector2Int> matchesPositions, List<TokenEventOutput> outputs)
+        internal static void SendAdjacentMatchEvent(GameContext context, Board board, List<Vector2Int> matchesPositions, List<TokenEventOutput> outputs)
         {
             void SendAdjacentEvent(Vector2Int position, Vector2Int dir)
             {
@@ -28,7 +29,7 @@ namespace Match3.Core.GameActions
                 {
                     var (token, layer) = board.GetTopTokenAt(adjacentPosition);
                     var @event = new EventAdjacentMatch(board, token, adjacentPosition, position);
-                    SendEvent(token, @event, outputs);
+                    SendEvent(context, token, @event, outputs);
                 }
             }
             
@@ -41,7 +42,7 @@ namespace Match3.Core.GameActions
             }
         }
         
-        internal static void SendAdjacentDestroyedEvent(Board board, List<Vector2Int> destroyedPositions, List<TokenEventOutput> outputs)
+        internal static void SendAdjacentDestroyedEvent(GameContext context, Board board, List<Vector2Int> destroyedPositions, List<TokenEventOutput> outputs)
         {
             void SendDestroyedEvent(Vector2Int destroyedPosition, Vector2Int dir)
             {
@@ -52,7 +53,7 @@ namespace Match3.Core.GameActions
                 {
                     var (token, layer) = board.GetTopTokenAt(position);
                     var @event = new EventAdjacentDestroyed(board, token, position, destroyedPosition);
-                    SendEvent(token, @event, outputs);
+                    SendEvent(context, token, @event, outputs);
                 }
             }
             
@@ -65,7 +66,7 @@ namespace Match3.Core.GameActions
             }
         }
         
-        internal static void SendBelowMatchedEvent(Board board, List<Vector2Int> matchedPositions, List<TokenEventOutput> outputs)
+        internal static void SendBelowMatchedEvent(GameContext context, Board board, List<Vector2Int> matchedPositions, List<TokenEventOutput> outputs)
         {
             foreach (var matchedPosition in matchedPositions)
             {
@@ -74,12 +75,12 @@ namespace Match3.Core.GameActions
                 {
                     var (token, layer) = board.TopLayers.GetTopTokenAt(matchedPosition);
                     var @event = new EventBelowMatched(board, token, matchedPosition);
-                    SendEvent(token, @event, outputs);
+                    SendEvent(context, token, @event, outputs);
                 }
             }
         }
         
-        internal static void SendAboveDestroyedEvent(Board board, List<Vector2Int> destroyedPositions, List<TokenEventOutput> outputs)
+        internal static void SendAboveDestroyedEvent(GameContext context, Board board, List<Vector2Int> destroyedPositions, List<TokenEventOutput> outputs)
         {
             foreach (var destroyedPosition in destroyedPositions)
             {
@@ -88,12 +89,12 @@ namespace Match3.Core.GameActions
                 {
                     var (token, layer) = board.GetTopTokenAt(destroyedPosition);
                     var @event = new EventAboveDestroyed(board, token, destroyedPosition);
-                    SendEvent(token, @event, outputs);
+                    SendEvent(context, token, @event, outputs);
                 }
             }
         }
 
-        internal static void SendSwapEvent(
+        internal static void SendSwapEvent(GameContext context, 
             Board board,
             Vector2Int position,
             Token token,
@@ -102,21 +103,23 @@ namespace Match3.Core.GameActions
             List<TokenEventOutput> outputs)
         {
             var @event = new EventSwapped(board, token, position, otherToken, otherPosition);
-            SendEvent(token, @event, outputs);
+            SendEvent(context, token, @event, outputs);
         }
         
-        internal static void SendReachBottomEvent(Board board, List<PositionToken> tokens, List<TokenEventOutput> outputs)
+        internal static void SendReachBottomEvent(GameContext context, Board board, List<PositionToken> tokens, List<TokenEventOutput> outputs)
         {
             foreach (var (position, token) in tokens)
             {
                 var @event = new EventReachBottom(board, token, position);
-                SendEvent(token, @event, outputs);
+                SendEvent(context, token, @event, outputs);
             }
         }
 
-        internal static void SendEvent<T>(Token token, T @event, List<TokenEventOutput> outputs) where T : TokenEventInput
+        internal static void SendEvent<T>(GameContext context, Token token, T @event, List<TokenEventOutput> outputs) where T : TokenEventInput
         {
-            var resolvers = token.TokenData.Resolvers.GetResolvers<T>();
+            var globalResolvers = context.GlobalResolvers.GetResolvers<T>();
+            var tokenResolvers = token.TokenData.Resolvers.GetResolvers<T>();
+            var resolvers = tokenResolvers.Concat(globalResolvers);
             foreach (var resolver in resolvers)
             {
                 var output = resolver.OnEvent(@event);

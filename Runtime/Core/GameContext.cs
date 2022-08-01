@@ -5,6 +5,7 @@ using Match3.Core.GameEvents;
 using Match3.Core.Gravity;
 using Match3.Core.Matches;
 using UnityEngine;
+using Utils.Attributes;
 
 namespace Match3.Core
 {
@@ -15,6 +16,8 @@ namespace Match3.Core
         
         [SerializeReference, SubclassSelector] private List<IDataExtractor> _dataExtractors;
         
+        [SerializeField, ToStringLabel] private List<EventTypeToResolver> _globalResolvers;
+
         [SerializeField] private MatchGroups _matchGroups;
 
         [SerializeReference, SubclassSelector] private IBoardGravity _gravity;
@@ -27,6 +30,8 @@ namespace Match3.Core
 
         public List<IDataExtractor> DataExtractors => _dataExtractors;
 
+        public List<EventTypeToResolver> GlobalResolvers => _globalResolvers;
+
         public MatchGroups MatchGroups => _matchGroups;
 
         public IBoardGravity Gravity => _gravity;
@@ -34,6 +39,7 @@ namespace Match3.Core
         public GameContext(
             SerializableEventsProvider eventsProvider,
             List<IDataExtractor> dataExtractors,
+            List<EventTypeToResolver> globalResolvers,
             MatchGroups matchGroups,
             IBoardGravity gravity)
         {
@@ -46,6 +52,7 @@ namespace Match3.Core
         public GameContext() : this(
             SerializableEventsProvider.Create(),
             new List<IDataExtractor>(),
+            new List<EventTypeToResolver>(),
             new MatchGroups(),
             GravityUtils.Default
             )
@@ -59,6 +66,7 @@ namespace Match3.Core
         {
             _eventsProvider = other._eventsProvider;
             _dataExtractors = new List<IDataExtractor>(other._dataExtractors);
+            _globalResolvers = new List<EventTypeToResolver>(other._globalResolvers);
             _matchGroups = new MatchGroups(other._matchGroups);
             _gravity = other._gravity;
         }

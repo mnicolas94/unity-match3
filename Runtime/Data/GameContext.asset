@@ -15,6 +15,7 @@ MonoBehaviour:
   _gameContext:
     _eventsProvider: {fileID: 11400000, guid: f45f4407df33a8d418407c0ac602d4ba, type: 2}
     _dataExtractors: []
+    _globalResolvers: []
     _matchGroups:
       _groups:
       - {fileID: 11400000, guid: 8665c973d31faa7468ff13b6116f57f3, type: 2}
