@@ -30,8 +30,8 @@ namespace Match3.View
         [SerializeField] private Transform renderersContainer;
         [SerializeField] private List<TurnStepRenderer> renderers;
 
-        [SerializeField] [HideInInspector] private Board _board;
-        [SerializeField] [HideInInspector] private DataViewDictionary dataViewMap = new DataViewDictionary();
+        private Board _board;
+        private DataViewDictionary _dataViewMap = new DataViewDictionary();
         private TokenDataViewMap _dataViewMapWrapper;
 
         private ObjectPool<TokenView> _tokenViewsPool;
@@ -65,9 +65,9 @@ namespace Match3.View
         {
             if (Application.isPlaying)
             {
-                foreach (var token in dataViewMap.Keys)
+                foreach (var token in _dataViewMap.Keys)
                 {
-                    var tokenView = dataViewMap[token];
+                    var tokenView = _dataViewMap[token];
                     _tokenViewsPool.Release(tokenView);
                 }
             }
@@ -75,7 +75,7 @@ namespace Match3.View
             {
                 tokensContainer.ClearChildren();
             }
-            dataViewMap.Clear();
+            _dataViewMap.Clear();
             boardShapeTileMap.ClearAllTiles();
         }
 
@@ -105,12 +105,12 @@ namespace Match3.View
         
         public bool HasViewForToken(Token token)
         {
-            return dataViewMap.ContainsKey(token);
+            return _dataViewMap.ContainsKey(token);
         }
         
         public TokenView GetTokenView(Token token)
         {
-            var tokenView = dataViewMap[token];
+            var tokenView = _dataViewMap[token];
             return tokenView;
         }
 
@@ -197,7 +197,7 @@ namespace Match3.View
         {
             foreach (var (position, token) in _board.GetTokenPositionsAllLayers())
             {
-                var tokenView = dataViewMap[token];
+                var tokenView = _dataViewMap[token];
                 var worldPosition = grid.GetCellCenterWorld((Vector3Int) position);
                 tokenView.transform.position = worldPosition;
             }
@@ -215,7 +215,7 @@ namespace Match3.View
             }
 
             // remove tokens that do not exist in board anymore
-            var tokens = new List<Token>(dataViewMap.Keys);
+            var tokens = new List<Token>(_dataViewMap.Keys);
             foreach (var token in tokens)
             {
                 if (!_board.ExistsTokenInAnyLayer(token))
@@ -238,7 +238,7 @@ namespace Match3.View
                 ? _tokenViewsPool.Get()
                 : CreateTokenView();
             tokenView.Initialize(token, layerIndex);
-            dataViewMap.Add(token, tokenView);
+            _dataViewMap.Add(token, tokenView);
             return tokenView;
         }
         
@@ -247,8 +247,8 @@ namespace Match3.View
             if (!HasViewForToken(token))
                 return;
             
-            var tokenView = dataViewMap[token];
-            dataViewMap.Remove(token);
+            var tokenView = _dataViewMap[token];
+            _dataViewMap.Remove(token);
             if (Application.isPlaying)
             {
                 tokenView.Destroy();
