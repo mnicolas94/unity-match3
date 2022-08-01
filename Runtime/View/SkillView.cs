@@ -50,7 +50,7 @@ namespace Match3.View
                     var (interaction, success) = await interactionTask;
                     linkedCts.Cancel();
                     var action = _skill.AppliesCostGameAction;
-                    action.OnCostApplied += _ => _costView.UpdateView(_skill);
+                    action.OnCostApplied += _ => UpdateCostView();
                     return (interaction, action, success);
                 }
                 else
@@ -63,6 +63,11 @@ namespace Match3.View
             {
                 linkedCts.Dispose();
             }
+        }
+
+        public void UpdateCostView()
+        {
+            _costView.UpdateView(_skill);
         }
     }
 }
