@@ -34,7 +34,7 @@ namespace Match3.Tests.Editor
         public void Setup()
         {
             var contextAsset = AssetDatabase.LoadAssetAtPath<GameContextAsset>("Assets/Match3/Tests/Editor/TestGameContext.asset");
-            _context = contextAsset.GameContext;
+            _context = contextAsset.GameContextCopy;
             
             var level3X3 = AssetDatabase.LoadAssetAtPath<Level>("Assets/Match3/Tests/Editor/TestLevels/test3x3.asset");
             var level5X5 = AssetDatabase.LoadAssetAtPath<Level>("Assets/Match3/Tests/Editor/TestLevels/test5x5.asset");

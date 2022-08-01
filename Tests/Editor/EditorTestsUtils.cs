@@ -23,7 +23,7 @@ namespace Match3.Tests.Editor
         public static GameController GetControllerFromLevelPath(string levelPath)
         {
             var contextAsset = AssetDatabase.LoadAssetAtPath<GameContextAsset>("Assets/Match3/Tests/Editor/TestGameContext.asset");
-            var context = contextAsset.GameContext;
+            var context = contextAsset.GameContextCopy;
             return GetControllerFromLevelPath(context, levelPath);
         }
 

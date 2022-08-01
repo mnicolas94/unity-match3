@@ -92,7 +92,7 @@ namespace Match3.Core
             if (context == null)
             {
                 if (SimulationSettings.Instance != null && SimulationSettings.Instance.DefaultSimulationContext != null)
-                    context = SimulationSettings.Instance.DefaultSimulationContext.GameContext;
+                    context = SimulationSettings.Instance.DefaultSimulationContext.GameContextCopy;
             }
 
             if (context == null)

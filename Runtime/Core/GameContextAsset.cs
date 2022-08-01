@@ -7,6 +7,7 @@ namespace Match3.Core
     {
         [SerializeField] private GameContext _gameContext;
 
-        public GameContext GameContext => new GameContext(_gameContext);
+        public GameContext GameContext => _gameContext;
+        public GameContext GameContextCopy => new GameContext(_gameContext);
     }
 }
