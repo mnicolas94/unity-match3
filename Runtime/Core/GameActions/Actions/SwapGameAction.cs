@@ -80,17 +80,11 @@ namespace Match3.Core.GameActions.Actions
             if (countAsTurn)
             {
                 enumerables.Add(new List<TurnStep>{swapStep});
-                
+
                 // send swap events
                 var swapOutputs = new List<TokenEventOutput>();
-                if (aRespondsToSwap)
-                {
-                    SendEventUtils.SendSwapEvent(context, board, secondPosition, firstToken, firstPosition, secondToken, swapOutputs);
-                }
-                if (bRespondsToSwap)
-                {
-                    SendEventUtils.SendSwapEvent(context, board, firstPosition, secondToken, secondPosition, firstToken, swapOutputs);
-                }
+                SendEventUtils.SendSwapEvent(context, board, secondPosition, firstToken, firstPosition, secondToken, swapOutputs);
+                
                 // handle matches
                 if (isMatchA || isMatchB)
                 {

@@ -29,7 +29,7 @@ namespace Match3.Core.GameActions.Actions
             var (token, layer) = board.GetTopTokenAt(position);
             var outputs = new List<TokenEventOutput>();
             var @event = new EventDoubleClicked(board, token, position);
-            SendEventUtils.SendEvent(context, token, @event, outputs);
+            SendEventUtils.SendEventToToken(context, token, @event, outputs);
             
             var turnSteps = BoardGameActions.Gts_HandleEventOutputs(context, board, outputs);
             var execution = new GameActionExecution(turnSteps, true);
