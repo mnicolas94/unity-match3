@@ -13,18 +13,18 @@ namespace Match3.Core.TokensEvents.Resolvers
     public class DamageConvenientPosition : IEventResolver
     {
         [SerializeField] private int _times;
-        [SerializeReference, SubclassSelector] private ITokenDestructionSource _damageSource;
+        [SerializeReference, SubclassSelector] private ITokenDamageSource _damageSource;
         
         public TokenEventOutput OnEvent(TokenEventInput @event)
         {
-            var positionsToDamage = new List<PositionDamageOrder>
+            var positionsToDamage = new List<PositionToAttackOrder>
             {
-                new PositionDamageOrder(@event.Position, 0),
+                new PositionToAttackOrder(@event.Position, 0),
             };
             for (int i = 0; i < _times; i++)
             {
                 var position = GetConvenientPosition(@event.Board);
-                positionsToDamage.Add(new PositionDamageOrder(position, 1));
+                positionsToDamage.Add(new PositionToAttackOrder(position, 1));
             }
             
             return new DamagePositionsEventOutput(

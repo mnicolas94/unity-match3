@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Match3.Core.GameActions.TokensDamage;
 using Match3.Core.SerializableTuples;
 using Match3.Core.TokensEvents.Events;
 using Match3.Core.TokensEvents.Outputs;
@@ -15,9 +16,9 @@ namespace Match3.Core.TokensEvents.Resolvers
         {
             var position = @event.Position;
             var token = @event.Token;
-            var positionToken = new PositionTokenDestructionOrder(position, token, 0);
-            var positionsToDestroy = new List<PositionTokenDestructionOrder> { positionToken };
-            var destruction = new TokensDestruction(null, position, positionsToDestroy);
+            var positionToken = new PositionTokenDamageOrder(position, token, 0, new DamageInfo(0));
+            var positionsToDestroy = new List<PositionTokenDamageOrder> { positionToken };
+            var destruction = new TokensDamaged(null, position, positionsToDestroy);
             return new DestroyTokensEventOutput(destruction);
         }
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Lean.Pool;
 using Match3.Core;
+using Match3.Core.GameActions.TokensDamage;
 using UnityEngine;
 using Utils;
 using Utils.Tweening;
@@ -41,6 +42,18 @@ namespace Match3.View
                 CoroutineUtils.ActionCoroutine(() => onDestroyed?.Invoke())
             });
             StartCoroutine(coroutine);
+        }
+
+        public void UpdateHealthChange(DamageInfo info)
+        {
+            var sprites = _token.TokenData.HealthSprites;
+            if (sprites.Count > 0)
+            {
+                int health = _token.HealthPoints;
+                int spriteIndex = health - 1;
+                spriteIndex = Mathf.Clamp(spriteIndex, 0, sprites.Count - 1);
+                _spriteRenderer.sprite = sprites[spriteIndex];
+            }
         }
 
         private IEnumerator WaitForAnimationCoroutine()

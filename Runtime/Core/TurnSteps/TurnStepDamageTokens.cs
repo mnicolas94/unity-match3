@@ -10,45 +10,45 @@ namespace Match3.Core.TurnSteps
 {
     
     [Serializable]
-    public class TurnStepDestroyTokens : TurnStep
+    public class TurnStepDamageTokens : TurnStep
     {
-        [SerializeField] private List<TokensDestruction> _tokensDestructions;
+        [SerializeField] private List<TokensDamaged> _tokensDamaged;
         
-        public List<TokensDestruction> TokensDestructions => _tokensDestructions;
+        public List<TokensDamaged> TokensDamaged => _tokensDamaged;
 
-        public TurnStepDestroyTokens(List<TokensDestruction> destroyedTokens)
+        public TurnStepDamageTokens(List<TokensDamaged> destroyedTokens)
         {
-            _tokensDestructions = destroyedTokens;
+            _tokensDamaged = destroyedTokens;
         }
 
-        public IEnumerable<PositionTokenDestructionOrder> GetAllPositionsTokensDestructionOrders()
+        public IEnumerable<PositionTokenDamageOrder> GetAllPositionsTokensDestructionOrders()
         {
-            return _tokensDestructions
+            return _tokensDamaged
                 .SelectMany(destruction => destruction.DestroyedTokens);
         }
         
         public IEnumerable<PositionToken> GetAllPositionsTokens()
         {
-            return _tokensDestructions
+            return _tokensDamaged
                 .SelectMany(destruction => destruction.DestroyedTokens)
                 .Select(ptdo => ptdo.PositionToken);
         }
     }
 
     [Serializable]
-    public class TokensDestruction
+    public class TokensDamaged
     {
-        [SerializeReference] private ITokenDestructionSource _source;
+        [SerializeReference] private ITokenDamageSource _source;
         [SerializeField] private Vector2Int _sourcePosition;
-        [SerializeField] private List<PositionTokenDestructionOrder> _destroyedTokens;
+        [SerializeField] private List<PositionTokenDamageOrder> _destroyedTokens;
 
-        public ITokenDestructionSource Source => _source;
+        public ITokenDamageSource Source => _source;
 
         public Vector2Int SourcePosition => _sourcePosition;
 
-        public ReadOnlyCollection<PositionTokenDestructionOrder> DestroyedTokens => _destroyedTokens.AsReadOnly();
+        public ReadOnlyCollection<PositionTokenDamageOrder> DestroyedTokens => _destroyedTokens.AsReadOnly();
 
-        public TokensDestruction(ITokenDestructionSource source, Vector2Int sourcePosition, List<PositionTokenDestructionOrder> destroyedTokens)
+        public TokensDamaged(ITokenDamageSource source, Vector2Int sourcePosition, List<PositionTokenDamageOrder> destroyedTokens)
         {
             _source = source;
             _sourcePosition = sourcePosition;
@@ -58,7 +58,7 @@ namespace Match3.Core.TurnSteps
 
     public static class TokensDestructionListExtensions
     {
-        public static IEnumerable<PositionToken> GetAllPositionsTokens(this IList<TokensDestruction> destructions)
+        public static IEnumerable<PositionToken> GetAllPositionsTokens(this IList<TokensDamaged> destructions)
         {
             return destructions
                 .SelectMany(destruction => destruction.DestroyedTokens)

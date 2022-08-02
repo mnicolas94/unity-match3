@@ -12,16 +12,16 @@ namespace Match3.Core.TokensEvents.Resolvers
     [Serializable]
     public class DamageSelfResolver : IEventResolver
     {
-        [SerializeReference, SubclassSelector] private ITokenDestructionSource _damageSource;
+        [SerializeReference, SubclassSelector] private ITokenDamageSource _damageSource;
         
         public TokenEventOutput OnEvent(TokenEventInput @event)
         {
             var position = @event.Position;
-            var positionDamageOrder = new PositionDamageOrder(position, 0);
+            var positionDamageOrder = new PositionToAttackOrder(position, 0);
             return new DamagePositionsEventOutput(
                 _damageSource,
                 position,
-                new List<PositionDamageOrder>{ positionDamageOrder });
+                new List<PositionToAttackOrder>{ positionDamageOrder });
         }
     }
 }

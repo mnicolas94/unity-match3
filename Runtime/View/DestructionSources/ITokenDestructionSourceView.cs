@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Match3.View.DestructionSources
 {
-    public interface ITokenDestructionSourceView : ITokenDestructionSource
+    public interface ITokenDestructionSourceView : ITokenDamageSource
     {
-        void RenderDestruction(Grid grid, Vector2Int destructionPosition);
+        void RenderDamage(Grid grid, Vector2Int destructionPosition);
     }
 }

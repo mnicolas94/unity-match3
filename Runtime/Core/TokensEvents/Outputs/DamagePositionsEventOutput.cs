@@ -10,17 +10,17 @@ namespace Match3.Core.TokensEvents.Outputs
     [Serializable]
     public class DamagePositionsEventOutput : TokenEventOutput
     {
-        [SerializeField] private ITokenDestructionSource _damageSource;
+        [SerializeField] private ITokenDamageSource _damageSource;
         [SerializeField] private Vector2Int _sourcePosition;
-        [SerializeField] private List<PositionDamageOrder> _positionsToDamage;
+        [SerializeField] private List<PositionToAttackOrder> _positionsToDamage;
 
-        public ITokenDestructionSource DamageSource => _damageSource;
+        public ITokenDamageSource DamageSource => _damageSource;
 
         public Vector2Int SourcePosition => _sourcePosition;
 
-        public ReadOnlyCollection<PositionDamageOrder> PositionsToDamage => _positionsToDamage.AsReadOnly();
+        public ReadOnlyCollection<PositionToAttackOrder> PositionsToDamage => _positionsToDamage.AsReadOnly();
 
-        public DamagePositionsEventOutput(ITokenDestructionSource damageSource, Vector2Int sourcePosition, List<PositionDamageOrder> positionsToDamage)
+        public DamagePositionsEventOutput(ITokenDamageSource damageSource, Vector2Int sourcePosition, List<PositionToAttackOrder> positionsToDamage)
         {
             _damageSource = damageSource;
             _sourcePosition = sourcePosition;

@@ -7,11 +7,11 @@ namespace Match3.Core.TokensEvents.Outputs
     [Serializable]
     public class DestroyTokensEventOutput : TokenEventOutput
     {
-        [SerializeField] private TokensDestruction _tokensToDestroy;
+        [SerializeField] private TokensDamaged _tokensToDestroy;
 
-        public TokensDestruction TokensToDestroy => _tokensToDestroy;
+        public TokensDamaged TokensToDestroy => _tokensToDestroy;
 
-        public DestroyTokensEventOutput(TokensDestruction tokensToDestroy)
+        public DestroyTokensEventOutput(TokensDamaged tokensToDestroy)
         {
             _tokensToDestroy = tokensToDestroy;
         }

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Match3.Core.TurnSteps.TokensDestructionSource
 {
     [Serializable]
-    public class DestructionSourceMatch : ITokenDestructionSource
+    public class DestructionSourceMatch : ITokenDamageSource
     {
         [SerializeField] private Match _match;
 

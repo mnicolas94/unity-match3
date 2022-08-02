@@ -59,9 +59,9 @@ namespace Match3.Core.GameDataExtraction.DataExtractors
     }
     
     [Serializable]
-    public class DataExtractorDestroyedTokens : DataExtractorBase<TurnStepDestroyTokens, DestroyedTokensData>
+    public class DataExtractorDestroyedTokens : DataExtractorBase<TurnStepDamageTokens, DestroyedTokensData>
     {
-        public override DestroyedTokensData ExtractData(TurnStepDestroyTokens turnStep)
+        public override DestroyedTokensData ExtractData(TurnStepDamageTokens turnStep)
         {
             var destroyedTokens = new TokenCountDictionary();
             foreach (var (position, token) in turnStep.GetAllPositionsTokens())

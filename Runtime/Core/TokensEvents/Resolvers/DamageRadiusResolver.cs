@@ -12,7 +12,7 @@ namespace Match3.Core.TokensEvents.Resolvers
     [Serializable]
     public class DamageRadiusResolver : IEventResolver
     {
-        [SerializeReference, SubclassSelector] private ITokenDestructionSource _damageSource;
+        [SerializeReference, SubclassSelector] private ITokenDamageSource _damageSource;
         [SerializeField] [Min(1)] private int radius;
         
         private DamagePositionsEventOutput DamageRadius(Vector2Int position)
@@ -22,7 +22,7 @@ namespace Match3.Core.TokensEvents.Resolvers
             int yMin = position.y - radius;
             int yMax = position.y + radius;
             
-            var positionsToDamage = new List<PositionDamageOrder>();
+            var positionsToDamage = new List<PositionToAttackOrder>();
             for (int x = xMin; x <= xMax; x++)
             for (int y = yMin; y <= yMax; y++)
             {
@@ -30,7 +30,7 @@ namespace Match3.Core.TokensEvents.Resolvers
                 int xRadius = Math.Abs(x - xMin - radius);
                 int yRadius = Math.Abs(y - yMin - radius);
                 int currentRadius = Math.Max(xRadius, yRadius);
-                positionsToDamage.Add(new PositionDamageOrder(currentPosition, currentRadius));
+                positionsToDamage.Add(new PositionToAttackOrder(currentPosition, currentRadius));
             }
                     
             return new DamagePositionsEventOutput(_damageSource, position, positionsToDamage);

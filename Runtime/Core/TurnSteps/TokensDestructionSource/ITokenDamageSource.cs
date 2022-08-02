@@ -1,6 +1,6 @@
 ﻿namespace Match3.Core.TurnSteps.TokensDestructionSource
 {
-    public interface ITokenDestructionSource
+    public interface ITokenDamageSource
     {
     }
 }

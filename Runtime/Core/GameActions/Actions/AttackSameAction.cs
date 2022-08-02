@@ -15,7 +15,7 @@ namespace Match3.Core.GameActions.Actions
     [Serializable]
     public class AttackSameAction : GameActionBase<SelectPositionInteraction>
     {
-        [SerializeReference, SubclassSelector] private ITokenDestructionSource _damageSource;
+        [SerializeReference, SubclassSelector] private ITokenDamageSource _damageSource;
 
         public override bool IsInteractionValid(Board board, SelectPositionInteraction interaction)
         {
@@ -37,10 +37,10 @@ namespace Match3.Core.GameActions.Actions
             var token = board.MainLayer.GetTokenAt(position);
             var tokenData = token.TokenData;
             var positionsToAttack = board.MainLayer.GetAllPositionsOfTokenData(tokenData);
-            var positions = positionsToAttack.ConvertAll(pos => new PositionDamageOrder(pos, Random.Range(0, 5)));
+            var positions = positionsToAttack.ConvertAll(pos => new PositionToAttackOrder(pos, Random.Range(0, 5)));
             var destroyedTokens = BoardGameActions.T_AttackPositions(context, board, positions);
-            var destruction = new TokensDestruction(_damageSource, position, destroyedTokens);
-            var destructions = new List<TokensDestruction> {destruction};
+            var destruction = new TokensDamaged(_damageSource, position, destroyedTokens);
+            var destructions = new List<TokensDamaged> {destruction};
             var turnSteps = BoardGameActions.Gts_HandleTokensDestruction(context, board, destructions);
             var execution = new GameActionExecution(turnSteps, countAsTurn: false);
             return execution;

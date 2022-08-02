@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Match3.Core.GameActions.Actions;
 using Match3.Core.GameActions.Interactions;
+using Match3.Core.GameActions.TokensDamage;
 using Match3.Core.Gravity;
 using Match3.Core.Matches;
 using Match3.Core.SerializableTuples;
@@ -138,14 +139,14 @@ namespace Match3.Core.GameActions
             var matchesTurnSteps = Gts_HandleEventOutputs(context, board, outputs).ExecuteTurnStepsNow();
             
             // damage matched tokens
-            var destroyedTokens = new List<TokensDestruction>();
+            var destroyedTokens = new List<TokensDamaged>();
             foreach (var match in matches)
             {
-                var positionsToDamage = match.Positions.Select(position => new PositionDamageOrder(position, 0));
+                var positionsToDamage = match.Positions.Select(position => new PositionToAttackOrder(position, 0));
                 var destroyed = T_AttackPositions(context, board, positionsToDamage);
                 var randomPosition = match.Positions.GetRandom();
                 var destructionSource = new DestructionSourceMatch(match);
-                var destruction = new TokensDestruction(destructionSource, randomPosition, destroyed);
+                var destruction = new TokensDamaged(destructionSource, randomPosition, destroyed);
                 destroyedTokens.Add(destruction);
             }
             var attackPositionsTurnSteps = Gts_HandleTokensDestruction(context, board, destroyedTokens).ExecuteTurnStepsNow();
@@ -252,7 +253,7 @@ namespace Match3.Core.GameActions
                 if (destroyedTokens.Count == 0)
                     break;
 
-                var turnStepDestruction = new TurnStepDestroyTokens(destroyedTokens);
+                var turnStepDestruction = new TurnStepDamageTokens(destroyedTokens);
                 yield return turnStepDestruction;
 
                 outputs.Clear();
@@ -263,11 +264,11 @@ namespace Match3.Core.GameActions
         internal static IEnumerable<TurnStep> Gts_HandleTokensDestruction(
             GameContext context,
             Board board,
-            List<TokensDestruction> destroyedTokens)
+            List<TokensDamaged> destroyedTokens)
         {
             while (destroyedTokens.Count > 0)
             {
-                var turnStepDestruction = new TurnStepDestroyTokens(destroyedTokens);
+                var turnStepDestruction = new TurnStepDamageTokens(destroyedTokens);
                 yield return turnStepDestruction;
 
                 var outputs = new List<TokenEventOutput>();
@@ -279,12 +280,12 @@ namespace Match3.Core.GameActions
             }
         }
 
-        internal static List<TokensDestruction> T_HandleEventOutputs(
+        internal static List<TokensDamaged> T_HandleEventOutputs(
             GameContext context,
             Board board,
             List<TokenEventOutput> outputs)
         {
-            var destroyedTokens = new List<TokensDestruction>();
+            var destroyedTokens = new List<TokensDamaged>();
             
             // DamagePositionsEventOutput
             var damageOutputs = outputs.FindAll(output => output is DamagePositionsEventOutput);
@@ -292,7 +293,7 @@ namespace Match3.Core.GameActions
             {
                 var damageOutput = (DamagePositionsEventOutput) output;
                 var destroyed = T_AttackPositions(context, board, damageOutput.PositionsToDamage);
-                var destruction = new TokensDestruction(damageOutput.DamageSource, damageOutput.SourcePosition, destroyed);
+                var destruction = new TokensDamaged(damageOutput.DamageSource, damageOutput.SourcePosition, destroyed);
                 destroyedTokens.Add(destruction);
             }
 
@@ -300,11 +301,11 @@ namespace Match3.Core.GameActions
             var destroyOutputs = outputs.FindAll(output => output is DestroyTokensEventOutput);
             foreach (var output in destroyOutputs)
             {
-                var damageOutput = (DestroyTokensEventOutput) output;
-                destroyedTokens.Add(damageOutput.TokensToDestroy);
+                var destroyOutput = (DestroyTokensEventOutput) output;
+                destroyedTokens.Add(destroyOutput.TokensToDestroy);
 
                 // destroy from board
-                foreach (var (position, token, destroyOrder) in damageOutput.TokensToDestroy.DestroyedTokens)
+                foreach (var (position, token, destroyOrder, damageInfo) in destroyOutput.TokensToDestroy.DestroyedTokens)
                 {
                     var layer = board.TryGetLayerOfTokenAtPosition(token, position, out bool existsLayer);
                     layer.RemoveTokenAt(position);
@@ -314,31 +315,32 @@ namespace Match3.Core.GameActions
             return destroyedTokens;
         }
 
-        internal static List<PositionTokenDestructionOrder> T_AttackPositions(
+        internal static List<PositionTokenDamageOrder> T_AttackPositions(
             GameContext context,
             Board board,
-            IEnumerable<PositionDamageOrder> positionsToDamage)
+            IEnumerable<PositionToAttackOrder> positionsToAttack)
         {
-            var destroyedTokens = new List<PositionTokenDestructionOrder>();
+            var destroyedTokens = new List<PositionTokenDamageOrder>();
 
             bool DestructiblePredicate(Token token)
             {
                 return !token.TokenData.IsIndestructible;
             }
             
-            foreach (var (position, damageOrder) in positionsToDamage)
+            foreach (var (position, damageOrder) in positionsToAttack)
             {
                 bool exists = board.ExistsTokenAnyLayerAtWhere(position, DestructiblePredicate);
                 if (!exists)
                     continue;
                 var (token, layer) = board.GetTopTokenAtWhere(position, DestructiblePredicate);
-                var tokenData = token.TokenData;
-                var destroyIt = tokenData.ApplyDamage(token, position);
+                int damage = 1;  // TODO get from damage manager at GameContext
+                var damageDone = token.ApplyDamage(damage, position);
+                var damageInfo = new DamageInfo(damageDone);
+                var positionTokenDamageOrder = new PositionTokenDamageOrder(position, token, damageOrder, damageInfo);
+                destroyedTokens.Add(positionTokenDamageOrder);
+                var destroyIt = token.HealthPoints <= 0;
                 if (destroyIt)
-                {
-                    destroyedTokens.Add(new PositionTokenDestructionOrder(position, token, damageOrder));
                     layer.RemoveTokenAt(position);
-                }
             }
 
             return destroyedTokens;
@@ -347,7 +349,7 @@ namespace Match3.Core.GameActions
         internal static void GetOutputsFromTokensDestruction(
             GameContext context,
             Board board,
-            List<TokensDestruction> destroyedTokens,
+            List<TokensDamaged> destroyedTokens,
             List<TokenEventOutput> outputs)
         {
             var positionTokens = destroyedTokens.GetAllPositionsTokens().ToList();

@@ -12,7 +12,7 @@ namespace Match3.Core.TokensEvents.Resolvers
     [Serializable]
     public class DamageRelativePositionsResolver : IEventResolver
     {
-        [SerializeReference, SubclassSelector] private ITokenDestructionSource _damageSource;
+        [SerializeReference, SubclassSelector] private ITokenDamageSource _damageSource;
         [SerializeField] private List<Vector2Int> _relativePositions;
 
         private DamagePositionsEventOutput DamageRelativesPositions(Vector2Int position)
@@ -20,7 +20,7 @@ namespace Match3.Core.TokensEvents.Resolvers
             var positionsToDamage = _relativePositions.ConvertAll(relativePosition =>
             {
                 var relPosition = position + relativePosition;
-                return new PositionDamageOrder(relPosition, 0);
+                return new PositionToAttackOrder(relPosition, 0);
             });
             return new DamagePositionsEventOutput(_damageSource, position, positionsToDamage);
         }

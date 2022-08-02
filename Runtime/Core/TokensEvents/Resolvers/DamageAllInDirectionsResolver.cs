@@ -12,20 +12,20 @@ namespace Match3.Core.TokensEvents.Resolvers
     [Serializable]
     public class DamageAllInDirectionsResolver : IEventResolver
     {
-        [SerializeReference, SubclassSelector] private ITokenDestructionSource _damageSource;
+        [SerializeReference, SubclassSelector] private ITokenDamageSource _damageSource;
         [SerializeField] private List<Vector2Int> _directions;
 
         private DamagePositionsEventOutput GetOutput(Board board, Vector2Int position)
         {
             var bounds = board.BoardShape.GetBounds();
-            var positionsToDamage = new List<PositionDamageOrder>();
+            var positionsToDamage = new List<PositionToAttackOrder>();
             foreach (var direction in _directions)
             {
                 int damageOrder = 0;
                 var positionToDamage = position + direction;
                 while (bounds.Contains(positionToDamage))
                 {
-                    positionsToDamage.Add(new PositionDamageOrder(positionToDamage, damageOrder));
+                    positionsToDamage.Add(new PositionToAttackOrder(positionToDamage, damageOrder));
                     positionToDamage += direction;
                     damageOrder++;
                 }

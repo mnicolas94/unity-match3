@@ -69,7 +69,7 @@ namespace Match3.Tests.Editor
 
             // act
             var turn = EditorTestsUtils.MakeMove(gameController, -1, -3, -2, -3);
-            bool matched = turn.TurnSteps.ToList().Exists(step => step is TurnStepDestroyTokens);
+            bool matched = turn.TurnSteps.ToList().Exists(step => step is TurnStepDamageTokens);
             
             // assert
             Assert.IsFalse(matched);
@@ -85,7 +85,7 @@ namespace Match3.Tests.Editor
 
             // act
             var turn = EditorTestsUtils.MakeMove(gameController, x1, y1, x2, y2);
-            bool matched = turn.TurnSteps.ToList().Exists(step => step is TurnStepDestroyTokens);
+            bool matched = turn.TurnSteps.ToList().Exists(step => step is TurnStepDamageTokens);
             
             // assert
             Assert.IsTrue(matched);

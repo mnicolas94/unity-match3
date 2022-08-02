@@ -7,12 +7,26 @@ namespace Match3.Core
     public class Token
     {
         [SerializeField] private TokenData _tokenData;
+        [SerializeField] private int _healthPoints;
 
         public TokenData TokenData => _tokenData;
+
+        public int HealthPoints => _healthPoints;
 
         public Token(TokenData tokenData)
         {
             _tokenData = tokenData;
+            _healthPoints = tokenData == null ? 1 : tokenData.InitialHealth;
+        }
+        
+        public int ApplyDamage(int damage, Vector2Int position)
+        {
+            if (_tokenData.IsIndestructible)
+                return 0;
+
+            int damageDone = Math.Min(_healthPoints, damage);
+            _healthPoints -= damageDone;
+            return damageDone;
         }
 
         public override string ToString()
@@ -24,7 +38,7 @@ namespace Match3.Core
     [Serializable]
     public class FakeToken : Token
     {
-        public FakeToken() : base(null)
+        public FakeToken() : base(ScriptableObject.CreateInstance<TokenData>())
         {
         }
     }

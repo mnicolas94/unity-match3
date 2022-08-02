@@ -67,9 +67,9 @@ namespace Match3.Tests.Editor
             var token = layer.GetTokenAt(position);
             var turn = MakeMove(gameController, x1, y1, x2, y2);
             var positionsDestroyed = turn.TurnSteps
-                .Where(step => step is TurnStepDestroyTokens)
-                .Cast<TurnStepDestroyTokens>()
-                .SelectMany(step => step.TokensDestructions)
+                .Where(step => step is TurnStepDamageTokens)
+                .Cast<TurnStepDamageTokens>()
+                .SelectMany(step => step.TokensDamaged)
                 .SelectMany(destruction => destruction.DestroyedTokens)
                 .Select(positionTokenOrder => positionTokenOrder.Position)
                 .ToList();

@@ -23,6 +23,8 @@ namespace Match3.Core
         [SerializeField, BoxGroup("Appearance"), ShowAssetPreview, Required]
         private Sprite _tokenSprite;
         [SerializeField, BoxGroup("Appearance"), ShowAssetPreview]
+        private List<Sprite> _healthSprites;
+        [SerializeField, BoxGroup("Appearance"), ShowAssetPreview]
         private List<Sprite> _destroySprites;
         [SerializeField, BoxGroup("Appearance")]
         private float _destroyAnimDuration;
@@ -30,7 +32,8 @@ namespace Match3.Core
         private GameObject _particlesPrefab;
         [SerializeField, BoxGroup("Appearance")]
         private AudioClip _destructionSound;
-        
+
+        [SerializeField, BoxGroup("Behaviour")] private int _initialHealth;
         [SerializeField, BoxGroup("Behaviour")] private TokenType _type;
         [SerializeField, BoxGroup("Behaviour")] private bool _canMove;
         [SerializeField, BoxGroup("Behaviour")] private bool _canMatchWithItself;
@@ -39,11 +42,18 @@ namespace Match3.Core
 
         public Sprite TokenSprite
         {
-            get => _tokenSprite;
+            get
+            {
+                int spritesCount = -_healthSprites.Count;
+                
+                return spritesCount > 0 ? _healthSprites[spritesCount - 1] : _tokenSprite;
+            }
 #if UNITY_EDITOR
             set => _tokenSprite = value;
 #endif
         }
+
+        public List<Sprite> HealthSprites => _healthSprites;
 
         public List<Sprite> DestroySprites => _destroySprites;
 
@@ -52,6 +62,9 @@ namespace Match3.Core
         public GameObject ParticlesPrefab => _particlesPrefab;
 
         public AudioClip DestructionSound => _destructionSound;
+
+
+        public int InitialHealth => _initialHealth;
 
         public TokenType Type
         {

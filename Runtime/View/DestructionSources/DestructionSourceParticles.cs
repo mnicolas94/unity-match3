@@ -9,7 +9,7 @@ namespace Match3.View.DestructionSources
     {
         [SerializeField] private ParticleSystem _particlesPrefab;
         
-        public void RenderDestruction(Grid grid, Vector2Int destructionPosition)
+        public void RenderDamage(Grid grid, Vector2Int destructionPosition)
         {
             var position = grid.GetCellCenterWorld((Vector3Int) destructionPosition);
             Object.Instantiate(_particlesPrefab, position, Quaternion.identity);

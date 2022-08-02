@@ -72,7 +72,7 @@ namespace Match3.Core.GameDataExtraction.DataExtractors
     }
 
     [Serializable]
-    public class DataExtractorMatchesPatternCount : DataExtractorBase<TurnStepDestroyTokens, MatchesPatternCountData>
+    public class DataExtractorMatchesPatternCount : DataExtractorBase<TurnStepDamageTokens, MatchesPatternCountData>
     {
         [SerializeField] private List<MatchPatternRecognizerBase> _patternsToEvaluate;
         
@@ -81,11 +81,11 @@ namespace Match3.Core.GameDataExtraction.DataExtractors
             _patternsToEvaluate = patternsToEvaluate;
         }
         
-        public override MatchesPatternCountData ExtractData(TurnStepDestroyTokens turnStep)
+        public override MatchesPatternCountData ExtractData(TurnStepDamageTokens turnStep)
         {
             int totalMatches = 0;
             var patternsCount = new DictionaryMatchPatternCount();
-            foreach (var destruction in turnStep.TokensDestructions)
+            foreach (var destruction in turnStep.TokensDamaged)
             {
                 if (destruction.Source is DestructionSourceMatch matchSource)
                 {

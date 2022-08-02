@@ -14,7 +14,7 @@ namespace Match3.Core.GameActions.Actions
     [Serializable]
     public class AttackPositionAction : GameActionBase<SelectPositionInteraction>
     {
-        [SerializeReference, SubclassSelector] private ITokenDestructionSource _damageSource;
+        [SerializeReference, SubclassSelector] private ITokenDamageSource _damageSource;
 
         public override bool IsInteractionValid(Board board, SelectPositionInteraction interaction)
         {
@@ -26,10 +26,10 @@ namespace Match3.Core.GameActions.Actions
         public override GameActionExecution Execute(GameContext context, Board board, SelectPositionInteraction interaction)
         {
             var position = interaction.Position;
-            var positions = new List<PositionDamageOrder>{ new PositionDamageOrder(position, 0) };
+            var positions = new List<PositionToAttackOrder>{ new PositionToAttackOrder(position, 0) };
             var destroyedTokens = BoardGameActions.T_AttackPositions(context, board, positions);
-            var destruction = new TokensDestruction(_damageSource, position, destroyedTokens);
-            var destructions = new List<TokensDestruction> {destruction};
+            var destruction = new TokensDamaged(_damageSource, position, destroyedTokens);
+            var destructions = new List<TokensDamaged> {destruction};
             var turnSteps = BoardGameActions.Gts_HandleTokensDestruction(context, board, destructions);
             var execution = new GameActionExecution(turnSteps, countAsTurn: false);
             return execution;

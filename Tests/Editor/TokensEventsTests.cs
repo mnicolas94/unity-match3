@@ -105,7 +105,7 @@ namespace Match3.Tests.Editor
             var turnSteps = turn.TurnSteps.ExecuteTurnStepsNow();
             
             // assert
-            bool powerUpActivated = turnSteps.Exists(step => step is TurnStepDestroyTokens);
+            bool powerUpActivated = turnSteps.Exists(step => step is TurnStepDamageTokens);
             Assert.IsTrue(powerUpActivated);
         }
     }

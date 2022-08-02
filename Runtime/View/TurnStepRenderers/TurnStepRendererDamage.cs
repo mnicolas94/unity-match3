@@ -8,12 +8,12 @@ using UnityEngine;
 
 namespace Match3.View.TurnStepRenderers
 {
-    public class TurnStepRendererDestroy : TurnStepRenderer<TurnStepDestroyTokens>
+    public class TurnStepRendererDamage : TurnStepRenderer<TurnStepDamageTokens>
     {
         [SerializeField] private int _delayMillisBetweenWaves;
         
         protected override async Task RenderTurnStep(
-            TurnStepDestroyTokens step,
+            TurnStepDamageTokens step,
             Grid grid,
             Board board,
             TokenDataViewMap dataViewMap,
@@ -24,11 +24,11 @@ namespace Match3.View.TurnStepRenderers
                 .GroupBy(tuple => tuple.SortOrder)
                 .OrderBy(group => group.Key);
 
-            foreach (var destruction in step.TokensDestructions)
+            foreach (var tokensDamaged in step.TokensDamaged)
             {
-                if (destruction.Source is ITokenDestructionSourceView view)
+                if (tokensDamaged.Source is ITokenDestructionSourceView view)
                 {
-                    view.RenderDestruction(grid, destruction.SourcePosition);
+                    view.RenderDamage(grid, tokensDamaged.SourcePosition);
                 }
             }
 
@@ -36,9 +36,18 @@ namespace Match3.View.TurnStepRenderers
             {
                 foreach (var group in groupedTokens)
                 {
-                    foreach (var (position, token, order) in group)
+                    foreach (var (position, token, order, damageInfo) in group)
                     {
-                        dataViewMap.RemoveTokenFromMap(token);
+                        bool destroyed = token.HealthPoints <= 0;
+                        if (destroyed)
+                        {
+                            dataViewMap.RemoveTokenFromMap(token);
+                        }
+                        else
+                        {
+                            var tokenView = dataViewMap.GetTokenView(token);
+                            tokenView.UpdateHealthChange(damageInfo);
+                        }
                     }
 
                     await Task.Delay(_delayMillisBetweenWaves, ct);

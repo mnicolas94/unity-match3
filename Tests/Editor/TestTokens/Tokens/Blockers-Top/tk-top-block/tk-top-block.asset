@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: tk-top-block
   m_EditorClassIdentifier: 
   _tokenSprite: {fileID: 21300000, guid: b8391a2a567a60d49975763a8e7221a0, type: 3}
+  _healthSprites: []
   _destroySprites: []
   _destroyAnimDuration: 0
   _particlesPrefab: {fileID: 4181617674233429275, guid: 39a43a3e15b85ec42a9b9184798917f5, type: 3}
   _destructionSound: {fileID: 8300000, guid: dd3bc3fa5fb87314ea24dd04194c2845, type: 3}
+  _initialHealth: 1
   _type: 2
   _canMove: 0
   _canMatchWithItself: 0
