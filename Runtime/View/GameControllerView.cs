@@ -46,6 +46,11 @@ namespace Match3.View
         private CancellationTokenSource _cts;
         private bool _gameLoopIsRunning;
 
+#if UNITY_EDITOR
+        private bool _editorRequestStop;
+        private bool _requestedResult;
+#endif
+
         private bool ExecutingTurn { get; set; }
 
         public GameController GameController => _gameController;
@@ -83,6 +88,24 @@ namespace Match3.View
         {
             StartGameInLevel(_lastLevel);
         }
+
+#if UNITY_EDITOR
+        [Button("Win current game")]
+        private void WinCurrentLevel()
+        {
+            _editorRequestStop = true;
+            _requestedResult = true;
+            StopGameLoop();
+        }
+        
+        [Button("Lose current game")]
+        private void LoseCurrentLevel()
+        {
+            _editorRequestStop = true;
+            _requestedResult = false;
+            StopGameLoop();
+        }
+#endif
         
         private void PopulateLevel(Level level)
         {
@@ -112,6 +135,12 @@ namespace Match3.View
                 _gameLoopIsRunning = true;
                 var (victory, defeat) = await StartGame(ct);
                 bool gameEnd = victory || defeat;
+
+#if UNITY_EDITOR
+                _editorRequestStop = false;
+                _requestedResult = false;
+#endif
+                // game loop
                 while (!gameEnd && !ct.IsCancellationRequested)
                 {
                     var (interaction, action) = await WaitForInteractionAsync(ct);
@@ -123,6 +152,11 @@ namespace Match3.View
                     (victory, defeat) = await ExecuteTurn(turn, ct);
                     gameEnd = victory || defeat;
                 }
+
+#if UNITY_EDITOR
+                if (_editorRequestStop)
+                    victory = _requestedResult;
+#endif
                 
                 _gameController.EndGame();
 
@@ -147,6 +181,7 @@ namespace Match3.View
             {
                 _cts.Cancel();
                 _cts.Dispose();
+                _cts = null;
             }
         }
 

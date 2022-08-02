@@ -28,7 +28,14 @@ namespace Match3.View.TurnStepRenderers
                 await AnimateTokensMovements(movements, grid, movementTime, dataViewMap, ct);
             }
 
-            await Task.Delay((int) (finalDelay * 1000), ct);
+            try
+            {
+                await Task.Delay((int) (finalDelay * 1000), ct);
+            }
+            catch
+            {
+                // ignored
+            }
         }
 
         public static async Task AnimateTokensMovements(

@@ -332,7 +332,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 5506995985010365583}
+  - {fileID: 6481649240963493976}
   m_Father: {fileID: 5603318105626015178}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -461,6 +461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6628333080192509146}
+  - component: {fileID: 1952269527506343761}
   m_Layer: 5
   m_Name: Container
   m_TagString: Untagged
@@ -487,6 +488,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1952269527506343761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228514246208973987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce0047679774248b60bd0b40bf05403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 6628333080192509146}
+  _rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &7024687945497200081
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,11 +531,11 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7024687945497200081}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8275252772570899913}
+  m_Father: {fileID: 6481649240963493976}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
@@ -1044,254 +1064,6 @@ MonoBehaviour:
   - {fileID: 8367370953411641629}
   - {fileID: 8367370953077031257}
   - {fileID: 8367370953731780589}
-  _board:
-    _boardShape:
-      _tiles:
-      - {x: -4, y: -4}
-      - {x: -4, y: -3}
-      - {x: -4, y: -2}
-      - {x: -4, y: -1}
-      - {x: -4, y: 0}
-      - {x: -4, y: 1}
-      - {x: -4, y: 2}
-      - {x: -4, y: 3}
-      - {x: -4, y: 4}
-      - {x: -3, y: -4}
-      - {x: -3, y: -3}
-      - {x: -3, y: -2}
-      - {x: -3, y: -1}
-      - {x: -3, y: 0}
-      - {x: -3, y: 1}
-      - {x: -3, y: 2}
-      - {x: -3, y: 3}
-      - {x: -3, y: 4}
-      - {x: -2, y: -4}
-      - {x: -2, y: -3}
-      - {x: -2, y: -1}
-      - {x: -2, y: 0}
-      - {x: -2, y: 1}
-      - {x: -2, y: 3}
-      - {x: -2, y: 4}
-      - {x: -1, y: -4}
-      - {x: -1, y: -3}
-      - {x: -1, y: -2}
-      - {x: -1, y: -1}
-      - {x: -1, y: 0}
-      - {x: -1, y: 1}
-      - {x: -1, y: 2}
-      - {x: -1, y: 3}
-      - {x: -1, y: 4}
-      - {x: 0, y: -4}
-      - {x: 0, y: -3}
-      - {x: 0, y: -2}
-      - {x: 0, y: -1}
-      - {x: 0, y: 0}
-      - {x: 0, y: 1}
-      - {x: 0, y: 2}
-      - {x: 0, y: 3}
-      - {x: 0, y: 4}
-      - {x: 1, y: -4}
-      - {x: 1, y: -3}
-      - {x: 1, y: -2}
-      - {x: 1, y: -1}
-      - {x: 1, y: 0}
-      - {x: 1, y: 1}
-      - {x: 1, y: 2}
-      - {x: 1, y: 3}
-      - {x: 1, y: 4}
-      - {x: 2, y: -4}
-      - {x: 2, y: -3}
-      - {x: 2, y: -1}
-      - {x: 2, y: 0}
-      - {x: 2, y: 1}
-      - {x: 2, y: 3}
-      - {x: 2, y: 4}
-      - {x: 3, y: -4}
-      - {x: 3, y: -3}
-      - {x: 3, y: -2}
-      - {x: 3, y: -1}
-      - {x: 3, y: 0}
-      - {x: 3, y: 1}
-      - {x: 3, y: 2}
-      - {x: 3, y: 3}
-      - {x: 3, y: 4}
-      - {x: 4, y: -4}
-      - {x: 4, y: -3}
-      - {x: 4, y: -2}
-      - {x: 4, y: -1}
-      - {x: 4, y: 0}
-      - {x: 4, y: 1}
-      - {x: 4, y: 2}
-      - {x: 4, y: 3}
-      - {x: 4, y: 4}
-    _mainLayer:
-      _tokensPositions:
-        m_keys:
-        - {x: -2, y: 0}
-        - {x: -1, y: 0}
-        - {x: 0, y: 0}
-        - {x: 1, y: 0}
-        - {x: 2, y: 0}
-        - {x: 0, y: 3}
-        - {x: -4, y: -4}
-        - {x: -4, y: -3}
-        - {x: -4, y: -2}
-        - {x: -4, y: -1}
-        - {x: -4, y: 0}
-        - {x: -4, y: 1}
-        - {x: -4, y: 2}
-        - {x: -4, y: 3}
-        - {x: -4, y: 4}
-        - {x: -3, y: -4}
-        - {x: -3, y: -3}
-        - {x: -3, y: -2}
-        - {x: -3, y: -1}
-        - {x: -3, y: 0}
-        - {x: -3, y: 1}
-        - {x: -3, y: 2}
-        - {x: -3, y: 3}
-        - {x: -3, y: 4}
-        - {x: -2, y: -4}
-        - {x: -2, y: -3}
-        - {x: -2, y: -1}
-        - {x: -2, y: 1}
-        - {x: -2, y: 3}
-        - {x: -2, y: 4}
-        - {x: -1, y: -4}
-        - {x: -1, y: -3}
-        - {x: -1, y: -2}
-        - {x: -1, y: -1}
-        - {x: -1, y: 1}
-        - {x: -1, y: 2}
-        - {x: -1, y: 3}
-        - {x: -1, y: 4}
-        - {x: 0, y: -4}
-        - {x: 0, y: -3}
-        - {x: 0, y: -2}
-        - {x: 0, y: -1}
-        - {x: 0, y: 1}
-        - {x: 0, y: 2}
-        - {x: 0, y: 4}
-        - {x: 1, y: -4}
-        - {x: 1, y: -3}
-        - {x: 1, y: -2}
-        - {x: 1, y: -1}
-        - {x: 1, y: 1}
-        - {x: 1, y: 2}
-        - {x: 1, y: 3}
-        - {x: 1, y: 4}
-        - {x: 2, y: -4}
-        - {x: 2, y: -3}
-        - {x: 2, y: -1}
-        - {x: 2, y: 1}
-        - {x: 2, y: 3}
-        - {x: 2, y: 4}
-        - {x: 3, y: -4}
-        - {x: 3, y: -3}
-        - {x: 3, y: -2}
-        - {x: 3, y: -1}
-        - {x: 3, y: 0}
-        - {x: 3, y: 1}
-        - {x: 3, y: 2}
-        - {x: 3, y: 3}
-        - {x: 3, y: 4}
-        - {x: 4, y: -4}
-        - {x: 4, y: -3}
-        - {x: 4, y: -2}
-        - {x: 4, y: -1}
-        - {x: 4, y: 0}
-        - {x: 4, y: 1}
-        - {x: 4, y: 2}
-        - {x: 4, y: 3}
-        - {x: 4, y: 4}
-        m_values:
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-        - _tokenData: {fileID: 0}
-      _boardShape:
-        _tiles: []
-    _bottomLayers: []
-    _topLayers: []
-    _tokenSources:
-      m_keys: []
-      m_values: []
-  dataViewMap:
-    m_keys: []
-    m_values: []
 --- !u!156049354 &8367370953985375993
 Grid:
   m_ObjectHideFlags: 0
@@ -1304,6 +1076,62 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!1 &8369327077934799361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6481649240963493976}
+  - component: {fileID: 8367296354688777647}
+  m_Layer: 0
+  m_Name: SafeArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6481649240963493976
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8369327077934799361}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5506995985010365583}
+  m_Father: {fileID: 8275252772570899913}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8367296354688777647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8369327077934799361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce0047679774248b60bd0b40bf05403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 6481649240963493976}
+  _rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &8758746725728409706
 GameObject:
   m_ObjectHideFlags: 0

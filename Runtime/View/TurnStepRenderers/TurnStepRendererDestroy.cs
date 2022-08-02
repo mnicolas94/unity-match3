@@ -32,35 +32,24 @@ namespace Match3.View.TurnStepRenderers
                 }
             }
 
-            foreach (var group in groupedTokens)
+            try  // this is mainly to catch TaskCanceledException from "await Task.Delay..." line
             {
-                foreach (var (position, token, order) in group)
+                foreach (var group in groupedTokens)
                 {
-                    dataViewMap.RemoveTokenFromMap(token);
+                    foreach (var (position, token, order) in group)
+                    {
+                        dataViewMap.RemoveTokenFromMap(token);
+                    }
+
+                    await Task.Delay(_delayMillisBetweenWaves, ct);
                 }
-                await Task.Delay(_delayMillisBetweenWaves, ct);
+            }
+            catch
+            {
+                // ignored
             }
 
             await Task.Yield();
         }
     }
-    
-    /**
-     * groupedTokens: [
-     *     (_position,
-     *      _token,
-     *      _sortOrder), ...
-     * ]
-     *
-     * newGroupedTokens: [
-     *     (source,
-     *      position,
-     *      tokens: [
-     *          (_position,
-     *           _token,
-     *           _sortOrder), ...
-     *      ]
-     * ]
-     */
-    
 }
