@@ -64,7 +64,7 @@ namespace Match3.Core.GameDataExtraction.DataExtractors
         public override DestroyedTokensData ExtractData(TurnStepDamageTokens turnStep)
         {
             var destroyedTokens = new TokenCountDictionary();
-            foreach (var (position, token) in turnStep.GetAllPositionsTokens())
+            foreach (var (position, token) in turnStep.GetAllPositionsTokensDestroyed())
             {
                 var tokenData = token.TokenData;
                 if (!destroyedTokens.ContainsKey(tokenData))

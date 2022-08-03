@@ -33,6 +33,14 @@ namespace Match3.Core.TurnSteps
                 .SelectMany(destruction => destruction.DestroyedTokens)
                 .Select(ptdo => ptdo.PositionToken);
         }
+        
+        public IEnumerable<PositionToken> GetAllPositionsTokensDestroyed()
+        {
+            return _tokensDamaged
+                .SelectMany(destruction => destruction.DestroyedTokens)
+                .Select(ptdo => ptdo.PositionToken)
+                .Where(pt => pt.Token.HealthPoints <= 0);
+        }
     }
 
     [Serializable]

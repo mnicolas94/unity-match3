@@ -33,7 +33,7 @@ namespace Match3.Core
         [SerializeField, BoxGroup("Appearance")]
         private AudioClip _destructionSound;
 
-        [SerializeField, BoxGroup("Behaviour")] private int _initialHealth;
+        [SerializeField, Min(1), BoxGroup("Behaviour")] private int _initialHealth;
         [SerializeField, BoxGroup("Behaviour")] private TokenType _type;
         [SerializeField, BoxGroup("Behaviour")] private bool _canMove;
         [SerializeField, BoxGroup("Behaviour")] private bool _canMatchWithItself;

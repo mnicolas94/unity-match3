@@ -333,7 +333,7 @@ namespace Match3.Core.GameActions
                 if (!exists)
                     continue;
                 var (token, layer) = board.GetTopTokenAtWhere(position, DestructiblePredicate);
-                var damageInfo = context.DamageController.DamageToken(context, board, token, position);;
+                var damageInfo = context.DamageController.DamageToken(context, board, token, position);
                 var positionTokenDamageOrder = new PositionTokenDamageOrder(position, token, damageOrder, damageInfo);
                 destroyedTokens.Add(positionTokenDamageOrder);
                 var destroyIt = token.HealthPoints <= 0;
