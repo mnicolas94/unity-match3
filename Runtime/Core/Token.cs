@@ -19,7 +19,7 @@ namespace Match3.Core
             _healthPoints = tokenData == null ? 1 : tokenData.InitialHealth;
         }
         
-        public int ApplyDamage(int damage, Vector2Int position)
+        public int ApplyDamage(int damage)
         {
             if (_tokenData.IsIndestructible)
                 return 0;
