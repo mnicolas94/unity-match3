@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Match3.Core.GameActions;
 using Match3.Core.GameActions.Actions;
@@ -14,6 +15,9 @@ namespace Match3.View
     {
         [SerializeField] private Button _button;
         [SerializeField] private Image _skillImage;
+
+        public Action<SkillView> OnSkillPressed;
+        public Action<SkillView> OnInteractionEnded;
         
         private IInteractionView _interactionView;
         private Skill _skill;
@@ -33,6 +37,8 @@ namespace Match3.View
             CancellationToken ct)
         {
             await AsyncUtils.Utils.WaitPressButtonAsync(_button, ct);
+            if (!ct.IsCancellationRequested)
+                OnSkillPressed?.Invoke(this);
             return this;
         }
 
@@ -62,12 +68,14 @@ namespace Match3.View
             finally
             {
                 linkedCts.Dispose();
+                OnInteractionEnded?.Invoke(this);
             }
         }
 
         public void UpdateCostView()
         {
-            _costView.UpdateView(_skill);
+            if (_costView)
+                _costView.UpdateView(_skill);
         }
     }
 }

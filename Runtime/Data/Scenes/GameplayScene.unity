@@ -318,6 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 12091767}
   _audioSource: {fileID: 12091766}
 --- !u!1 &56497874
@@ -515,6 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 56497877}
   _audioSource: {fileID: 56497876}
 --- !u!1 &77940424
@@ -712,6 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 3c48cc0744e543543b9550b4933ee2de, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 77940427}
   _audioSource: {fileID: 77940426}
 --- !u!1 &80147951
@@ -909,6 +912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 80147954}
   _audioSource: {fileID: 80147953}
 --- !u!1 &102288159
@@ -1106,6 +1110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 102288162}
   _audioSource: {fileID: 102288161}
 --- !u!1 &107960701
@@ -1303,6 +1308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 107960704}
   _audioSource: {fileID: 107960703}
 --- !u!1 &134220664
@@ -1500,6 +1506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 134220667}
   _audioSource: {fileID: 134220666}
 --- !u!1 &167351121
@@ -1697,6 +1704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 167351124}
   _audioSource: {fileID: 167351123}
 --- !u!1 &172325737
@@ -1894,6 +1902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 172325740}
   _audioSource: {fileID: 172325739}
 --- !u!1 &235382935
@@ -2091,6 +2100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 235382938}
   _audioSource: {fileID: 235382937}
 --- !u!1 &244884717
@@ -2288,6 +2298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 244884720}
   _audioSource: {fileID: 244884719}
 --- !u!1 &323323364
@@ -2485,6 +2496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 323323367}
   _audioSource: {fileID: 323323366}
 --- !u!1 &335442784
@@ -2682,6 +2694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 335442787}
   _audioSource: {fileID: 335442786}
 --- !u!1 &410092645
@@ -2879,6 +2892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 410092648}
   _audioSource: {fileID: 410092647}
 --- !u!1 &413516936
@@ -3076,6 +3090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 413516939}
   _audioSource: {fileID: 413516938}
 --- !u!1 &414786112
@@ -3273,6 +3288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 414786115}
   _audioSource: {fileID: 414786114}
 --- !u!1 &433854359
@@ -3470,6 +3486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 433854362}
   _audioSource: {fileID: 433854361}
 --- !u!1 &473190389
@@ -3667,6 +3684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 473190392}
   _audioSource: {fileID: 473190391}
 --- !u!1 &474909305
@@ -3864,6 +3882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 474909308}
   _audioSource: {fileID: 474909307}
 --- !u!1 &479078666
@@ -4061,6 +4080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 479078669}
   _audioSource: {fileID: 479078668}
 --- !u!1 &502769284
@@ -4258,6 +4278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 502769287}
   _audioSource: {fileID: 502769286}
 --- !u!1 &519420028
@@ -4538,6 +4559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 593835755}
   _audioSource: {fileID: 593835754}
 --- !u!1 &604695817
@@ -4735,6 +4757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 604695820}
   _audioSource: {fileID: 604695819}
 --- !u!1 &625196922
@@ -4932,6 +4955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 625196925}
   _audioSource: {fileID: 625196924}
 --- !u!1 &631794918
@@ -5129,6 +5153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 631794921}
   _audioSource: {fileID: 631794920}
 --- !u!1 &633310736
@@ -5326,6 +5351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 633310739}
   _audioSource: {fileID: 633310738}
 --- !u!1 &653323919
@@ -5523,6 +5549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 653323922}
   _audioSource: {fileID: 653323921}
 --- !u!1 &656906627
@@ -5720,6 +5747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 656906630}
   _audioSource: {fileID: 656906629}
 --- !u!1 &691938101
@@ -5917,6 +5945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 691938104}
   _audioSource: {fileID: 691938103}
 --- !u!1 &717368427
@@ -6114,6 +6143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 717368430}
   _audioSource: {fileID: 717368429}
 --- !u!1 &773336119
@@ -6311,6 +6341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 773336122}
   _audioSource: {fileID: 773336121}
 --- !u!1 &788530348
@@ -6508,6 +6539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 788530351}
   _audioSource: {fileID: 788530350}
 --- !u!1 &805487280
@@ -6705,6 +6737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 3c48cc0744e543543b9550b4933ee2de, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 805487283}
   _audioSource: {fileID: 805487282}
 --- !u!1 &808583336
@@ -6902,6 +6935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 808583339}
   _audioSource: {fileID: 808583338}
 --- !u!1 &814325730
@@ -7099,6 +7133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 814325733}
   _audioSource: {fileID: 814325732}
 --- !u!1 &831891722
@@ -7296,6 +7331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 831891725}
   _audioSource: {fileID: 831891724}
 --- !u!1 &969818517
@@ -7493,6 +7529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 969818520}
   _audioSource: {fileID: 969818519}
 --- !u!1 &991459497
@@ -7690,6 +7727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 991459500}
   _audioSource: {fileID: 991459499}
 --- !u!1 &1019461736
@@ -7887,6 +7925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1019461739}
   _audioSource: {fileID: 1019461738}
 --- !u!1 &1172723582
@@ -8084,6 +8123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1172723585}
   _audioSource: {fileID: 1172723584}
 --- !u!1 &1174396038
@@ -8281,6 +8321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1174396041}
   _audioSource: {fileID: 1174396040}
 --- !u!1 &1179284243
@@ -8478,6 +8519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1179284246}
   _audioSource: {fileID: 1179284245}
 --- !u!1 &1286041944
@@ -8675,6 +8717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1286041947}
   _audioSource: {fileID: 1286041946}
 --- !u!1 &1294468227
@@ -8872,6 +8915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1294468230}
   _audioSource: {fileID: 1294468229}
 --- !u!1 &1307328945
@@ -9069,6 +9113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1307328948}
   _audioSource: {fileID: 1307328947}
 --- !u!1 &1308944900
@@ -9266,6 +9311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1308944903}
   _audioSource: {fileID: 1308944902}
 --- !u!1 &1353078237
@@ -9463,6 +9509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1353078240}
   _audioSource: {fileID: 1353078239}
 --- !u!1 &1355929736
@@ -9707,6 +9754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1374358392}
   _audioSource: {fileID: 1374358391}
 --- !u!1 &1396666139
@@ -9904,6 +9952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 3c48cc0744e543543b9550b4933ee2de, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1396666142}
   _audioSource: {fileID: 1396666141}
 --- !u!1 &1449155932
@@ -10101,6 +10150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1449155935}
   _audioSource: {fileID: 1449155934}
 --- !u!1 &1472148636
@@ -10298,6 +10348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1472148639}
   _audioSource: {fileID: 1472148638}
 --- !u!1 &1496419910
@@ -10495,6 +10546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1496419913}
   _audioSource: {fileID: 1496419912}
 --- !u!1 &1538309973
@@ -10766,6 +10818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1618196124}
   _audioSource: {fileID: 1618196123}
 --- !u!1 &1626570118
@@ -10963,6 +11016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1626570121}
   _audioSource: {fileID: 1626570120}
 --- !u!1001 &1631440579
@@ -11114,12 +11168,12 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ed6cbc6aaa52dfa49a04bc50e5a5a436, type: 2}
     - target: {fileID: 7057277105308285239, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
       propertyPath: _skills.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7057277105308285239, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
       propertyPath: _skills.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 76a11ee85804c4c4c904c25d9dc547ce, type: 2}
+      objectReference: {fileID: 11400000, guid: 431e65878ccc3f2489ba187f486d25de, type: 2}
     - target: {fileID: 7057277105308285239, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
       propertyPath: _skills.Array.data[1]
       value: 
@@ -11128,6 +11182,10 @@ PrefabInstance:
       propertyPath: _skills.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 431e65878ccc3f2489ba187f486d25de, type: 2}
+    - target: {fileID: 7106375759692656963, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 7903302393974899853, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -18220,6 +18278,22 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8988621404228243147, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988621404228243147, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988621404228243147, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988621404228243147, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1440
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
 --- !u!4 &1631440580 stripped
@@ -18433,6 +18507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1632725481}
   _audioSource: {fileID: 1632725480}
 --- !u!1 &1640760907
@@ -18630,6 +18705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1640760910}
   _audioSource: {fileID: 1640760909}
 --- !u!1 &1869256839
@@ -18827,6 +18903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1869256842}
   _audioSource: {fileID: 1869256841}
 --- !u!1 &1882987053
@@ -19024,6 +19101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 3c48cc0744e543543b9550b4933ee2de, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1882987056}
   _audioSource: {fileID: 1882987055}
 --- !u!1 &1904619629
@@ -19221,6 +19299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1904619632}
   _audioSource: {fileID: 1904619631}
 --- !u!1 &1913481998
@@ -19418,6 +19497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 3c48cc0744e543543b9550b4933ee2de, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1913482001}
   _audioSource: {fileID: 1913482000}
 --- !u!1 &1916167072
@@ -19615,6 +19695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1916167075}
   _audioSource: {fileID: 1916167074}
 --- !u!1 &1916830140
@@ -19812,6 +19893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1916830143}
   _audioSource: {fileID: 1916830142}
 --- !u!1 &1923704150
@@ -20009,6 +20091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1923704153}
   _audioSource: {fileID: 1923704152}
 --- !u!1 &1953010066
@@ -20206,6 +20289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1953010069}
   _audioSource: {fileID: 1953010068}
 --- !u!1 &1971378009
@@ -20403,6 +20487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 1971378012}
   _audioSource: {fileID: 1971378011}
 --- !u!1 &2002566942
@@ -20600,6 +20685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 2002566945}
   _audioSource: {fileID: 2002566944}
 --- !u!1 &2005407705
@@ -20797,6 +20883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 2005407708}
   _audioSource: {fileID: 2005407707}
 --- !u!1 &2083425301
@@ -20994,6 +21081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 2083425304}
   _audioSource: {fileID: 2083425303}
 --- !u!1 &2086978492
@@ -21191,6 +21279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 2086978495}
   _audioSource: {fileID: 2086978494}
 --- !u!1 &2093257169
@@ -21388,6 +21477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 2093257172}
   _audioSource: {fileID: 2093257171}
 --- !u!1 &2124851862
@@ -21585,6 +21675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 2124851865}
   _audioSource: {fileID: 2124851864}
 --- !u!1 &2126282986
@@ -21782,5 +21873,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _token:
     _tokenData: {fileID: 11400000, guid: f2c25785ff0228444adcb31ecf4e9eef, type: 2}
+    _healthPoints: 0
   _spriteRenderer: {fileID: 2126282989}
   _audioSource: {fileID: 2126282988}

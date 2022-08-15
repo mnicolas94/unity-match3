@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Match3.Core.GameActions;
 using Match3.View.Interactions;
 using Match3.View.SkillCostViews;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Match3.View
 {
@@ -14,6 +16,9 @@ namespace Match3.View
         [SerializeField] private Transform _interactionViewsContainer;
 
         [SerializeField] private SkillView _skillViewPrefab;
+        
+        [SerializeField] public UnityEvent<SkillView> OnSkillPressed;
+        [SerializeField] public UnityEvent<SkillView> OnInteractionEnded;
         
         private List<IInteractionView> _interactionViews;
         
@@ -30,6 +35,11 @@ namespace Match3.View
                 skillView.Initialize(skill, interactionView, skillCostView);
                 if (exists)
                     skillCostView.transform.SetParent(skillView.transform, false);
+                
+                // register events
+                skillView.OnSkillPressed += view => OnSkillPressed?.Invoke(view);
+                skillView.OnInteractionEnded += view => OnInteractionEnded?.Invoke(view);
+                
                 return skillView;
             });
 
