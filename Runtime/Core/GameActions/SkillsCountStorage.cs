@@ -6,7 +6,7 @@ using Utils;
 namespace Match3.Core.GameActions
 {
     [CreateAssetMenu(fileName = "SkillsCountPersistent", menuName = "Match3/Persistent/SkillsCountPersistent", order = 0)]
-    public class SkillsCountPersistent : ScriptableObjectSingleton<SkillsCountPersistent>
+    public class SkillsCountStorage : ScriptableObjectSingleton<SkillsCountStorage>
     {
         [SerializeField] private SkillCountDictionary _skillsCount;
 

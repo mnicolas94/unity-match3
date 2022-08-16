@@ -1,4 +1,6 @@
 ﻿using System;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Scripting.APIUpdating;
 
 namespace Match3.Core.GameActions
@@ -7,19 +9,25 @@ namespace Match3.Core.GameActions
     [Serializable]
     public class SkillCostCount : SkillCostBase
     {
+        [SerializeField] private UnityEvent<Skill> _onApplyCost;
+        
         public override bool CanExecuteSkill(Skill skill)
         {
-            return SkillsCountPersistent.GetSkillCount(skill) > 0;
+            return SkillsCountStorage.GetSkillCount(skill) > 0;
         }
 
         public override void ApplySkillCost(Skill skill)
         {
-            SkillsCountPersistent.ConsumeSkill(skill);
+            bool success = SkillsCountStorage.ConsumeSkill(skill);
+            if (success)
+            {
+                _onApplyCost.Invoke(skill);
+            }
         }
 
         public int GetRemainingCount(Skill skill)
         {
-            return SkillsCountPersistent.GetSkillCount(skill);
+            return SkillsCountStorage.GetSkillCount(skill);
         }
     }
 }
