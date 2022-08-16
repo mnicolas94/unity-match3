@@ -11,7 +11,6 @@ namespace Match3.Core.GameSerialization
     {
         [SerializeField] private int _maxCount;
         [SerializeField, ToStringLabel] private List<SerializableGame> _games = new List<SerializableGame>();
-        [SerializeField] private UnityEvent _onChangedEvent;
         
         public int Count => _games.Count;
 
@@ -25,22 +24,18 @@ namespace Match3.Core.GameSerialization
             if (_games.Count < _maxCount)
             {
                 _games.Add(item);
-                _onChangedEvent?.Invoke();
-                
             }
         }
 
         public bool Remove(SerializableGame item)
         {
             bool removed = _games.Remove(item);
-            _onChangedEvent?.Invoke();
             return removed;
         }
 
         public void Clear()
         {
             _games.Clear();
-            _onChangedEvent?.Invoke();
         }
     }
 }
