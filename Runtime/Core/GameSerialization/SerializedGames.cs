@@ -6,7 +6,7 @@ using Utils.Attributes;
 
 namespace Match3.Core.GameSerialization
 {
-    [CreateAssetMenu(fileName = "SerializedGames", menuName = "Match3/Persistent/SerializedGames", order = 0)]
+    [CreateAssetMenu(fileName = "SerializedGames", menuName = "Facticus/Match3/Persistent/SerializedGames", order = 0)]
     public class SerializedGames : ScriptableObjectSingleton<SerializedGames>
     {
         [SerializeField] private int _maxCount;
