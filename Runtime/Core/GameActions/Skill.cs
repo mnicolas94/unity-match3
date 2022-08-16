@@ -1,11 +1,10 @@
 ﻿using Match3.Core.GameActions.Actions;
 using UnityEngine;
-using Utils.ModelView;
 
 namespace Match3.Core.GameActions
 {
     [CreateAssetMenu(fileName = "Skill", menuName = "Facticus/Match3/Skills/Skill")]
-    public class Skill : ScriptableObject, IModel
+    public class Skill : ScriptableObject
     {
         [SerializeField] private string skillName;
         [SerializeField] private Sprite skillImage;

@@ -5,6 +5,7 @@ using Match3.View.Interactions;
 using Match3.View.SkillCostViews;
 using UnityEngine;
 using UnityEngine.Events;
+using Utils.ModelView;
 
 namespace Match3.View
 {
@@ -31,7 +32,7 @@ namespace Match3.View
                 var action = skill.GameAction;
                 var interactionView = _interactionViews.Find(i => i.CanProvideInteractionForAction(action));
                 var skillView = Instantiate(_skillViewPrefab, _skillsContainer);
-                var skillCostView = _costViewsProvider.TryGetViewForModel(skill, out bool exists);
+                var skillCostView = _costViewsProvider.TryGetViewForModel(skill, out bool exists) as ViewBase<Skill>;
                 skillView.Initialize(skill, interactionView, skillCostView);
                 if (exists)
                     skillCostView.transform.SetParent(skillView.transform, false);
