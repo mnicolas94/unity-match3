@@ -2,12 +2,15 @@
 using Match3.Core.GameEvents.Observers;
 using Match3.Core.TurnSteps;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Match3.Core.GameSerialization
 {
     [Serializable]
     public class SerializeGameObserver : IGameStartObserver, IGameEndedObserver, ITurnStepObserver
     {
+        [SerializeField] private UnityEvent _onAddGame;
+        
         private SerializableGame _game;
         
         public void OnGameStarted(GameController controller)
@@ -17,7 +20,7 @@ namespace Match3.Core.GameSerialization
 
         public void OnGameEnded(GameController controller)
         {
-            SaveCurrentGame();
+            AddCurrentGameToList();
         }
         
         public void OnTurnStep(TurnStep turnStep)
@@ -25,7 +28,7 @@ namespace Match3.Core.GameSerialization
             _game.AddTurnStep(turnStep);
         }
 
-        private void SaveCurrentGame()
+        private void AddCurrentGameToList()
         {
             if (_game != null)
             {
