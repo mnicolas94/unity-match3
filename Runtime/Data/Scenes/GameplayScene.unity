@@ -2040,6 +2040,10 @@ PrefabInstance:
       propertyPath: _skills.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 431e65878ccc3f2489ba187f486d25de, type: 2}
+    - target: {fileID: 7057277105308285239, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
+      propertyPath: _costViewsProvider.unityReference
+      value: 
+      objectReference: {fileID: 1631440582}
     - target: {fileID: 7106375759692656963, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
       propertyPath: _camera
       value: 
@@ -9152,6 +9156,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e0041ef11c14ed2abcb9668a962c829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1631440582 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7210710509567667219, guid: d671f80f49d15164d94cfba098201b0a, type: 3}
+  m_PrefabInstance: {fileID: 1631440579}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0732066cef3f4d6a8b17222c85f9303d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1856219458

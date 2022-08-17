@@ -22,7 +22,7 @@ namespace Match3.Core.TurnSteps
     [Serializable]
     public class MovementsList : IList<TokenMovement>
     {
-        [SerializeField] private List<TokenMovement> _movements;
+        [SerializeField] private List<TokenMovement> _movements = new List<TokenMovement>();
 
         public static implicit operator List<TokenMovement>(MovementsList list)
         {

@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using Match3.Core.GameActions;
 using Match3.View.Interactions;
-using Match3.View.SkillCostViews;
+using ModelView;
+using TNRD;
 using UnityEngine;
 using UnityEngine.Events;
-using Utils.ModelView;
 
 namespace Match3.View
 {
     public class SkillsInitializer : MonoBehaviour
     {
         [SerializeField] private List<Skill> _skills;
-        [SerializeField] private SkillCostViewsProvider _costViewsProvider;
+        [SerializeField] private SerializableInterface<IViewProvider> _costViewsProvider;
         [SerializeField] private Transform _skillsContainer;
         [SerializeField] private Transform _interactionViewsContainer;
 
@@ -32,10 +32,12 @@ namespace Match3.View
                 var action = skill.GameAction;
                 var interactionView = _interactionViews.Find(i => i.CanProvideInteractionForAction(action));
                 var skillView = Instantiate(_skillViewPrefab, _skillsContainer);
-                var skillCostView = _costViewsProvider.TryGetViewForModel(skill, out bool exists) as ViewBase<Skill>;
-                skillView.Initialize(skill, interactionView, skillCostView);
+                bool exists = _costViewsProvider.Value.TryGetViewForModel(skill, out var skillCostView);
+
+                var costView = skillCostView as ViewBaseBehaviour<Skill>;
+                skillView.Initialize(skill, interactionView, costView);
                 if (exists)
-                    skillCostView.transform.SetParent(skillView.transform, false);
+                    costView.transform.SetParent(skillView.transform, false);
                 
                 // register events
                 skillView.OnSkillPressed += view => OnSkillPressed?.Invoke(view);

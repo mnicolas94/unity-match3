@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4db30d725d3b4a1787a14a56b266cebb, type: 3}
-  m_Name: SkillCostViewsProvider
+  m_Script: {fileID: 11500000, guid: fe3c151e451b4fa9a994009e1b5d4bc8, type: 3}
+  m_Name: SkillsCountPersistent
   m_EditorClassIdentifier: 
-  _viewsPrefabs: []
+  _skillsCount:
+    m_keys: []
+    m_values: 

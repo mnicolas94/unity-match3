@@ -26,7 +26,11 @@ MonoBehaviour:
         _resolvers:
         - id: 2
     00000001:
-      type: {class: SkillCostFree, ns: Match3.Core.GameActions, asm: com.facticus.match3}
+      type: {class: SkillCostCount, ns: Match3.Core.GameActions, asm: com.facticus.match3}
+      data:
+        _onApplyCost:
+          m_PersistentCalls:
+            m_Calls: []
     00000002:
       type: {class: DamageRadiusResolver, ns: Match3.Core.TokensEvents.Resolvers, asm: com.facticus.match3}
       data:

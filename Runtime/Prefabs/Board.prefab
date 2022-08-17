@@ -664,6 +664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5603318105626015178}
   - component: {fileID: 7057277105308285239}
+  - component: {fileID: 7210710509567667219}
   m_Layer: 0
   m_Name: SkillsInitializer
   m_TagString: Untagged
@@ -701,7 +702,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skills: []
-  _costViewsProvider: {fileID: 0}
+  _costViewsProvider:
+    mode: 0
+    unityReference: {fileID: 0}
+    rawReference:
+      id: 0
   _skillsContainer: {fileID: 5506995985010365583}
   _interactionViewsContainer: {fileID: 3775802209604539466}
   _skillViewPrefab: {fileID: 7003749498285464289, guid: c2b951a7725828147a566411f75cf8f0, type: 3}
@@ -735,6 +740,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
+--- !u!114 &7210710509567667219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192999676838898478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0732066cef3f4d6a8b17222c85f9303d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _views:
+  - mode: 0
+    unityReference: {fileID: 2245783532752599118, guid: ad247999655b5e04a81f9cdb7ac5e46b, type: 3}
+    rawReference:
+      id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!1 &3228514246208973987
 GameObject:
   m_ObjectHideFlags: 0

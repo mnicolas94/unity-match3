@@ -1,11 +1,11 @@
 ﻿using Match3.Core.GameActions;
+using ModelView;
 using TMPro;
 using UnityEngine;
-using Utils.ModelView;
 
 namespace Match3.View.SkillCostViews
 {
-    public class SkillCostCountView : ViewBase<Skill>
+    public class SkillCostCountView : ViewBaseBehaviour<Skill>
     {
         [SerializeField] private TextMeshProUGUI _countText;
         
