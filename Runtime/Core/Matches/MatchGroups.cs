@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using UnityAtoms.BaseAtoms;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using Utils;
 using Utils.Attributes;
 
 namespace Match3.Core.Matches
