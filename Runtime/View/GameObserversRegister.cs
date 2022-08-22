@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Match3.Core.GameEvents;
 using Match3.Core.GameEvents.Observers;
+using TNRD;
 using UnityEngine;
 
 namespace Match3.View
@@ -8,13 +9,17 @@ namespace Match3.View
     public class GameObserversRegister : MonoBehaviour
     {
         [SerializeField] private SerializableEventsProvider _provider;
-        [SerializeReference, SubclassSelector] private List<IGameObserver> _observers;
+        [SerializeField] private List<SerializableInterface<IGameObserver>> _observers;
         
         public void AddObserver(IGameObserver observer)
         {
-            _observers.Add(observer);
+            var reference = new SerializableInterface<IGameObserver>
+            {
+                Value = observer
+            };
+            _observers.Add(reference);
             if (enabled)
-                RegisterObserver(observer);
+                RegisterObserver(reference);
         }
 
         private void OnEnable()
@@ -27,8 +32,9 @@ namespace Match3.View
             _observers.ForEach(UnregisterObserver);
         }
 
-        private void RegisterObserver(IGameObserver observer)
+        private void RegisterObserver(SerializableInterface<IGameObserver> observerReference)
         {
+            var observer = observerReference.Value;
             if (observer is IGameStartObserver startObserver)
             {
                 _provider.GameStartedEvent.Register(startObserver.OnGameStarted);
@@ -45,8 +51,9 @@ namespace Match3.View
             }
         }
         
-        private void UnregisterObserver(IGameObserver observer)
+        private void UnregisterObserver(SerializableInterface<IGameObserver> observerReference)
         {
+            var observer = observerReference.Value;
             if (observer is IGameStartObserver startObserver)
             {
                 _provider.GameStartedEvent.Unregister(startObserver.OnGameStarted);
