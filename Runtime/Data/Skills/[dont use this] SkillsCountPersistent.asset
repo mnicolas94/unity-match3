@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe3c151e451b4fa9a994009e1b5d4bc8, type: 3}
-  m_Name: SkillsCountPersistent
+  m_Name: '[dont use this] SkillsCountPersistent'
   m_EditorClassIdentifier: 
   _skillsCount:
     m_keys: []
