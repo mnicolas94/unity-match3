@@ -1,7 +1,9 @@
 ﻿using System;
+using Codice.Client.BaseCommands;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Scripting.APIUpdating;
+using Utils.Attributes;
 
 namespace Match3.Core.GameActions
 {
@@ -10,15 +12,18 @@ namespace Match3.Core.GameActions
     public class SkillCostCount : SkillCostBase
     {
         [SerializeField] private UnityEvent<Skill> _onApplyCost;
+
+        [SerializeField, AutoProperty(AutoPropertyMode.Asset)]
+        private SkillsCountStorage _storage;
         
         public override bool CanExecuteSkill(Skill skill)
         {
-            return SkillsCountStorage.GetSkillCount(skill) > 0;
+            return _storage.GetSkillCount(skill) > 0;
         }
 
         public override void ApplySkillCost(Skill skill)
         {
-            bool success = SkillsCountStorage.ConsumeSkill(skill);
+            bool success = _storage.ConsumeSkill(skill);
             if (success)
             {
                 _onApplyCost.Invoke(skill);
@@ -27,7 +32,7 @@ namespace Match3.Core.GameActions
 
         public int GetRemainingCount(Skill skill)
         {
-            return SkillsCountStorage.GetSkillCount(skill);
+            return _storage.GetSkillCount(skill);
         }
     }
 }

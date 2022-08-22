@@ -31,6 +31,7 @@ MonoBehaviour:
         _onApplyCost:
           m_PersistentCalls:
             m_Calls: []
+        _storage: {fileID: 11400000, guid: ebde3e5c9e4fbf24fabbdca5413874b4, type: 2}
     00000002:
       type: {class: DamageRadiusResolver, ns: Match3.Core.TokensEvents.Resolvers, asm: com.facticus.match3}
       data:
