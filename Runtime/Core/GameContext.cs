@@ -13,61 +13,32 @@ namespace Match3.Core
     [Serializable]
     public class GameContext
     {
-        [SerializeField] private SerializableEventsProvider _eventsProvider;
-        
-        [SerializeReference, SubclassSelector] private IBoardGravity _gravity;
-        
-        [SerializeField] private MatchGroups _matchGroups;
-
-        [SerializeReference, SubclassSelector] private IDamageController _damageController;
-        
-        [SerializeReference, SubclassSelector] private List<IDataExtractor> _dataExtractors;
-        
-        [SerializeField, ToStringLabel] private List<EventTypeToResolver> _globalResolvers;
-
         public SerializableEventsProvider EventsProvider
         {
             get => _eventsProvider;
             set => _eventsProvider = value;
         }
-
+        [SerializeField] private SerializableEventsProvider _eventsProvider;
+        
         public IBoardGravity Gravity => _gravity;
+        [SerializeReference, SubclassSelector] private IBoardGravity _gravity;
         
         public MatchGroups MatchGroups => _matchGroups;
+        [SerializeField] private MatchGroups _matchGroups;
 
         public IDamageController DamageController => _damageController;
-
+        [SerializeReference, SubclassSelector] private IDamageController _damageController;
+        
         public List<IDataExtractor> DataExtractors => _dataExtractors;
-
+        [SerializeReference, SubclassSelector] private List<IDataExtractor> _dataExtractors;
+        
         public List<EventTypeToResolver> GlobalResolvers => _globalResolvers;
+        [SerializeField, ToStringLabel] private List<EventTypeToResolver> _globalResolvers;
 
-        public GameContext(
-            SerializableEventsProvider eventsProvider,
-            IBoardGravity gravity,
-            MatchGroups matchGroups,
-            IDamageController damageController,
-            List<IDataExtractor> dataExtractors,
-            List<EventTypeToResolver> globalResolvers)
-        {
-            _eventsProvider = eventsProvider;
-            _gravity = gravity;
-            _matchGroups = matchGroups;
-            _damageController = damageController;
-            _dataExtractors = dataExtractors;
-            _globalResolvers = globalResolvers;
-        }
-
-        public GameContext() : this(
-            SerializableEventsProvider.Create(),
-            GravityUtils.Default,
-            new MatchGroups(),
-            new DefaultDamageController(),
-            new List<IDataExtractor>(),
-            new List<EventTypeToResolver>()
-            )
+        private GameContext()
         {
         }
-
+        
         /*
          * Copy constructor
          */
@@ -79,6 +50,20 @@ namespace Match3.Core
             _damageController = other._damageController;
             _dataExtractors = new List<IDataExtractor>(other._dataExtractors);
             _globalResolvers = new List<EventTypeToResolver>(other._globalResolvers);
+        }
+
+        public static GameContext GetDefault()
+        {
+            var context = new GameContext
+            {
+                _eventsProvider = SerializableEventsProvider.Create(),
+                _gravity = GravityUtils.Default,
+                _matchGroups = new MatchGroups(),
+                _damageController = new DefaultDamageController(),
+                _dataExtractors = new List<IDataExtractor>(),
+                _globalResolvers = new List<EventTypeToResolver>()
+            };
+            return context;
         }
     }
 }

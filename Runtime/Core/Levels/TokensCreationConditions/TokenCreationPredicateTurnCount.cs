@@ -22,5 +22,10 @@ namespace Match3.Core.Levels.TokensCreationConditions
             var (gameController, _, _) = input;
             return gameController.GameData.TurnCount >= _turnCount;
         }
+
+        public override string ToString()
+        {
+            return $"turn=={_turnCount}";
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Linq;
 using Match3.Core.SerializableTuples;
 using UnityEngine;
+using Utils;
 
 namespace Match3.Core.Levels
 {
@@ -9,13 +10,13 @@ namespace Match3.Core.Levels
     {
         private TokensCreationData _data;
         private List<TokenDataProbability> _aggregatedProbabilities;
-        private List<TokenCreationCondition> _completedRequests;
+        private List<ConditionalTokenCreation> _completedRequests;
         
         public TokensCreator(TokensCreationData data)
         {
             _data = data;
             _aggregatedProbabilities = GetTokensAggregatedProbabilities(data.Tokens, data.TokensProbabilities);
-            _completedRequests = new List<TokenCreationCondition>();
+            _completedRequests = new List<ConditionalTokenCreation>();
         }
         
         public List<TokenData> AvailableTokens()
@@ -25,16 +26,21 @@ namespace Match3.Core.Levels
 
         public TokenData SpawnToken(GameController gameController, TokenSource tokenSource, Vector2Int position)
         {
-            bool Predicate(TokenCreationCondition req)
+            bool Predicate(ConditionalTokenCreation req)
             {
-                return req.IsMet(gameController, tokenSource, position) && !_completedRequests.Contains(req);
+                bool isMet = req.IsMet(gameController, tokenSource, position);
+                bool alreadyCompleted = _completedRequests.Contains(req);
+                return isMet && !alreadyCompleted;
             }
 
-            if (_data.Requests.Any(Predicate))
+            var request = _data.Requests.FirstOrDefault(Predicate);
+            if (request != null)
             {
-                var request = _data.Requests.First(Predicate);
-                var token = request.CreateToken(gameController, tokenSource, position);
-                _completedRequests.Add(request);
+                var token = request.GetToken(gameController, tokenSource, position);
+                if (!request.IsPermanent)
+                {
+                    _completedRequests.Add(request);
+                }
                 
                 return token;
             }

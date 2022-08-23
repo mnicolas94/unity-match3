@@ -6,6 +6,7 @@ using Match3.Core.SerializableTuples;
 using Match3.Settings;
 using NaughtyAttributes;
 using UnityEngine;
+using Utils.Attributes;
 using Utils.Extensions;
 
 namespace Match3.Core.Levels
@@ -13,23 +14,27 @@ namespace Match3.Core.Levels
     [Serializable]
     public class TokensCreationData : IHomologousTokenReplacer
     {
-        [SerializeField,
-         ValidateInput(nameof(ValidateTokensNotEmpty), "Tokens list should not be empty")]
+        /// <summary>
+        /// Tokens
+        /// </summary>
+        [SerializeField, ValidateInput(nameof(ValidateTokensNotEmpty), "Tokens list should not be empty")]
         private SelectableTokensList _tokens;
-        
-        [SerializeField,
-         ValidateInput(nameof(ValidateProbabilitiesLessThanOne), "Probabilities should sum less or equal to 1.0")]
-        private List<TokenDataProbability> _tokensProbabilities;
-
-        [SerializeReference, SubclassSelector] private List<TokenCreationCondition> _requests;
-        
         public ReadOnlyCollection<TokenData> Tokens => new ReadOnlyCollection<TokenData>(_tokens);
-
+        
+        /// <summary>
+        /// Tokens probabilities
+        /// </summary>
+        [SerializeField, ValidateInput(nameof(ValidateProbabilitiesLessThanOne), "Probabilities should sum less or equal to 1.0")]
+        private List<TokenDataProbability> _tokensProbabilities;
         public ReadOnlyCollection<TokenDataProbability> TokensProbabilities => _tokensProbabilities.AsReadOnly();
 
-        public ReadOnlyCollection<TokenCreationCondition> Requests => _requests.AsReadOnly();
+        /// <summary>
+        /// Creations requests
+        /// </summary>
+        [SerializeField, ToStringLabel] private List<ConditionalTokenCreation> _requests;
+        public ReadOnlyCollection<ConditionalTokenCreation> Requests => _requests.AsReadOnly();
 
-        public void AddTokenCreationRequest(TokenCreationCondition request)
+        public void AddTokenCreationRequest(ConditionalTokenCreation request)
         {
             _requests.Add(request);
         }
@@ -73,10 +78,7 @@ namespace Match3.Core.Levels
             // requests
             foreach (var request in _requests)
             {
-                if (request is IHomologousTokenReplacer replacer)
-                {
-                    replacer.ReplaceToken(toReplace, replacement);
-                }
+                request.ReplaceToken(toReplace, replacement);
             }
         }
         

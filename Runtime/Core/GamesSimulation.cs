@@ -97,7 +97,7 @@ namespace Match3.Core
 
             if (context == null)
             {
-                context = new GameContext();
+                context = GameContext.GetDefault();
             }
             
             context.DataExtractors.AddRange(additionalDataExtractors ?? new List<IDataExtractor>());

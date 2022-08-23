@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Match3.Core.Matches.TokenProviders
+namespace Match3.Core.TokenProviders
 {
     [Serializable]
     public class TokenProvider : ITokenProvider

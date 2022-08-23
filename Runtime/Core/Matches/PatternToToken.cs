@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Match3.Core.Matches.Patterns;
-using Match3.Core.Matches.TokenProviders;
+using Match3.Core.TokenProviders;
 using NaughtyAttributes;
 using UnityEngine;
 

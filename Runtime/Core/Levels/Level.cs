@@ -286,7 +286,7 @@ namespace Match3.Core.Levels
         public static void ValidateFromEditorState(Level level)
         {
             var board = Board.PopulateLevelNoFillEmpty(level);
-            var context = new GameContext();
+            var context = GameContext.GetDefault();
             
             bool hasMatch = board.ExistsMatch(context);
             if (hasMatch)
@@ -345,7 +345,7 @@ namespace Match3.Core.Levels
             bool hasSolution = true;
             try
             {
-                var context = new GameContext();
+                var context = GameContext.GetDefault();
                 var gc = new GameController(this, context);
                 if (FallTokensAtStart)
                 {

@@ -111,7 +111,7 @@ namespace Match3.View
         {
             var victoryEvaluator = level.VictoryEvaluator;
             var defeatEvaluator = level.DefeatEvaluator;
-            var context = _gameContext == null ? new GameContext() : _gameContext.GameContextCopy;
+            var context = _gameContext == null ? GameContext.GetDefault() : _gameContext.GameContextCopy;
             context.EventsProvider = _eventsProvider;
             _gameController = new GameController(level, context);
             boardView.UpdateView(_gameController.Board);
