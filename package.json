@@ -1,6 +1,6 @@
 {
   "name": "com.facticus.match3",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "displayName": "Match3",
   "description": "Unity package to create match3 games",
   "unity": "2021.1",
