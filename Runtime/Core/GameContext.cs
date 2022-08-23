@@ -4,6 +4,7 @@ using Match3.Core.GameActions.TokensDamage;
 using Match3.Core.GameDataExtraction;
 using Match3.Core.GameEvents;
 using Match3.Core.Gravity;
+using Match3.Core.Levels;
 using Match3.Core.Matches;
 using UnityEngine;
 using Utils.Attributes;
@@ -35,6 +36,10 @@ namespace Match3.Core
         public List<EventTypeToResolver> GlobalResolvers => _globalResolvers;
         [SerializeField, ToStringLabel] private List<EventTypeToResolver> _globalResolvers;
 
+        public List<ConditionalTokenCreation> TokenCreationRequests => _tokenCreationRequests;
+        [SerializeField, ToStringLabel] private List<ConditionalTokenCreation> _tokenCreationRequests;
+
+
         private GameContext()
         {
         }
@@ -50,6 +55,7 @@ namespace Match3.Core
             _damageController = other._damageController;
             _dataExtractors = new List<IDataExtractor>(other._dataExtractors);
             _globalResolvers = new List<EventTypeToResolver>(other._globalResolvers);
+            _tokenCreationRequests = new List<ConditionalTokenCreation>(other._tokenCreationRequests);
         }
 
         public static GameContext GetDefault()
@@ -61,7 +67,8 @@ namespace Match3.Core
                 _matchGroups = new MatchGroups(),
                 _damageController = new DefaultDamageController(),
                 _dataExtractors = new List<IDataExtractor>(),
-                _globalResolvers = new List<EventTypeToResolver>()
+                _globalResolvers = new List<EventTypeToResolver>(),
+                _tokenCreationRequests = new List<ConditionalTokenCreation>(),
             };
             return context;
         }

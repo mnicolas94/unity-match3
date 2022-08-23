@@ -14,52 +14,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameContext:
     _eventsProvider: {fileID: 11400000, guid: f45f4407df33a8d418407c0ac602d4ba, type: 2}
-    _dataExtractors: []
-    _globalResolvers: []
+    _gravity:
+      id: 0
     _matchGroups:
-      _groups:
-      - {fileID: 11400000, guid: 8665c973d31faa7468ff13b6116f57f3, type: 2}
+      _groups: []
       _globalMatchPatterns:
       - PatternRecognizer: {fileID: 11400000, guid: bd778509f0aa83e4e951967442c25f79, type: 2}
         _tokenProvider:
-          id: 0
+          id: 1
       - PatternRecognizer: {fileID: 11400000, guid: 71d2b524fb4b41a419e0ec0541c007b5, type: 2}
         _tokenProvider:
-          id: 1
+          id: 2
       - PatternRecognizer: {fileID: 11400000, guid: c12e15230c320d5449e2692548fe8359, type: 2}
         _tokenProvider:
-          id: 2
+          id: 3
       - PatternRecognizer: {fileID: 11400000, guid: 269d8f1c7eac25f408b5feda224cebc3, type: 2}
         _tokenProvider:
-          id: 3
+          id: 4
       - PatternRecognizer: {fileID: 11400000, guid: 21852ac0898e4e84ba2ffaaa4c22bd9c, type: 2}
         _tokenProvider:
-          id: 4
-    _gravity:
-      id: 5
+          id: 5
+    _damageController:
+      id: 6
+    _dataExtractors: []
+    _globalResolvers: []
+    _tokenCreationRequests: []
   references:
     version: 1
     00000000:
-      type: {class: TokenProvider, ns: Match3.Core.TokenProviders, asm: com.facticus.match3}
-      data:
-        _tokenData: {fileID: 11400000, guid: ebb42c906d8791e40b5c017c38938403, type: 2}
+      type: {class: CandyCrushGravity, ns: Match3.Core.Gravity, asm: com.facticus.match3}
     00000001:
       type: {class: TokenProvider, ns: Match3.Core.TokenProviders, asm: com.facticus.match3}
       data:
-        _tokenData: {fileID: 11400000, guid: 8da86aea32f5bd241a65f64cd9b986d3, type: 2}
+        _tokenData: {fileID: 11400000, guid: ebb42c906d8791e40b5c017c38938403, type: 2}
     00000002:
       type: {class: TokenProvider, ns: Match3.Core.TokenProviders, asm: com.facticus.match3}
       data:
-        _tokenData: {fileID: 11400000, guid: 6a80e2a495dd05344b65790dc3209db0, type: 2}
+        _tokenData: {fileID: 11400000, guid: 8da86aea32f5bd241a65f64cd9b986d3, type: 2}
     00000003:
+      type: {class: TokenProvider, ns: Match3.Core.TokenProviders, asm: com.facticus.match3}
+      data:
+        _tokenData: {fileID: 11400000, guid: 6a80e2a495dd05344b65790dc3209db0, type: 2}
+    00000004:
       type: {class: RandomTokenProvider, ns: Match3.Core.TokenProviders, asm: com.facticus.match3}
       data:
         _tokens:
         - {fileID: 11400000, guid: 680ce43b6dca79841ae307359b57bf36, type: 2}
         - {fileID: 11400000, guid: e614b554a3e8a654fa812e5ae6bfb931, type: 2}
-    00000004:
+    00000005:
       type: {class: TokenProvider, ns: Match3.Core.TokenProviders, asm: com.facticus.match3}
       data:
         _tokenData: {fileID: 11400000, guid: 35de87740990424499c3cd1dbeaf3ac3, type: 2}
-    00000005:
-      type: {class: CandyCrushGravity, ns: Match3.Core.Gravity, asm: com.facticus.match3}
+    00000006:
+      type: {class: DefaultDamageController, ns: Match3.Core.GameActions.TokensDamage, asm: com.facticus.match3}

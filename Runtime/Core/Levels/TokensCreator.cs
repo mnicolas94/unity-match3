@@ -3,6 +3,7 @@ using System.Linq;
 using Match3.Core.SerializableTuples;
 using UnityEngine;
 using Utils;
+using Utils.Extensions;
 
 namespace Match3.Core.Levels
 {
@@ -10,11 +11,14 @@ namespace Match3.Core.Levels
     {
         private TokensCreationData _data;
         private List<TokenDataProbability> _aggregatedProbabilities;
+        private List<ConditionalTokenCreation> _requests;
         private List<ConditionalTokenCreation> _completedRequests;
         
-        public TokensCreator(TokensCreationData data)
+        public TokensCreator(TokensCreationData data, List<ConditionalTokenCreation> globalRequests)
         {
             _data = data;
+            _requests = new List<ConditionalTokenCreation>(globalRequests);
+            _requests.AddRangeIfNotExists(data.Requests);
             _aggregatedProbabilities = GetTokensAggregatedProbabilities(data.Tokens, data.TokensProbabilities);
             _completedRequests = new List<ConditionalTokenCreation>();
         }
@@ -33,7 +37,7 @@ namespace Match3.Core.Levels
                 return isMet && !alreadyCompleted;
             }
 
-            var request = _data.Requests.FirstOrDefault(Predicate);
+            var request = _requests.FirstOrDefault(Predicate);
             if (request != null)
             {
                 var token = request.GetToken(gameController, tokenSource, position);

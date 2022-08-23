@@ -45,7 +45,7 @@ namespace Match3.Core
                 LastTurnData = new GameExtractedData()
             };
             _currentLevel = level;
-            _tokensCreator = new TokensCreator(level.TokensCreationData);
+            _tokensCreator = new TokensCreator(level.TokensCreationData, context.TokenCreationRequests);
             _victoryEvaluator = level.VictoryEvaluator;
             _defeatEvaluator = level.DefeatEvaluator;
             _context = context;
