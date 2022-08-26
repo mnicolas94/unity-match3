@@ -84,6 +84,19 @@ namespace Match3.View
             }
         }
 
+        public async void ResumeCurrentGame()
+        {
+            if (Application.isPlaying)
+            {
+                StopGameLoop();
+                _cts = new CancellationTokenSource();
+                var ct = _cts.Token;
+                await WaitUntilLoopStopped(ct);
+                
+                await ResumeGameLoop(ct);
+            }
+        }
+
         public void RestartCurrentLevel()
         {
             StartGameInLevel(_lastLevel);
@@ -126,20 +139,49 @@ namespace Match3.View
             _doubleClickInteractionView.Initialize();
         }
         
-        #region Game loop
+#region Game loop
 
         private async Task StartGameLoop(CancellationToken ct)
+        {
+            var turn = _gameController.StartGame();
+            var (victory, defeat) = await ExecuteTurn(turn, ct);
+            bool gameEnd = victory || defeat;
+
+            if (!gameEnd)
+            {
+                victory = await ExecuteGameLoop(ct);
+            }
+            
+            NotifyGameEnd(victory);
+        }
+        
+        private async Task ResumeGameLoop(CancellationToken ct)
+        {
+            var victory = await ExecuteGameLoop(ct);
+            NotifyGameEnd(victory);
+        }
+
+        private void NotifyGameEnd(bool victory)
+        {
+            _gameController.EndGame();
+            _onGameEnd?.Invoke(victory);
+            _gameEndEvent.Raise(victory);
+        }
+
+        private async Task<bool> ExecuteGameLoop(CancellationToken ct)
         {
             try
             {
                 _gameLoopIsRunning = true;
-                var (victory, defeat) = await StartGame(ct);
-                bool gameEnd = victory || defeat;
 
 #if UNITY_EDITOR
                 _editorRequestStop = false;
                 _requestedResult = false;
 #endif
+
+                bool gameEnd = false;
+                bool victory = false;
+
                 // game loop
                 while (!gameEnd && !ct.IsCancellationRequested)
                 {
@@ -149,30 +191,24 @@ namespace Match3.View
                     var turn = _gameController.ExecuteGameAction(interaction, action);
                     if (turn == null) continue;
 
+                    var defeat = false;
                     (victory, defeat) = await ExecuteTurn(turn, ct);
                     gameEnd = victory || defeat;
                 }
 
 #if UNITY_EDITOR
                 if (_editorRequestStop)
+                {
                     victory = _requestedResult;
+                }
 #endif
-                
-                _gameController.EndGame();
 
-                _onGameEnd?.Invoke(victory);
-                _gameEndEvent.Raise(victory);
+                return victory;
             }
             finally
             {
                 _gameLoopIsRunning = false;
             }
-        }
-
-        private async Task<(bool, bool)> StartGame(CancellationToken ct)
-        {
-            var turn = _gameController.StartGame();
-            return await ExecuteTurn(turn, ct);
         }
 
         private void StopGameLoop()
@@ -346,6 +382,6 @@ namespace Match3.View
             return (victory, defeat);
         }
 
-        #endregion
+#endregion
     }
 }

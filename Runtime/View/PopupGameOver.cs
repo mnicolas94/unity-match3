@@ -11,7 +11,6 @@ namespace Match3.View
     {
         [SerializeField] private Button _continueButton;
         [SerializeField] private Button _restartButton;
-        [SerializeField] private string _goToScene;
 
         public override async Task Show(CancellationToken ct)
         {
@@ -24,7 +23,8 @@ namespace Match3.View
             }
             else
             {
-                await LoadingUtils.LoadingUtils.LoadSceneAsync(_goToScene, null, null);
+                var gcv = FindObjectOfType<GameControllerView>();
+                gcv.ResumeCurrentGame();
             }
         }
 
