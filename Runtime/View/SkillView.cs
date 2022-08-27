@@ -16,7 +16,7 @@ namespace Match3.View
         [SerializeField] private Button _button;
         [SerializeField] private Image _skillImage;
 
-        public Action<SkillView> OnSkillPressed;
+        public Action<SkillView> OnInteractionStarted;
         public Action<SkillView> OnInteractionEnded;
         
         private IInteractionView _interactionView;
@@ -37,13 +37,12 @@ namespace Match3.View
             CancellationToken ct)
         {
             await AsyncUtils.Utils.WaitPressButtonAsync(_button, ct);
-            if (!ct.IsCancellationRequested)
-                OnSkillPressed?.Invoke(this);
             return this;
         }
 
         public async Task<(IInteraction, IGameAction, bool)> WaitForInteractionAsync(CancellationToken ct)
         {
+            OnInteractionStarted?.Invoke(this);
             var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(ct);
             var linkedCt = linkedCts.Token;
             try
@@ -56,6 +55,7 @@ namespace Match3.View
                     var (interaction, success) = await interactionTask;
                     linkedCts.Cancel();
                     var action = _skill.AppliesCostGameAction;
+                    
                     action.OnCostApplied += _ => UpdateCostView();
                     return (interaction, action, success);
                 }
@@ -75,7 +75,9 @@ namespace Match3.View
         public void UpdateCostView()
         {
             if (_costView)
+            {
                 _costView.UpdateView(_skill);
+            }
         }
     }
 }

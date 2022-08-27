@@ -40,7 +40,7 @@ namespace Match3.View
                     costView.transform.SetParent(skillView.transform, false);
                 
                 // register events
-                skillView.OnSkillPressed += view => OnSkillPressed?.Invoke(view);
+                skillView.OnInteractionStarted += view => OnSkillPressed?.Invoke(view);
                 skillView.OnInteractionEnded += view => OnInteractionEnded?.Invoke(view);
                 
                 return skillView;
