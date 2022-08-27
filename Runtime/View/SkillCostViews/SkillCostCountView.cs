@@ -21,7 +21,8 @@ namespace Match3.View.SkillCostViews
         public override void UpdateView(Skill model)
         {
             int remaining = GetCost(model).GetRemainingCount(model);
-            _countText.text = remaining.ToString();
+            var text = remaining == 0 ? "+" : remaining.ToString();
+            _countText.text = text;
         }
 
         private SkillCostCount GetCost(Skill skill)
