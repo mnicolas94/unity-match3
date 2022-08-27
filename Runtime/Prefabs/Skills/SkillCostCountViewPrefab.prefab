@@ -183,4 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65f18c9b1b6a9f4c8396807455cbc8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onCantApplyCost:
+    m_PersistentCalls:
+      m_Calls: []
   _countText: {fileID: 7681858571831900156}

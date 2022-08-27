@@ -5,6 +5,7 @@ using Match3.Core.GameActions;
 using Match3.Core.GameActions.Actions;
 using Match3.Core.GameActions.Interactions;
 using Match3.View.Interactions;
+using Match3.View.SkillCostViews;
 using ModelView;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,11 +22,13 @@ namespace Match3.View
         
         private IInteractionView _interactionView;
         private Skill _skill;
-        private ViewBaseBehaviour<Skill> _costView;
+        private SkillCostViewBase _costView;
+
+        public SkillCostViewBase CostView => _costView;
 
         public bool IsSkillUsable => _skill.SkillCost.CanExecuteSkill(_skill);
         
-        public void Initialize(Skill skill, IInteractionView interactionView, ViewBaseBehaviour<Skill> costView)
+        public void Initialize(Skill skill, IInteractionView interactionView, SkillCostViewBase costView)
         {
             _interactionView = interactionView;
             _skill = skill;

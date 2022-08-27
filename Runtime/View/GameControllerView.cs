@@ -278,8 +278,8 @@ namespace Match3.View
                         }
                         else
                         {
+                            skillView.CostView.OnCantApplyCost();
                             await Task.Yield(); // this avoids breaking the loop, don't know why
-                            // TODO poner cartelito de "no se puede usar la habilidad"
                         }
                     }
                     else if (firstFinished == swapTask) // swapped

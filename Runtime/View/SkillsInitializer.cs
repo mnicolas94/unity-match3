@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Match3.Core.GameActions;
 using Match3.View.Interactions;
+using Match3.View.SkillCostViews;
 using ModelView;
 using TNRD;
 using UnityEngine;
@@ -34,7 +35,7 @@ namespace Match3.View
                 var skillView = Instantiate(_skillViewPrefab, _skillsContainer);
                 bool exists = _costViewsProvider.Value.TryGetViewForModel(skill, out var skillCostView);
 
-                var costView = skillCostView as ViewBaseBehaviour<Skill>;
+                var costView = skillCostView as SkillCostViewBase;
                 skillView.Initialize(skill, interactionView, costView);
                 if (exists)
                     costView.transform.SetParent(skillView.transform, false);

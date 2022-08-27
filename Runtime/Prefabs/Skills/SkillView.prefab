@@ -127,6 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c98dfe167564db78e616cabee5f6f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCantUse:
+    m_PersistentCalls:
+      m_Calls: []
   _button: {fileID: 5091177571487684197}
   _skillImage: {fileID: 866560047594831520}
 --- !u!222 &4429685168850227854

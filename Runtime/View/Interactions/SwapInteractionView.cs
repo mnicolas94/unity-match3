@@ -1,9 +1,11 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Match3.Core;
 using Match3.Core.GameActions.Interactions;
 using Match3.Core.Gravity;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using Utils.Input;
 
@@ -23,6 +25,8 @@ namespace Match3.View.Interactions
         private Token _firstToken;
         private TokenView _firstTokenView;
         private Vector2Int _secondPosition;
+
+        private List<RaycastResult> _raycastBuffer;
         
         private void OnDisable()
         {
@@ -38,6 +42,8 @@ namespace Match3.View.Interactions
 
             _clickAction.performed += OnClick;
             _pointAction.performed += OnPointerMove;
+            
+            _raycastBuffer = new List<RaycastResult>();
             
             ResetState();
         }
@@ -64,10 +70,11 @@ namespace Match3.View.Interactions
         private void OnClick(InputAction.CallbackContext context)
         {
             _clickIsDown = context.ReadValue<float>() > 0.5f;
-            
+            bool anythingRaycasted = RaycastsAnything();
+
             bool tokenClicked = false;
             
-            if (_clickIsDown)
+            if (_clickIsDown && !anythingRaycasted)
             {
                 var (position, token, tokenView, exists) = GetInfoAtPointer();
                 if (exists && CanMove(token))
@@ -84,6 +91,17 @@ namespace Match3.View.Interactions
             {
                 _firstTokenClicked = false;
             }
+        }
+
+        private bool RaycastsAnything()
+        {
+            var pos = _pointAction.ReadValue<Vector2>();
+            var eventData = new PointerEventData(EventSystem.current)
+            {
+                position = pos
+            };
+            EventSystem.current.RaycastAll(eventData, _raycastBuffer);
+            return _raycastBuffer.Count > 0;
         }
 
         private void OnPointerMove(InputAction.CallbackContext context)
