@@ -7,11 +7,11 @@ namespace Match3.View.SkillCostViews
 {
     public abstract class SkillCostViewBase : ViewBaseBehaviour<Skill>
     {
-        [SerializeField] private UnityEvent _onCantApplyCost;
+        [SerializeField] private UnityEvent<Skill> _onCantApplyCost;
 
-        public void OnCantApplyCost()
+        public void OnCantApplyCost(Skill skill)
         {
-            _onCantApplyCost?.Invoke();
+            _onCantApplyCost?.Invoke(skill);
             OnCantApplyCostInternal();
         }
         

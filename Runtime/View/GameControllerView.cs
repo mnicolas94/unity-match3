@@ -278,7 +278,7 @@ namespace Match3.View
                         }
                         else
                         {
-                            skillView.CostView.OnCantApplyCost();
+                            skillView.CostView.OnCantApplyCost(skillView.Skill);
                             await Task.Yield(); // this avoids breaking the loop, don't know why
                         }
                     }

@@ -26,6 +26,8 @@ namespace Match3.View
 
         public SkillCostViewBase CostView => _costView;
 
+        public Skill Skill => _skill;
+
         public bool IsSkillUsable => _skill.SkillCost.CanExecuteSkill(_skill);
         
         public void Initialize(Skill skill, IInteractionView interactionView, SkillCostViewBase costView)
