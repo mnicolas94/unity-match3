@@ -15,7 +15,9 @@ namespace Match3.Core.GameActions
 
         [SerializeField, AutoProperty(AutoPropertyMode.Asset)]
         private SkillsCountStorage _storage;
-        
+
+        public SkillsCountStorage Storage => _storage;
+
         public override bool CanExecuteSkill(Skill skill)
         {
             return _storage.GetSkillCount(skill) > 0;

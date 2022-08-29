@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Match3.Core.SerializableDictionaries;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using Utils;
 
@@ -9,6 +10,9 @@ namespace Match3.Core.GameActions
     public class SkillsCountStorage : ScriptableObject
     {
         [SerializeField] private SkillCountDictionary _skillsCount;
+        [SerializeField] private VoidEvent _onStorageChange;
+
+        public VoidEvent OnStorageChange => _onStorageChange;
 
         public int GetSkillCount(Skill skill)
         {
@@ -23,6 +27,8 @@ namespace Match3.Core.GameActions
                 dict[skill] += count;
             else
                 dict.Add(skill, count);
+
+            _onStorageChange.Raise();
         }
         
         public void AddAllSkillsCount(int count)
@@ -38,7 +44,7 @@ namespace Match3.Core.GameActions
         {
             if (GetSkillCount(skill) > 0)
             {
-                _skillsCount[skill]--;
+                AddSkillCount(skill, -1);
                 return true;
             }
 
