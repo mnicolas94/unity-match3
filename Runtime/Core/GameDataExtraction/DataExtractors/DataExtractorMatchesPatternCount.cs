@@ -81,6 +81,10 @@ namespace Match3.Core.GameDataExtraction.DataExtractors
             _patternsToEvaluate = patternsToEvaluate;
         }
         
+        public DataExtractorMatchesPatternCount() : this(new List<MatchPatternRecognizerBase>())
+        {
+        }
+        
         public override MatchesPatternCountData ExtractData(TurnStepDamageTokens turnStep)
         {
             int totalMatches = 0;
