@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using Match3.Core.GameEvents.Observers;
 using Match3.Core.TurnSteps;
 using UnityEngine;
+using UnityEngine.Events;
 using Utils.Attributes;
 using Utils.Extensions;
 
@@ -14,6 +15,8 @@ namespace Match3.Core.GameDataExtraction
         order = 0)]
     public class GameObserverDataExtractor : ScriptableObject, IGameStartObserver, IGameEndedObserver, ITurnStepObserver
     {
+        [SerializeField] private UnityEvent _onSaveToStorage;
+            
         [SerializeField, AutoProperty(AutoPropertyMode.Asset)]
         private GlobalDataExtractedStorage _globalDataStorage;
         
@@ -40,12 +43,14 @@ namespace Match3.Core.GameDataExtraction
         {
             _currentGameData = new GameData();
             _globalDataStorage.AddGamesStarted();
+            _onSaveToStorage.Invoke();
         }
 
         public void OnGameEnded(GameController controller)
         {
             _globalDataStorage.AddGamesCompleted();
             _globalDataStorage.AggregateData(_currentGameData.AllTurnsData);
+            _onSaveToStorage.Invoke();
         }
 
         public void OnTurnStep(TurnStep step)
