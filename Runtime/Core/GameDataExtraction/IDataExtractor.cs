@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Match3.Core.TurnSteps;
 
 namespace Match3.Core.GameDataExtraction
@@ -28,5 +29,22 @@ namespace Match3.Core.GameDataExtraction
         }
 
         public abstract TD ExtractData(TT turnStep);
+    }
+
+    public static class DataExtractorListExtensions
+    {
+        public static bool AddIfNotExists(this List<IDataExtractor> extractors, IDataExtractor extractor)
+        {
+            bool added = false;
+            var extractorType = extractor.GetType();
+            bool existsSameType = extractors.Exists(extractor => extractor.GetType() == extractorType);
+            if (!existsSameType)
+            {
+                extractors.Add(extractor);
+                added = true;
+            }
+
+            return added;
+        }
     }
 }

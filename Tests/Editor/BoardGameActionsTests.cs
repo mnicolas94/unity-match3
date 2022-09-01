@@ -52,14 +52,16 @@ namespace Match3.Tests.Editor
             Assert.AreEqual(0, gameController.TurnCount);
             
             // act
-            EditorTestsUtils.MakeMove(gameController, 1, 0, 1, 1);
+            var turn = EditorTestsUtils.MakeMove(gameController, 1, 0, 1, 1);
+            turn.TurnSteps.ExecuteTurnStepsNow();
             
             // assert
             Assert.AreEqual(1, gameController.TurnCount);
 
             // act 2
-            EditorTestsUtils.MakeMove(gameController, -1, -1, -1, 0);
-            
+            turn = EditorTestsUtils.MakeMove(gameController, -1, -1, -1, 0);
+            turn.TurnSteps.ExecuteTurnStepsNow();
+
             // assert 2
             Assert.AreEqual(2, gameController.TurnCount);
         }

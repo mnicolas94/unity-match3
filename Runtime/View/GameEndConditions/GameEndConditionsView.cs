@@ -41,10 +41,10 @@ namespace Match3.View.GameEndConditions
             _currentDefeatView.SetupUi(defeatEvaluator);
         }
         
-        public void UpdateUi(IVictoryEvaluator victoryEvaluator, IDefeatEvaluator defeatEvaluator, GameData gameData)
+        public void UpdateUi(IVictoryEvaluator victoryEvaluator, IDefeatEvaluator defeatEvaluator)
         {
-            _currentVictoryView.UpdateUi(victoryEvaluator, gameData);
-            _currentDefeatView.UpdateUi(defeatEvaluator, gameData);
+            _currentVictoryView.UpdateUi(victoryEvaluator);
+            _currentDefeatView.UpdateUi(defeatEvaluator);
         }
 
         private void Clear()

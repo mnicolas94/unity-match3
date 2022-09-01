@@ -8,7 +8,7 @@ namespace Match3.View.GameEndConditions.Victory
     {
         public abstract bool CanHandle(IVictoryEvaluator victoryEvaluator);
         public abstract void SetupUi(IVictoryEvaluator victoryEvaluator);
-        public abstract void UpdateUi(IVictoryEvaluator victoryEvaluator, GameData gameData);
+        public abstract void UpdateUi(IVictoryEvaluator victoryEvaluator);
     }
     
     public abstract class VictoryConditionView<T> : VictoryConditionView where T : IVictoryEvaluator
@@ -23,12 +23,12 @@ namespace Match3.View.GameEndConditions.Victory
             SetupUi((T) victoryEvaluator);
         }
         
-        public override void UpdateUi(IVictoryEvaluator victoryEvaluator, GameData gameData)
+        public override void UpdateUi(IVictoryEvaluator victoryEvaluator)
         {
-            UpdateUi((T) victoryEvaluator, gameData);
+            UpdateUi((T) victoryEvaluator);
         }
         
         protected abstract void SetupUi(T victoryEvaluator);
-        protected abstract void UpdateUi(T victoryEvaluator, GameData gameData);
+        protected abstract void UpdateUi(T victoryEvaluator);
     }
 }

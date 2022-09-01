@@ -20,7 +20,7 @@ namespace Match3.Core.Levels.TokensCreationConditions
         public bool IsMet((GameController, TokenSource, Vector2Int) input)
         {
             var (gameController, _, _) = input;
-            return gameController.GameData.TurnCount >= _turnCount;
+            return gameController.TurnCount >= _turnCount;
         }
 
         public override string ToString()

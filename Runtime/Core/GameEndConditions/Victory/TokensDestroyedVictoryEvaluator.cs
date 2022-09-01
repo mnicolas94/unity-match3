@@ -13,9 +13,11 @@ namespace Match3.Core.GameEndConditions.Victory
     public class TokensDestroyedVictoryEvaluator : IVictoryEvaluator, IHomologousTokenReplacer
     {
         [SerializeField] private TokenCountDictionary tokenCounts;
-        
         public List<TokenData> Tokens => new List<TokenData>(tokenCounts.Keys);
 
+        private DataExtractorDestroyedTokens _dataExtractor;
+        private DestroyedTokensData _data;
+        
         public int GetCountRequirement(TokenData tokenData)
         {
             return tokenCounts[tokenData];
@@ -23,53 +25,37 @@ namespace Match3.Core.GameEndConditions.Victory
 
         public void Initialize(GameController gameController)
         {
-            // add data extractor to then know how many tokens have been destroyed
-            gameController.Context.DataExtractors.Add(new DataExtractorDestroyedTokens());
+            _dataExtractor = new DataExtractorDestroyedTokens();
+            _data = new DestroyedTokensData();
         }
 
-        public bool CheckVictoryInTurnStep(TurnStep turnStep, GameData gameData)
+        public bool CheckVictoryInTurnStep(TurnStep turnStep)
         {
-            bool hasData = gameData.AllTurnsData.TryGetData<DestroyedTokensData>(out var data);
-            if (hasData)
+            ExtractData(turnStep);
+            foreach (var tokenData in tokenCounts.Keys)
             {
-                foreach (var tokenData in tokenCounts.Keys)
+                int countRequirement = GetCountRequirement(tokenData);
+                int destroyedCount = _data.GetDestroyedCount(tokenData);
+                if (destroyedCount < countRequirement)
                 {
-                    int countRequirement = GetCountRequirement(tokenData);
-                    bool isDestroyed = data.HasToken(tokenData);
-                    if (!isDestroyed)
-                        return false;
-                    int destroyedCount = data.GetDestroyedCount(tokenData);
-                    if (destroyedCount < countRequirement)
-                    {
-                        return false;
-                    }
+                    return false;
                 }
-
-                return true;
             }
 
-            return false;
+            return true;
         }
 
-        public List<(TokenData, int)> GetRemainingTokens(GameData gameData)
+        public List<(TokenData, int)> GetRemainingTokens()
         {
-            bool hasData = gameData.AllTurnsData.TryGetData<DestroyedTokensData>(out var data);
             var remaining = new List<(TokenData, int)>();
             
             foreach (var tokenData in tokenCounts.Keys)
             {
                 int countRequirement = GetCountRequirement(tokenData);
                 int remainingCount = countRequirement;
-                if (hasData)
-                {
-                    bool isDestroyed = data.HasToken(tokenData);
-                    if (isDestroyed)
-                    {
-                        int destroyedCount = data.GetDestroyedCount(tokenData);
-                        remainingCount -= destroyedCount;
-                        remainingCount = Math.Max(0, remainingCount);
-                    }
-                }
+                int destroyedCount = _data.GetDestroyedCount(tokenData);
+                remainingCount -= destroyedCount;
+                remainingCount = Math.Max(0, remainingCount);
                 
                 remaining.Add((tokenData, remainingCount));
             }
@@ -84,6 +70,16 @@ namespace Match3.Core.GameEndConditions.Victory
                 int count = tokenCounts[toReplace];
                 tokenCounts.Remove(toReplace);
                 tokenCounts.Add(replacement, count);
+            }
+        }
+
+        private void ExtractData(TurnStep turnStep)
+        {
+            bool canExtract = _dataExtractor.CanExtractDataFrom(turnStep);
+            if (canExtract)
+            {
+                var data = _dataExtractor.ExtractData(turnStep);
+                _data.Aggregate(data);
             }
         }
     }

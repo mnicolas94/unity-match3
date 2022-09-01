@@ -22,13 +22,11 @@ namespace Match3.Core
         private TokensCreator _tokensCreator;
         private IVictoryEvaluator _victoryEvaluator;
         private IDefeatEvaluator _defeatEvaluator;
-
         private GameContext _context;
 
-        private GameData _gameData;
-
-        public GameData GameData => _gameData;
-        public int TurnCount => _gameData.TurnCount;
+        private int _turnCount;
+        
+        public int TurnCount => _turnCount;
         public Board Board => _board;
         public Level CurrentLevel => _currentLevel;
 
@@ -38,12 +36,7 @@ namespace Match3.Core
             Level level,
             GameContext context)
         {
-            _gameData = new GameData
-            {
-                TurnCount = 0,
-                AllTurnsData = new GameExtractedData(),
-                LastTurnData = new GameExtractedData()
-            };
+            _turnCount = 0;
             _currentLevel = level;
             _tokensCreator = new TokensCreator(level.TokensCreationData, context.TokenCreationRequests);
             _victoryEvaluator = level.VictoryEvaluator;
@@ -76,89 +69,75 @@ namespace Match3.Core
         private void HandleTurn(Turn turn)
         {
             turn.TransformTurnSteps(steps => HandleTurn(steps, turn.CountAsTurn));
-            if (turn.CountAsTurn)
-                _gameData.TurnCount++;
+            turn.TransformTurnSteps(RaiseTurnStepsEvent);
         }
 
         private IEnumerable<TurnStep> HandleTurn(IEnumerable<TurnStep> turn, bool turnCounts)
         {
             bool defeat = false;
             bool victory = false;
-            _gameData.LastTurnData.ClearData();
             
             // begin turn
             var beginStep = new TurnStepTurnBegin();
-            ProcessTurnStep(beginStep);
             yield return beginStep;
             
             foreach (var turnStep in turn)
             {
-                ProcessTurnStep(turnStep);
                 yield return turnStep;
                 
                 if (!victory)
                 {
-                    victory = CheckVictoryCondition(turnStep, _gameData);
+                    victory = CheckVictoryCondition(turnStep);
                     if (victory)
                     {
                         var victoryStep = new TurnStepGameEndVictory();
-                        ProcessTurnStep(victoryStep);
                         yield return victoryStep;
                     }
                 }
                 if (!defeat)
                 {
-                    defeat = CheckDefeatCondition(turnStep, _gameData);
+                    defeat = CheckDefeatCondition(turnStep);
                 }
             }
             
             // end turn
             var endStep = new TurnStepTurnEnd(turnCounts);
-            ProcessTurnStep(endStep);
             // check defeat condition again
-            defeat = CheckDefeatCondition(endStep, _gameData);
+            defeat = CheckDefeatCondition(endStep);
             yield return endStep;
 
             if (!victory && defeat)
             {
                 var defeatStep = new TurnStepGameEndDefeat();
-                ProcessTurnStep(defeatStep);
                 yield return defeatStep;
             }
+            
+            // increment turn count
+            _turnCount += turnCounts ? 1 : 0;
         }
 
-        private void ProcessTurnStep(TurnStep turnStep)
+        private IEnumerable<TurnStep> RaiseTurnStepsEvent(IEnumerable<TurnStep> turn)
         {
-            ExtractData(turnStep);
-            RaiseTurnStepEvent(turnStep);
-        }
-
-        private bool CheckVictoryCondition(TurnStep turnStep, GameData gameData)
-        {
-            return _victoryEvaluator.CheckVictoryInTurnStep(turnStep, gameData);
-        }
-        
-        private bool CheckDefeatCondition(TurnStep turnStep, GameData gameData)
-        {
-            return _defeatEvaluator.CheckDefeatInTurnStep(turnStep, gameData);
-        }
-
-        private void ExtractData(TurnStep turnStep)
-        {
-            foreach (var extractor in _context.DataExtractors)
+            foreach (var turnStep in turn)
             {
-                if (extractor.CanExtractDataFrom(turnStep))
-                {
-                    var data = extractor.ExtractData(turnStep);
-                    _gameData.LastTurnData.AggregateData(data);
-                    _gameData.AllTurnsData.AggregateData(data);
-                }
+                RaiseTurnStepEvent(turnStep);
+                yield return turnStep;
             }
         }
-        
+
         private void RaiseTurnStepEvent(TurnStep turnStep)
         {
             _context.EventsProvider.TurnStepEvent.Raise(turnStep);
+        }
+
+        private bool CheckVictoryCondition(TurnStep turnStep)
+        {
+            return _victoryEvaluator.CheckVictoryInTurnStep(turnStep);
+        }
+        
+        private bool CheckDefeatCondition(TurnStep turnStep)
+        {
+            return _defeatEvaluator.CheckDefeatInTurnStep(turnStep);
         }
         
         private TokenData SpawnToken(Vector2Int position, TokenSource tokenSource)

@@ -7,7 +7,7 @@ namespace Match3.Core.GameDataExtraction
     [Serializable]
     public class GameExtractedData
     {
-        [SerializeField] private List<IExtractedData> _data;
+        [SerializeReference] private List<IExtractedData> _data;
 
         public GameExtractedData()
         {
@@ -42,7 +42,7 @@ namespace Match3.Core.GameDataExtraction
         {
             if (HasData<T>())
             {
-                data = (T) _data.Find(data => data is T);
+                data = (T) _data.Find(dt => dt is T);
                 return true;
             }
 
@@ -75,10 +75,6 @@ namespace Match3.Core.GameDataExtraction
         public void ClearData()
         {
             _data.Clear();
-//            foreach (var gameData in _data)
-//            {
-//                gameData.Clear();
-//            }
         }
     }
 }

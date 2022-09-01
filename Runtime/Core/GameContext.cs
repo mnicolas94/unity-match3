@@ -30,9 +30,6 @@ namespace Match3.Core
         public IDamageController DamageController => _damageController;
         [SerializeReference, SubclassSelector] private IDamageController _damageController;
         
-        public List<IDataExtractor> DataExtractors => _dataExtractors;
-        [SerializeReference, SubclassSelector] private List<IDataExtractor> _dataExtractors;
-        
         public List<EventTypeToResolver> GlobalResolvers => _globalResolvers;
         [SerializeField, ToStringLabel] private List<EventTypeToResolver> _globalResolvers;
 
@@ -53,7 +50,6 @@ namespace Match3.Core
             _gravity = other._gravity;
             _matchGroups = new MatchGroups(other._matchGroups);
             _damageController = other._damageController;
-            _dataExtractors = new List<IDataExtractor>(other._dataExtractors);
             _globalResolvers = new List<EventTypeToResolver>(other._globalResolvers);
             _tokenCreationRequests = new List<ConditionalTokenCreation>(other._tokenCreationRequests);
         }
@@ -66,7 +62,6 @@ namespace Match3.Core
                 _gravity = GravityUtils.Default,
                 _matchGroups = new MatchGroups(),
                 _damageController = new DefaultDamageController(),
-                _dataExtractors = new List<IDataExtractor>(),
                 _globalResolvers = new List<EventTypeToResolver>(),
                 _tokenCreationRequests = new List<ConditionalTokenCreation>(),
             };

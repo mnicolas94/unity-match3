@@ -15,14 +15,22 @@ namespace Match3.Core.GameDataExtraction.DataExtractors
             _destroyedTokens = destroyedTokens;
         }
 
-        public bool HasToken(TokenData tokenData)
+        public DestroyedTokensData() : this(new TokenCountDictionary())
         {
-            return _destroyedTokens.ContainsKey(tokenData);
         }
 
         public int GetDestroyedCount(TokenData tokenData)
         {
-            return _destroyedTokens[tokenData];
+            if (HasToken(tokenData))
+            {
+                return _destroyedTokens[tokenData];
+            }
+            return 0;
+        }
+
+        private bool HasToken(TokenData tokenData)
+        {
+            return _destroyedTokens.ContainsKey(tokenData);
         }
 
         public IExtractedData GetClone()

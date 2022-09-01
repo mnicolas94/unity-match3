@@ -7,6 +7,6 @@ namespace Match3.Core.GameEndConditions.Victory
     public interface IVictoryEvaluator
     {
         void Initialize(GameController gameController);
-        bool CheckVictoryInTurnStep(TurnStep turnStep, GameData gameData);
+        bool CheckVictoryInTurnStep(TurnStep turnStep);
     }
 }

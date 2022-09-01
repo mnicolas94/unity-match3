@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AsyncUtils;
 using Match3.Core;
 using Match3.Core.GameActions.Actions;
 using Match3.Core.GameActions.Interactions;
-using Match3.Core.GameDataExtraction;
 using Match3.Core.GameEvents;
-using Match3.Core.Gravity;
 using Match3.Core.Levels;
 using Match3.Core.TurnSteps;
 using Match3.View.GameEndConditions;
@@ -326,7 +323,6 @@ namespace Match3.View
             ExecutingTurn = true;
             var victoryEvaluator = _gameController.CurrentLevel.VictoryEvaluator;
             var defeatEvaluator = _gameController.CurrentLevel.DefeatEvaluator;
-            var gameData = _gameController.GameData;
 
             bool victory = false;
             bool defeat = false;
@@ -367,7 +363,7 @@ namespace Match3.View
                         {
                             await renderTask;
                         }
-                        gameEndView.UpdateUi(victoryEvaluator, defeatEvaluator, gameData);
+                        gameEndView.UpdateUi(victoryEvaluator, defeatEvaluator);
                     }
                 }
             }

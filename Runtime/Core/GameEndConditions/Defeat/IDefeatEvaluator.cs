@@ -7,6 +7,6 @@ namespace Match3.Core.GameEndConditions.Defeat
     public interface IDefeatEvaluator
     {
         void Initialize(GameController gameController);
-        bool CheckDefeatInTurnStep(TurnStep turnStep, GameData gameData);
+        bool CheckDefeatInTurnStep(TurnStep turnStep);
     }
 }

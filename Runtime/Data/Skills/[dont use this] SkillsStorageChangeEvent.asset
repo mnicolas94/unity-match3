@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe3c151e451b4fa9a994009e1b5d4bc8, type: 3}
-  m_Name: '[dont use this] SkillsCountPersistent'
+  m_Script: {fileID: 11500000, guid: 04d35e2eb934747da9d77a3af62bb8ca, type: 3}
+  m_Name: '[dont use this] SkillsStorageChangeEvent'
   m_EditorClassIdentifier: 
-  _skillsCount:
-    m_keys: []
-    m_values: 
-  _onStorageChange: {fileID: 11400000, guid: b7fa0f4ce5b7a5e4cacd53ee62635f9b, type: 2}
+  _developerDescription: 
+  _replayBufferSize: 0

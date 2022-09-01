@@ -11,22 +11,30 @@ namespace Match3.Core.GameEndConditions.Defeat
     public class MovementsDefeatEvaluator : IDefeatEvaluator
     {
         [SerializeField] private int _movements;
-
         public int Movements => _movements;
+
+        private int _turnCount;
 
         public void Initialize(GameController gameController)
         {
-            // do nothing
+            _turnCount = 0;
         }
 
-        public bool CheckDefeatInTurnStep(TurnStep turnStep, GameData gameData)
+        public bool CheckDefeatInTurnStep(TurnStep turnStep)
         {
-            return GetRemainingMovements(gameData) <= 0;
+            if (turnStep is TurnStepTurnEnd endStep)
+            {
+                if (endStep.CountAsTurn)
+                {
+                    _turnCount++;
+                }
+            }
+            return GetRemainingMovements() <= 0;
         }
 
-        public int GetRemainingMovements(GameData gameData)
+        public int GetRemainingMovements()
         {
-            int remaining = _movements - gameData.TurnCount;
+            int remaining = _movements - _turnCount;
             remaining = Math.Max(0, remaining);
             return remaining;
         }

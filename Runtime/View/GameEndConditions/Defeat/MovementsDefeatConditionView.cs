@@ -14,9 +14,9 @@ namespace Match3.View.GameEndConditions.Defeat
             SetRemainingMovementsUi(defeatEvaluator.Movements);
         }
 
-        protected override void UpdateUi(MovementsDefeatEvaluator defeatEvaluator, GameData gameData)
+        protected override void UpdateUi(MovementsDefeatEvaluator defeatEvaluator)
         {
-            int remainingMovements = defeatEvaluator.GetRemainingMovements(gameData);
+            int remainingMovements = defeatEvaluator.GetRemainingMovements();
             SetRemainingMovementsUi(remainingMovements);
         }
 

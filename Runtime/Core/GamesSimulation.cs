@@ -56,10 +56,14 @@ namespace Match3.Core
             var start = DateTime.Now;
             for (int i = 0; i < gamesCount; i++)
             {
-                var gameController = SetupGame(level, additionalDataExtractors);
-                var won = await PlayGame(gameController);
-                FillReportWithFinishedGame(report, gameController, won);
-
+                var gameController = SetupGame(level);
+                var disposableDataExtractor = CreateDataExtractor(gameController.Context.EventsProvider, additionalDataExtractors);
+                using (disposableDataExtractor)
+                {
+                    var won = await PlayGame(gameController);
+                    FillReportWithFinishedGame(report, gameController, disposableDataExtractor.Extractor, won);
+                }
+                
                 int gamesPlayed = i + 1;
                 if (gamesPlayed % 10 == 0)
                 {
@@ -73,10 +77,24 @@ namespace Match3.Core
             return report;
         }
 
-        private static void FillReportWithFinishedGame(SimulationReport report, GameController gameController, bool won)
+        private static DisposableDataExtractor CreateDataExtractor(
+            IGameEventsProvider eventsProvider,
+            List<IDataExtractor> additionalDataExtractors)
+        {
+            var dataExtractor = new DisposableDataExtractor(eventsProvider);
+            var extractors = additionalDataExtractors ?? new List<IDataExtractor>();
+            extractors.ForEach(extractor => dataExtractor.Extractor.AddDataExtractorIfNotExists(extractor));
+            return dataExtractor;
+        }
+
+        private static void FillReportWithFinishedGame(
+            SimulationReport report,
+            GameController gameController,
+            GameObserverDataExtractor dataExtractor,
+            bool won)
         {
             report.GamesCount++;
-            report.GamesData.Add(gameController.GameData);
+            report.GamesData.Add(dataExtractor.CurrentGameData);
             if (won)
             {
                 report.GamesWon++;
@@ -86,7 +104,6 @@ namespace Match3.Core
 
         private static GameController SetupGame(
             Level level,
-            List<IDataExtractor> additionalDataExtractors,
             GameContext context = null)
         {
             if (context == null)
@@ -99,8 +116,7 @@ namespace Match3.Core
             {
                 context = GameContext.GetDefault();
             }
-            
-            context.DataExtractors.AddRange(additionalDataExtractors ?? new List<IDataExtractor>());
+
             var gameController = new GameController(
                 level,
                 context
@@ -112,10 +128,20 @@ namespace Match3.Core
         {
             bool gameEnd = false;
             bool won = false;
-            bool TurnsLimitReached() {return turns != -1 && gameController.GameData.TurnCount < turns;}
+            bool gameStarted = false;
+            bool TurnsLimitReached() {return turns != -1 && gameController.TurnCount < turns;}
             while (!gameEnd || TurnsLimitReached())
             {
-                var turn = PlayRandomMove(gameController);
+                Turn turn;
+                if (!gameStarted)
+                {
+                    gameStarted = true;
+                    turn = gameController.StartGame();
+                }
+                else
+                {
+                    turn = PlayRandomMove(gameController);
+                }
                 foreach (var turnStep in turn.TurnSteps)
                 {
                     if (turnStep is TurnStepGameEndVictory)
@@ -134,6 +160,8 @@ namespace Match3.Core
                 if (gameController.TurnCount % 100 == 0)
                     Debug.Log($"\t\tturn {gameController.TurnCount}");
             }
+            
+            gameController.EndGame();
 
             return won;
         }
@@ -191,6 +219,40 @@ namespace Match3.Core
             }
 
             return moves;
+        }
+    }
+    
+    internal class DisposableDataExtractor : IDisposable
+    {
+        private GameObserverDataExtractor _extractor;
+        private IGameEventsProvider _eventsProvider;
+
+        public GameObserverDataExtractor Extractor => _extractor;
+
+        public DisposableDataExtractor(IGameEventsProvider eventsProvider)
+        {
+            _extractor = GameObserverDataExtractor.CreateEmpty();
+            _eventsProvider = eventsProvider;
+            RegisterEvents();
+        }
+
+        private void RegisterEvents()
+        {
+            _eventsProvider.GameStartedEvent.Register(_extractor.OnGameStarted);
+            _eventsProvider.GameEndedEvent.Register(_extractor.OnGameEnded);
+            _eventsProvider.TurnStepEvent.Register(_extractor.OnTurnStep);
+        }
+        
+        private void UnregisterEvents()
+        {
+            _eventsProvider.GameStartedEvent.Register(_extractor.OnGameStarted);
+            _eventsProvider.GameEndedEvent.Register(_extractor.OnGameEnded);
+            _eventsProvider.TurnStepEvent.Register(_extractor.OnTurnStep);
+        }
+
+        public void Dispose()
+        {
+            UnregisterEvents();
         }
     }
 }

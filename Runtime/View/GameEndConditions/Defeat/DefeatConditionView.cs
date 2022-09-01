@@ -8,7 +8,7 @@ namespace Match3.View.GameEndConditions.Defeat
     {
         public abstract bool CanHandle(IDefeatEvaluator defeatEvaluator);
         public abstract void SetupUi(IDefeatEvaluator defeatEvaluator);
-        public abstract void UpdateUi(IDefeatEvaluator defeatEvaluator, GameData gameData);
+        public abstract void UpdateUi(IDefeatEvaluator defeatEvaluator);
     }
     
     public abstract class DefeatConditionView<T> : DefeatConditionView where T : IDefeatEvaluator
@@ -23,12 +23,12 @@ namespace Match3.View.GameEndConditions.Defeat
             SetupUi((T) defeatEvaluator);
         }
         
-        public override void UpdateUi(IDefeatEvaluator defeatEvaluator, GameData gameData)
+        public override void UpdateUi(IDefeatEvaluator defeatEvaluator)
         {
-            UpdateUi((T) defeatEvaluator, gameData);
+            UpdateUi((T) defeatEvaluator);
         }
         
         protected abstract void SetupUi(T defeatEvaluator);
-        protected abstract void UpdateUi(T defeatEvaluator, GameData gameData);
+        protected abstract void UpdateUi(T defeatEvaluator);
     }
 }

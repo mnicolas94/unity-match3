@@ -24,9 +24,9 @@ namespace Match3.View.GameEndConditions.Victory
             }
         }
 
-        protected override void UpdateUi(TokensDestroyedVictoryEvaluator victoryEvaluator, GameData gameData)
+        protected override void UpdateUi(TokensDestroyedVictoryEvaluator victoryEvaluator)
         {
-            var remaining = victoryEvaluator.GetRemainingTokens(gameData);
+            var remaining = victoryEvaluator.GetRemainingTokens();
             foreach (var (tokenData, remainingCount) in remaining)
             {
                 var view = GetView(tokenData);
