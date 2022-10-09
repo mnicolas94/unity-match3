@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Match3.Core.GameActions.Actions;
 using Match3.Core.GameActions.Interactions;
@@ -7,6 +8,7 @@ using Match3.Core.GameDataExtraction;
 using Match3.Core.GameEvents;
 using Match3.Core.Gravity;
 using Match3.Core.Levels;
+using Match3.Core.TokensEvents.Events;
 using Match3.Core.TurnSteps;
 using Match3.Settings;
 using UnityEngine;
@@ -209,9 +211,16 @@ namespace Match3.Core
                     if (!canMoveAdjacent)
                         continue;
                     
-                    solutions.Clear();
-                    board.GetAllSolutionsInDirection(controller.Context, position, dir, solutions);
-                    if (solutions.Contains(tokenData))
+                    bool hasSwapResolver = tokenData.Resolvers.Any(resolver => resolver.EventType.Type == typeof(EventSwapped));
+                    bool isSolution = false;
+                    if (!hasSwapResolver)
+                    {
+                        solutions.Clear();
+                        board.GetAllSolutionsInDirection(controller.Context, position, dir, solutions);
+                        isSolution = solutions.Contains(tokenData);
+                    }
+                    
+                    if (hasSwapResolver || isSolution)
                     {
                         moves.Add((position, adjacent));
                     }

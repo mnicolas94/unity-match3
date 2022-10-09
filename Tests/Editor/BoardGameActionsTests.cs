@@ -1,6 +1,8 @@
+using Match3.Core;
 using Match3.Core.GameActions;
 using Match3.Core.TurnSteps;
 using NUnit.Framework;
+using UnityEngine;
 
 namespace Match3.Tests.Editor
 {
@@ -79,6 +81,45 @@ namespace Match3.Tests.Editor
             // assert
             bool existsShuffle = turnSteps.Exists(turnStep => turnStep is TurnStepShuffle);
             Assert.IsTrue(existsShuffle);
+        }
+        
+        [Test]
+        public void MovingPowerUpIsConsideredASolution_Test()
+        {
+            // arrange
+            var gameController = EditorTestsUtils.GetControllerFromLevelPath(
+                "Assets/Match3/Tests/Editor/TestLevels/test-dont-shuffle-with-powerup.asset");
+            var powerUpPosition = new Vector2Int(1, 0);
+            
+            // act
+            var existsSolution = gameController.Board.ExistsSolution(gameController.Context);
+            var solutions = GamesSimulation.GetAllPossibleMoves(gameController);
+            bool allSolutionsContainPosition = solutions.TrueForAll(move =>
+            {
+                var (posA, posB) = move;
+                return posA == powerUpPosition || posB == powerUpPosition;
+            });
+            
+            // assert
+            Assert.IsTrue(existsSolution);
+            Assert.IsTrue(solutions.Count > 0);
+            Assert.IsTrue(allSolutionsContainPosition);
+        }
+        
+        [Test]
+        public void WhenOnlySolutionIsSwapPowerUp_ThenNonShuffle_Test()
+        {
+            // arrange
+            var gameController = EditorTestsUtils.GetControllerFromLevelPath(
+                "Assets/Match3/Tests/Editor/TestLevels/test-dont-shuffle-with-powerup.asset");
+            
+            // act
+            var turn = gameController.StartGame();
+            var turnSteps = turn.TurnSteps.ExecuteTurnStepsNow();
+            
+            // assert
+            bool existsShuffle = turnSteps.Exists(turnStep => turnStep is TurnStepShuffle);
+            Assert.IsFalse(existsShuffle);
         }
     }
 }

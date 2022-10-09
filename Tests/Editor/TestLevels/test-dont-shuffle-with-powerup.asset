@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf5e8f82ec246240a5936636587d20d, type: 3}
+  m_Name: test-dont-shuffle-with-powerup
+  m_EditorClassIdentifier: 
+  boardShape:
+    _tiles:
+    - {x: -2, y: -2}
+    - {x: -2, y: -1}
+    - {x: -2, y: 0}
+    - {x: -2, y: 1}
+    - {x: -1, y: -2}
+    - {x: -1, y: -1}
+    - {x: -1, y: 0}
+    - {x: -1, y: 1}
+    - {x: 0, y: -2}
+    - {x: 0, y: -1}
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 1, y: -2}
+    - {x: 1, y: -1}
+    - {x: 1, y: 0}
+    - {x: 1, y: 1}
+  tokenSources:
+  - position: {x: -2, y: 2}
+  - position: {x: -1, y: 2}
+  - position: {x: 0, y: 2}
+  - position: {x: 1, y: 2}
+  _tokensCreationData:
+    _tokens:
+      _data:
+      - {fileID: 11400000, guid: 93b1c219498fbbb42b30fe1562525353, type: 2}
+    _tokensProbabilities: []
+    _requests: []
+  _fallTokensAtStart: 0
+  initiallyPositionedTokens:
+  - position: {x: -2, y: -2}
+    tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+  - position: {x: -2, y: -1}
+    tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+  - position: {x: -2, y: 0}
+    tokenData: {fileID: 11400000, guid: ca54ec7b97c7a14469f904a0ce2d77f2, type: 2}
+  - position: {x: -2, y: 1}
+    tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+  - position: {x: -1, y: -2}
+    tokenData: {fileID: 11400000, guid: 2d8d2208a099e754db9e3d975c633f60, type: 2}
+  - position: {x: -1, y: -1}
+    tokenData: {fileID: 11400000, guid: df8b978357d015241906cf42333ec3a0, type: 2}
+  - position: {x: -1, y: 0}
+    tokenData: {fileID: 11400000, guid: ca54ec7b97c7a14469f904a0ce2d77f2, type: 2}
+  - position: {x: -1, y: 1}
+    tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+  - position: {x: 0, y: -2}
+    tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}
+  - position: {x: 0, y: -1}
+    tokenData: {fileID: 11400000, guid: 3c48cc0744e543543b9550b4933ee2de, type: 2}
+  - position: {x: 0, y: 0}
+    tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}
+  - position: {x: 0, y: 1}
+    tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+  - position: {x: 1, y: -2}
+    tokenData: {fileID: 11400000, guid: e87a53277f3fc53408ab167c01f99440, type: 2}
+  - position: {x: 1, y: -1}
+    tokenData: {fileID: 11400000, guid: 3c48cc0744e543543b9550b4933ee2de, type: 2}
+  - position: {x: 1, y: 0}
+    tokenData: {fileID: 11400000, guid: e614b554a3e8a654fa812e5ae6bfb931, type: 2}
+  - position: {x: 1, y: 1}
+    tokenData: {fileID: 11400000, guid: 541c2e20415d23640af2f9c11b01c7e7, type: 2}
+  bottomLayersTokens: []
+  topLayersTokens: []
+  _prohibitedPositions: []
+  _victoryEvaluator:
+    id: 0
+  _defeatEvaluator:
+    id: 1
+  references:
+    version: 1
+    00000000:
+      type: {class: TokensDestroyedVictoryEvaluator, ns: Match3.Core.GameEndConditions.Victory, asm: com.facticus.match3}
+      data:
+        tokenCounts:
+          m_keys:
+          - {fileID: 11400000, guid: 93b1c219498fbbb42b30fe1562525353, type: 2}
+          m_values: 03d90000
+    00000001:
+      type: {class: MovementsDefeatEvaluator, ns: Match3.Core.GameEndConditions.Defeat, asm: com.facticus.match3}
+      data:
+        _movements: 555

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Match3.Core.Gravity;
 using Match3.Core.Matches;
+using Match3.Core.TokensEvents.Events;
 using UnityEngine;
 using Utils.Extensions;
 using Random = UnityEngine.Random;
@@ -279,9 +281,13 @@ namespace Match3.Core
             solutions ??= new List<TokenData>();
             solutions.Clear();
             var token = board.MainLayer.GetTokenAt(position);
+            var tokenData = token.TokenData;
+            
             board.GetSolutionsInPosition(context, position, solutions);
-            bool isSolution = solutions.Contains(token.TokenData);
-            return isSolution;
+            bool isSolution = solutions.Contains(tokenData);
+            bool hasSwapResolver = tokenData.Resolvers.Any(resolver => resolver.EventType.Type == typeof(EventSwapped));
+            
+            return isSolution || hasSwapResolver;
         }
 
         public static bool ExistsMatchInPosition(this Board board, GameContext context, Vector2Int position, List<TokenData> matches = null)
@@ -378,6 +384,11 @@ namespace Match3.Core
             AddMissingTokensFromGroups(context, solutions);
         }
 
+        /// <summary>
+        /// Add tokens that belong to the same match group as other previously found solutions
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="solutions"></param>
         private static void AddMissingTokensFromGroups(GameContext context, List<TokenData> solutions)
         {
             // add all matches from groups
@@ -526,9 +537,9 @@ namespace Match3.Core
 
         private static (bool, TokenData) GetSolutionInDirection(
             this Board board, GameContext context, Vector2Int position,
-            Vector2Int adjacentDirection, Vector2Int direction, int multiplier)
+            Vector2Int swapDirection, Vector2Int matchDirection, int multiplier)
         {
-            var adjacentPosition = position + adjacentDirection;
+            var adjacentPosition = position + swapDirection;
             bool isValidPosition = board.BoardShape.ExistsPosition(adjacentPosition);
             bool existsToken = board.MainLayer.ExistsTokenAt(adjacentPosition);
             bool canMoveFromPos = GravityUtils.CanMoveFrom(board, position);
@@ -536,7 +547,7 @@ namespace Match3.Core
             bool canMove = canMoveFromPos && canMoveFromAdj;
             if (isValidPosition && existsToken && canMove)
             {
-                var (existsMatch, token) = board.GetMatchInDirection(context, adjacentPosition, direction, multiplier);
+                var (existsMatch, token) = board.GetMatchInDirection(context, adjacentPosition, matchDirection, multiplier);
                 return (existsMatch, token);
             }
 
